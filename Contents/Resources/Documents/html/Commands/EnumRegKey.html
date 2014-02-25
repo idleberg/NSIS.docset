@@ -1,0 +1,44 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>EnumRegKey</h1>
+
+<hr>
+
+<p>Set user variable $x with the name of the 'index'th registry key in root<em>key\Subkey. Valid values for root</em>key are listed under <a href="WriteRegStr.html"><code>WriteRegStr</code></a>. Returns an empty string if there are no more keys, and returns an empty string and sets the error flag if there is an error.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>user_var(output) root_key subkey index
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>StrCpy $0 0
+loop:
+  EnumRegKey $1 HKLM Software $0
+  StrCmp $1 "" done
+  IntOp $0 $0 + 1
+  MessageBox MB_YESNO|MB_ICONQUESTION "$1$\n$\nMore?" IDYES loop
+done:
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.50</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

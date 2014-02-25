@@ -1,0 +1,46 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>PageEx</h1>
+
+<hr>
+
+<p>Adds an installer page or an uninstaller page if the un. prefix was used. Every <code>PageEx</code> must have a matching <a href="PageExEnd.html"><code>PageExEnd</code></a>. In a <code>PageEx</code> block you can set options that are specific to this page and will not be used for other pages. Options that are not set will revert to what was set outside the <code>PageEx</code> block or the default if nothing was set. To set the sub-caption for a page use <a href="Caption.html"><code>Caption</code></a> or <a href="SubCaption.html"><code>SubCaption</code></a> to set the default. To set the callback functions for a page set with <code>PageEx</code> use <a href="PageCallbacks.html"><code>PageCallbacks</code></a>. See the above sections for more information about built-in versus custom pages.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[un.](custom|uninstConfirm|license|components|directory|instfiles)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>PageEx license
+    LicenseText "Readme"
+    LicenseData readme.rtf
+PageExEnd
+
+PageEx license
+    LicenseData license.txt
+    LicenseForceSelection checkbox
+PageExEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Beta 4</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

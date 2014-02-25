@@ -1,0 +1,35 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SilentUnInstall</h1>
+
+<hr>
+
+<p>Specifies whether or not the uninstaller should be silent. If it is 'silent' or 'silentlog', the uninstall section will run quietly, with no screen output from the uninstaller itself (the script can still display whatever it wants, use <a href="MessageBox.html"><code>MessageBox</code></a>'s <code>/SD</code> to specify a default for silent installers). Note that if this is set to 'normal' and the user runs the uninstaller with <code>/S</code> on the command line, it will behave as if SilentUnInstall 'silent' was used.</p>
+
+<p>Note: see also <a href="LogSet.html"><code>LogSet</code></a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>normal|silent
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.7b2</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

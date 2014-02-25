@@ -1,0 +1,38 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>ExpandEnvStrings</h1>
+
+<hr>
+
+<p>Expands environment variables in string into the user variable $x. If an environment variable doesn't exist, it will not be replaced. For example, if you use "%var%" and var doesn't exists, the result will be "%var". If there is an error, the variable is set to empty, and the error flag is set.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>user_var(output) string
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>ExpandEnvStrings $0 "WINDIR=%WINDIR%$\nTEMP=%TEMP%"
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.60</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

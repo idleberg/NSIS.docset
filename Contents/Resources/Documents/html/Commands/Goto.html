@@ -1,0 +1,45 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>Goto</h1>
+
+<hr>
+
+<p>If label is specified, goto the label 'label<em>to</em>jump_to:'.</p>
+
+<p>If <code>+offset</code> or <code>-offset</code> is specified, jump is relative by offset instructions. Goto +1 goes to the next instruction, Goto -1 goes to the previous instruction, etc.</p>
+
+<p>If a user variable is specified, jumps to absolute address (generally you will want to get this value from a function like <a href="GetLabelAddress.html"><code>GetLabelAddress</code></a>). Compiler flag commands and SectionIn aren't instructions so jumping over them has no effect.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>label_to_jump_to | +offset| -offset| user_var(target)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>Goto label
+Goto +2
+Goto -2
+Goto $0
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.4 Beta</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

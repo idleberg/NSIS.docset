@@ -1,0 +1,43 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>ReadRegStr</h1>
+
+<hr>
+
+<p>Loads the specified DLL and calls DllRegisterServer (or entrypoint<em>name if specified). The error flag is set if an error occurs (i.e. it can't load the DLL, initialize OLE, find the entry point, or the function returned anything other than ERROR</em>SUCCESS (=0)).</p>
+
+<p>Use <a href="SetOutPath.html"><code>SetOutPath</code></a> to set the current directory for DLLs that depend on other DLLs that are now in the path or in the Windows directory</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>dllfile [entrypoint_name]
+</code></pre>
+
+<h2>Example:</h2>
+
+<p>If foo.dll depends on bar.dll which is located in $INSTDIR use:</p>
+
+<pre><code>SetOutPath $INSTDIR
+RegDLL $INSTDIR\foo.dll
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.0i</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

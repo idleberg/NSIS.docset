@@ -1,0 +1,52 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>Call</h1>
+
+<hr>
+
+<p>Calls the function named function<em>name, the label named label</em>name, or a variable that specifies an address. An address is returned by <a href="GetCurrentAddress.html"><code>GetCurrentAddress</code></a>, <a href="GetFunctionAddress.html"><code>GetFunctionAddress</code></a> or <a href="GetLabelAddress.html"><code>GetLabelAddress</code></a>. A call returns when it encounters a <a href="Return.html"><code>Return</code></a> instruction. Sections and functions are automatically ended with a Return instruction. Uninstall functions cannot be called from installer functions and sections, and vice-versa.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>function_name | :label_name | user_var(input)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>Function func
+      Call :label
+      DetailPrint "#1: This will only appear 1 time."
+    label:
+      DetailPrint "#2: This will appear before and after message #1."
+      Call :.global_label
+FunctionEnd
+
+Section
+      Call func
+      Return
+
+    .global_label:
+      DetailPrint "#3: The global label was called"
+SectionEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.3</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>LangString</h1>
+
+<hr>
+
+<p>Defines a multilingual string. This means its value may be different (or not, it's up to you) for every language. It allows you to easily make your installer multilingual without the need to add massive switches to the script.</p>
+
+<p>Each language string has a name that identifies it and a value for each language used by the installer. They can be used in any runtime string in the script. To use a language string all you need to add to the string is <code>$(LangString_name_here)</code> where you want the <code>LangString</code> to be inserted.</p>
+
+<p>Notes:</p>
+
+<ul>
+<li>Unlike defines that use curly braces - {}, language strings use parenthesis - ().</li>
+<li>If you change the language in the .onInit function, note that language strings in <a href="../Callbacks/.onInit.html">`.onInit</a> will still use the detected language based on the user's default Windows language, because the language is initialized after .onInit.</li>
+<li>Always set language strings for every language in your script.</li>
+<li>If you set the language ID to 0 the last used language by <code>LangString</code> or <a href="LoadLanguageFile.html"><code>LoadLanguageFile</code></a> will be used.</li>
+</ul>
+
+<h2>Parameters:</h2>
+
+<pre><code>name language_id string
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>LangString message ${LANG_ENGLISH} "English message"
+LangString message ${LANG_FRENCH} "French message"
+LangString message ${LANG_KOREAN} "Korean message"
+
+MessageBox MB_OK "A translated message: $(message)"
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Release Candidate 2</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

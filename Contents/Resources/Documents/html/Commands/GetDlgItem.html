@@ -1,0 +1,43 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>GetDlgItem</h1>
+
+<hr>
+
+<p>Retrieves the handle of a control identified by item_id in the specified dialog box dialog. If you want to get the handle of a control on the inner dialog, first use</p>
+
+<pre><code>FindWindow user_var(output) "#32770" "" `$HWNDPARENT
+</code></pre>
+
+<p>to get the handle of the inner dialog.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>user_var(output) dialog item_id
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>GetDlgItem $0 $HWNDPARENT 1 # next/install button
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

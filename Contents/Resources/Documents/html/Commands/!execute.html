@@ -1,0 +1,39 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>!execute</h1>
+
+<hr>
+
+<p>This command will execute 'command' using a call to CreateProcess(). Unlike <a href="!system.html">!system</a>, it does not use the command line processor, so input/output redirection and commands like 'cd', 'dir' and 'type' can not be used. <code>!execute</code> also ignores the return value of the executed command. Currently, the only known advantage of <code>!execute</code> over <a href="!system.html">!system</a> is that it does not give trouble when the current working directory is specified using UNC.
+On POSIX platforms, <code>!execute</code> will use system() just like <a href="!system.html">!system</a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>command
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>!execute '"%WINDIR%\notepad.exe" "${NSISDIR}\license.txt"'
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.01</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

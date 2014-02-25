@@ -1,0 +1,43 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>IfAbort</h1>
+
+<hr>
+
+<p>If <a href="Abort.html"><code>Abort</code></a> is called it will "return" true. This can happen if the user chose abort on a file that failed to create (or overwrite) or if the user aborted by hand. This function can only be called from the leave function of the instfiles page.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>label_to_goto_if_abort [label_to_goto_if_no_abort]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>Page instfiles "" "" instfilesLeave
+
+Function instfilesLeave
+    IfAbort 0 +2
+    MessageBox MB_OK "user aborted"
+FunctionEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

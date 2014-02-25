@@ -1,0 +1,40 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SetRebootFlag</h1>
+
+<hr>
+
+<p>Sets the reboot flag to either true or false. The flag's value can be read using <a href="IfRebootFlag.html"><code>IfRebootFlag</code></a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>true|false
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>SetRebootFlag true
+IfRebootFlag 0 +2
+MessageBox MB_OK "this message box will always show"
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.70</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

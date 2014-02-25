@@ -1,0 +1,41 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>LicenseLangString</h1>
+
+<hr>
+
+<p>Does the same as <a href="LangString.html"><code>LangString</code></a> only it loads the string from a text/RTF file and defines a special <a href="LangString.html"><code>LangString</code></a> that can be used only by <a href="LicenseData.html"><code>LicenseData</code></a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>name language_id license_path
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>LicenseLangString license ${LANG_ENGLISH} license-english.txt
+LicenseLangString license ${LANG_FRENCH} license-french.txt
+LicenseLangString license ${LANG_GERMAN} license-german.txt
+LicenseData $(license)
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Beta 4</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

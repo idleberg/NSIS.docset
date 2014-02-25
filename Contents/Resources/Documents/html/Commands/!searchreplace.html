@@ -1,0 +1,39 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>!searchreplace</h1>
+
+<hr>
+
+<p>Searches source<em>string, looking for searchfor and replacing all instances of it with replacewith. Unlike <a href="!define.html"><code>!define</code></a>, <code>!searchreplace</code> allows you to redefine symbol</em>out without warning or error.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[/ignorecase] symbol_out source_string searchfor replacewith
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code># defines ${blah} to "i like ponies"
+!searchreplace blah "i love ponies" "love" "like"
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.42</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

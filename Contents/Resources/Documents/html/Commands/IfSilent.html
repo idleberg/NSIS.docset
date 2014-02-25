@@ -1,0 +1,39 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>IfSilent</h1>
+
+<hr>
+
+<p>Checks the silent flag, and jumps to jump<em>if</em>silent if the installer is silent, otherwise jumps to jump<em>if</em>not. The silent flag can be set by <a href="SilentInstall.html"><code>SilentInstall</code></a>, <a href="SilentUninstall.html"><code>SilentUninstall</code></a>, <a href="SetSilent.html"><code>SetSilent</code></a> and by the user passing `/S on the command line.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>jump_if_set [jump_if_not_set]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>IfSilent +2
+ExecWait '"$INSTDIR\nonsilentprogram.exe"'
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Beta 4</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

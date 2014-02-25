@@ -1,0 +1,40 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>FlushINI</h1>
+
+<hr>
+
+<p>Flushes the INI file's buffers. Windows 9x keeps all changes to the INI file in memory. This command causes the changes to be written to the disk immediately. Use it if you edit the INI manually, delete it, move it or copy it right after you change it with <a href="WriteINIStr.html"><code>WriteINIStr</code></a>, <a href="DeleteINISec.html"><code>DeleteINISec</code></a> or <a href="DeleteINStr.html"><code>DeleteINStr</code></a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>ini_filename
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>WriteINIStr $TEMP\something.ini test test test
+FlushINI $TEMP\something.ini
+Delete $TEMP\something.ini
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Beta 3</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

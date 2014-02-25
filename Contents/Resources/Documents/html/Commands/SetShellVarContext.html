@@ -1,0 +1,44 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SetShellVarContext</h1>
+
+<hr>
+
+<p>Sets the context of `$SMPROGRAMS and other shell folders. If set to 'current' (the default), the current user's shell folders are used. If set to 'all', the 'all users' shell folder is used. The all users folder may not be supported on all OSes. If the all users folder is not found, the current user folder will be used. Please take into consideration that a "normal user" has no rights to write in the all users area. Only admins have full access rights to the all users area. You can check this by using the UserInfo plug-in. See Contrib\UserInfo\UserInfo.nsi for an example.</p>
+
+<p>Note that, if used in installer code, this will only affect the installer, and if used in uninstaller code, this will only affect the uninstaller. To affect both, it needs to be used in both.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>current|all
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>SetShellVarContext current
+StrCpy $0 $DESKTOP
+SetShellVarContext all
+StrCpy $1 $DESKTOP
+MessageBox MB_OK $0$\n$1
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.98</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

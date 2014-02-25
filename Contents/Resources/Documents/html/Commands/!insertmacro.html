@@ -1,0 +1,42 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>!insertmacro</h1>
+
+<hr>
+
+<p>Inserts the contents of a macro that was created with <a href="!macro.html"><code>!macro</code></a>. If the macro was created with parameters, then you must pass as many parameters to the macro as it requires.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>macro_name [parameter] [...]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>!macro Print text
+    DetailPrint "${text}"
+!macroend
+!insertmacro Print "some text"
+!insertmacro Print "some more text"
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.8b3</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

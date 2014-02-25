@@ -1,0 +1,39 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>IntFmt</h1>
+
+<hr>
+
+<p>Formats the number in "numberstring" using the format "format", and sets the output to user variable $x. Example format strings include "%08X" "%u"</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>user_var(output) format numberstring
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>IntFmt $0 "0x%08X" 195948557
+IntFmt $0 "%c" 0x41
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.60b</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

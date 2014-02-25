@@ -1,0 +1,39 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SetOutPath</h1>
+
+<hr>
+
+<p>Sets the output path (<code>$OUTDIR</code>) and creates it (recursively if necessary), if it does not exist. Must be a full pathname, usually is just <code>$INSTDIR</code> (you can specify <code>$INSTDIR</code> if you are lazy with a single "-").</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>outpath
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>SetOutPath $INSTDIR
+File program.exe
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.0f</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

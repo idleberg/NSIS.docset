@@ -1,0 +1,44 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>Function</h1>
+
+<hr>
+
+<p>Begins and opens a new function. Function names beginning with "." (e.g. ".Whatever") are generally reserved for callback functions. Function names beginning with "un." are functions that will be generated in the Uninstaller. Hence, normal install Sections and functions cannot call uninstall functions, and the Uninstall Section and uninstall functions cannot call normal functions.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[function_name]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>Function func
+    # some commands
+FunctionEnd
+
+Section
+    Call func
+SectionEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.3</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

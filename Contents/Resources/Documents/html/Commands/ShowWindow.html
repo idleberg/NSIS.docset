@@ -1,0 +1,42 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>ShowWindow</h1>
+
+<hr>
+
+<p>Sets the visibility of a window. Possible show<em>states are the same as <a href="http://msdn2.microsoft.com/en-us/library/ms633548">Windows ShowWindow</a> function. SW</em>* constants are defined in <a href="http://nsis.sourceforge.net/Docs/Include/WinMessages.nsh">Include\WinMessages.nsh</a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>hwnd show_state
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>!include WinMessages.nsh
+GetDlgItem $0 $HWNDPARENT 1
+ShowWindow $0 ${SW_HIDE}
+Sleep 1000
+ShowWindow $0 ${SW_SHOW}
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

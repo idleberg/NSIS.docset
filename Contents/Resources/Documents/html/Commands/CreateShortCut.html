@@ -1,0 +1,38 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>CreateShortCut</h1>
+
+<hr>
+
+<p>Creates a shortcut 'link.lnk' that links to 'target.file', with optional parameters 'parameters'. The icon used for the shortcut is 'icon.file,icon<em>index</em>number'; for default icon settings use empty strings for both icon.file and icon<em>index</em>number. start<em>options should be one of: SW</em>SHOWNORMAL, SW<em>SHOWMAXIMIZED, SW</em>SHOWMINIMIZED, or an empty string. keyboard_shortcut should be in the form of 'flag|c' where flag can be a combination (using |) of: ALT, CONTROL, EXT, or SHIFT. c is the character to use (a-z, A-Z, 0-9, F1-F24, etc). Note that no spaces are allowed in this string. A good example is "ALT|CONTROL|F8". <code>$OUTDIR</code> is used for the working directory. You can change it by using <a href="SetOutPath.html"><code>SetOutPath</code></a> before creating the Shortcut. description should be the description of the shortcut, or comment as it is called under XP. The error flag is set if the shortcut cannot be created (i.e. either of the paths (link or target) does not exist, or some other error).</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>link.lnk target.file [parameters [icon.file [icon_index_number [start_options [keyboard_shortcut [description]]]]]]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>CreateDirectory $INSTDIR\some\directory
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.0f</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>!endif</h1>
+
+<hr>
+
+<p>This command closes a block started with <a href="!if.html"><code>!if</code></a>, <a href="!ifdef.html"><code>!ifdef</code></a>, <a href="!ifndef.html"><code>!ifndef</code></a>, <a href="!ifmacrodef.html"><code>!ifmacrodef</code></a> or <a href="!ifmacrondef.html"><code>!ifmacrondef</code></a>.</p>
+
+<h2>Example:</h2>
+
+<pre><code>!ifdef VERSION
+    OutFile installer-${VERSION}.exe
+!else
+    sOutFile installer.exe
+!endif
+
+!ifmacrodef MACRO
+    DetailPrint "Macro defined" 
+!else
+    DetailPrint "Macro not defined" 
+!endif
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.1f</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

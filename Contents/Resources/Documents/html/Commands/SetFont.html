@@ -1,0 +1,43 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SetFont</h1>
+
+<hr>
+
+<p>Sets the installer font. Please remember that the font you choose must be present on the user's machine as well. Don't use rare fonts that only you have.</p>
+
+<p>Use the <code>/LANG</code> switch if you wish to set a different font for each language.</p>
+
+<p>There are two LangStrings named ^Font and ^FontSize which contain the font and font size for every language.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[/LANG=lang_id] font_face_name font_size
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code> SetFont /LANG=${LANG_ENGLISH} "English Font" 9
+ SetFont /LANG=${LANG_FRENCH} "French Font" 10
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.3</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

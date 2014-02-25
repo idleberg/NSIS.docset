@@ -1,0 +1,56 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>RMDir</h1>
+
+<hr>
+
+<p>Remove the specified directory (fully qualified path with no wildcards). Without <code>/r</code>, the directory will only be removed if it is completely empty. If <code>/r</code> is specified, the directory will be removed recursively, so all directories and files in the specified directory will be removed. If <code>/REBOOTOK</code> is specified, any file or directory which could not have been removed during the process will be removed on reboot -- if any file or directory will be removed on a reboot, the reboot flag will be set. The error flag is set if any file or directory cannot be removed.</p>
+
+<p><strong>Warning:</strong> using RMDir /r $INSTDIR in the uninstaller is not safe. Though it is unlikely, the user might select to install to the Program Files folder and so this command will wipe out the entire Program Files folder, including other programs that has nothing to do with the uninstaller. The user can also put other files but the program's files and would expect them to get deleted with the program. Solutions are <a href="http://nsis.sourceforge.net/Uninstall_only_installed_files">available</a> for easily uninstalling only files which were installed by the installer.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[/r] [/REBOOTOK] directory_name
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>RMDir $INSTDIR
+RMDir $INSTDIR\data
+RMDir /r /REBOOTOK $INSTDIR
+RMDir /REBOOTOK $INSTDIR\DLLs
+</code></pre>
+
+<p>Note that the current working directory can not be deleted. The current working directory is set by <a href="SetOutPath.html"><code>SetOutPath</code></a>. For example, the following example will not delete the directory.</p>
+
+<pre><code>SetOutPath $TEMP\dir
+RMDir $TEMP\dir
+</code></pre>
+
+<p>The next example will succeed in deleting the directory.</p>
+
+<pre><code>SetOutPath $TEMP\dir
+SetOutPath $TEMP
+RMDir $TEMP\dir
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.0f</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>GetCurrentAddress</h1>
+
+<hr>
+
+<p>Gets the address of the current instruction and stores it in the output user variable. This user variable then can be passed to <a href="Call.html"><code>Call</code></a> or <a href="Goto.html"><code>Goto</code></a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>user_var(output)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>Function func
+    DetailPrint "function"
+    IntOp $0 $0 + 2
+    Call $0
+    DetailPrint "function end"
+FunctionEnd
+
+Section
+  DetailPrint "section"
+  DetailPrint "section"
+  GetCurrentAddress $0
+  Goto callFunc
+
+  DetailPrint "back to section"
+  Return
+
+callFunc:
+  Call func
+  DetailPrint "section end"
+SectionEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.80</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

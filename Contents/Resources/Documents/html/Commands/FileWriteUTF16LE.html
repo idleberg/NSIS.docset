@@ -1,0 +1,45 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>FileWriteUTF16LE</h1>
+
+<hr>
+
+<p>This function is only available when building a <a href="http://nsis.sourceforge.net/Docs/Chapter1.html#1.4">Unicode installer</a>.</p>
+
+<p>Writes a Unicode (UTF-16LE) string to a file opened with <a href="FileOpen.html"><code>FileOpen</code></a>. If an error occurs writing, the error flag will be set.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>handle string
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>ClearErrors
+FileOpen $0 $INSTDIR\file.dat w
+IfErrors done
+FileWriteUTF16LE $0 "some text"
+FileClose $0
+done:
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v3.0a0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

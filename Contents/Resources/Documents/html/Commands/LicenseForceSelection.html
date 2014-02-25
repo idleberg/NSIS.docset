@@ -1,0 +1,44 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>LicenseForceSelection</h1>
+
+<hr>
+
+<p>Specifies if the displayed license must be accept explicit or not. This can be done either by a checkbox or by radiobuttons. By default the "next button" is disabled and will only be enabled if the checkbox is enabled or the right radio button is selected. If off is specified the "next button" is enabled by default.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>(checkbox [accept_text] | radiobuttons [accept_text] [decline_text] | off)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>LicenseForceSelection checkbox
+LicenseForceSelection checkbox "i accept"
+LicenseForceSelection radiobuttons
+LicenseForceSelection radiobuttons "i accept"
+LicenseForceSelection radiobuttons "i accept" "i decline"
+LicenseForceSelection radiobuttons "" "i decline"
+LicenseForceSelection off
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Beta 4</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

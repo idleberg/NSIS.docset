@@ -1,0 +1,48 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>DirVar</h1>
+
+<hr>
+
+<p>Specifies which variable is to be used to contain the directory selected. This variable should contain the default value too. This allows to easily create two different directory pages that will not require you to move values in and out of <code>$INSTDIR</code>. The default variable is <code>$INSTDIR</code>. This can only be used in <a href="PageEx.html"><code>PageEx</code></a> and for directory and uninstConfirm pages.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>user_var(dir input/output)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>Var ANOTHER_DIR
+PageEx directory
+    DirVar $ANOTHER_DIR
+PageExEnd
+
+Section
+    SetOutPath $INSTDIR
+    File "a file.dat"
+    SetOutPath $ANOTHER_DIR
+    File "another file.dat"
+SectionEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0 Beta 4</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

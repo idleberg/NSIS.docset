@@ -1,0 +1,38 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>WriteRegBin</h1>
+
+<hr>
+
+<p>This command writes a block of binary data to the registry. Valid values for root_key are listed under <code>WriteRegStr</code>. Valuedata is in hexadecimal (e.g. DEADBEEF01223211151). The error flag is set if the binary data could not be written to the registry. If the registry key doesn't exist it will be created.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>root_key subkey key_name valuedata
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>WriteRegBin HKLM "Software\My Company\My Software" "Binary Value" DEADBEEF01223211151
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.0f</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

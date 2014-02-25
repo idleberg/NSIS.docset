@@ -1,0 +1,42 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>!include</h1>
+
+<hr>
+
+<p>This command will include 'file' as if it was part of the original script. Note that if a file is included in another directory, the current directory is still where the script was compiled from (not where the included file resides). If the compiler can't find the file it will look for it in every include directory. See <a href="!addincludedir.html"><code>!addincludedir</code></a> for more information. If the <code>/NONFATAL</code> switch is used and no files are found, a warning will be issued instead of an error.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[/NONFATAL] file
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>!include WinMessages.nsh
+!include Library.nsh
+!include C:\MyConfig.nsi
+!include ..\MyConfig.nsh
+!include /NONFATAL file_that_may_exist_or_not.nsh
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.1d</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

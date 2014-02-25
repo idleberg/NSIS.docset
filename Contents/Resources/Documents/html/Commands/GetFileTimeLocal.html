@@ -1,0 +1,33 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>GetFileTimeLocal</h1>
+
+<hr>
+
+<p>This is similar to <a href="GetFileTime.html"><code>GetFileTime</code></a>, only it acts on the system building the installer (it actually compiles into two <a href="StrCpy.html"><code>StrCpy</code></a> commands). Sets the two output variables with the file timestamp of the file on the build system.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>filename user_var(high dword output) user_var(low dword output)
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.60</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

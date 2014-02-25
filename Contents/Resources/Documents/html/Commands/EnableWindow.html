@@ -1,0 +1,41 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>EnableWindow</h1>
+
+<hr>
+
+<p>Enables or disables mouse and keyboard input to the specified window or control. Possible states are 0 (disabled) or 1 (enabled).</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>hwnd (1|0)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>GetDlgItem $0 $HWNDPARENT 1
+EnableWindow $0 0
+Sleep 1000
+EnableWindow $0 1
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

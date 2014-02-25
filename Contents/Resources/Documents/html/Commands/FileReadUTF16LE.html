@@ -1,0 +1,47 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>FileReadUTF16LE</h1>
+
+<hr>
+
+<p>This function is only available when building a <a href="http://nsis.sourceforge.net/Docs/Chapter1.html#1.4">Unicode installer</a>.</p>
+
+<p>Reads a string (UTF-16LE characters) from a file opened with <a href="FileOpen.html"><code>FileOpen</code></a>. The string is read until either a newline (or carriage return newline pair) occurs, or until a null wide-character is read, or until maxlen is met (if specified). By default, strings are limited to 1024 characters (a special build with larger NSIS<em>MAX</em>STRLEN can be compiled or downloaded). If the end of file is read and no more data is available, the output string will be empty, and the error flag will be set.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>handle user_var(output)
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>ClearErrors
+FileOpen $0 $INSTDIR\file.dat r
+IfErrors done
+FileReadByte $0 $1
+FileReadByte $0 $2
+DetailPrint "$1 $2"
+FileClose $0
+done:
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v3.0a0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

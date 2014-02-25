@@ -1,0 +1,53 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SetRegView</h1>
+
+<hr>
+
+<p>Sets the registry view affected by registry commands. On Windows x64 there are two views. One for 32-bit applications and one for x64 applications. By default, 32-bit applications running on x64 systems under WOW64 have access only to the 32-bit view. Using SetRegView 64 allows the installer to access keys in the x64 view of the registry.</p>
+
+<p>Affects <a href="DeleteRegKey.html"><code>DeleteRegKey</code></a>, <a href="DeleteRegValue.html"><code>DeleteRegValue</code></a>, <a href="EnumRegKey.html"><code>EnumRegKey</code></a>, <a href="EnumRegValue.html"><code>EnumRegValue</code></a>, <a href="ReadRegDWORD.html"><code>ReadRegDWORD</code></a>, <a href="ReadRegStr.html"><code>ReadRegStr</code></a>, <a href="WriteRegBin.html"><code>WriteRegBin</code></a>, <a href="WriteRegDWORD.html"><code>WriteRegDWORD</code></a>, <a href="WriteRegStr.html"><code>WriteRegStr</code></a> and <a href="WriteRegExpandStr.html"><code>WriteRegExpandStr</code></a>.</p>
+
+<p>Does not affect <a href="InstallDirRegKey.html"><code>InstallDirRegKey</code></a>. Instead, the registry can be read using <a href="ReadRegStr.html"><code>ReadRegStr</code></a> in <a href="../Callbacks/.onInit.html"><code>.onInit</code></a>.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>32|64|lastused
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>SetRegView 32
+ReadRegStr $0 HKLM Software\Microsoft\Windows\CurrentVersion ProgramFilesDir
+DetailPrint $0 # prints C:\Program Files (x86)
+SetRegView 64
+ReadRegStr $0 HKLM Software\Microsoft\Windows\CurrentVersion ProgramFilesDir
+DetailPrint $0 # prints C:\Program Files
+
+Function .onInit
+    SetRegView 64
+    ReadRegStr $INSTDIR HKLM Software\NSIS ""
+    SetRegView 32
+FunctionEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.26</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlighter.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>SectionGroup</h1>
+
+<hr>
+
+<p>This command inserts a section group. The section group must be closed with <a href="SectionGroupEnd.html"><code>SectionGroupEnd</code></a>, and should contain 1 or more sections. If the section group name begins with a !, its name will be displayed with a bold font. If <code>/e</code> is present, the section group will be expanded by default. If index_output is specified, the parameter will be <a href="!define.html"><code>!define</code></a>d with the section index (that can be used for <a href="SectionSetText.html"><code>SectionSetText</code></a> etc). If the name is prefixed with 'un.' the section group is an uninstaller section group.</p>
+
+<h2>Parameters:</h2>
+
+<pre><code>[/e] section_group_name [index_output]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>SectionGroup "some stuff"
+    Section "a section"
+    SectionEnd
+
+    Section "another section"
+    SectionEnd
+SectionGroupEnd
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v2.05</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

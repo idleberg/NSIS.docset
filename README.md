@@ -1,12 +1,12 @@
 # NSIS.docset
 
-NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/). Work in progress!
+NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/)
 
 ## Installation
 
 ### GitHub
 
-- Clone repository git clone `https://github.com/idleberg/NSIS.docset.git`
+- Clone repository git clone `https://github.com/NSIS-Dev/NSIS.docset.git`
 
 - Double-click `NSIS.docset` to import it to Dash
 

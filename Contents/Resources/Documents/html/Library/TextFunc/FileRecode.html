@@ -1,0 +1,52 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>FileRecode</h1>
+
+<hr>
+
+<p>Recode text file from DOS to Windows format and vice-versa.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${FileRecode} "[File]" "[Format]"
+
+"[File]"        ;
+                ;
+"[Format]"      ; OemToChar   -from DOS to Windows
+                ; CharToOem   -from Windows to DOS
+</code></pre>
+
+<p>Note:</p>
+
+<ul>
+<li>Error flag if file doesn't exist </li>
+<li>Error flag if syntax error</li>
+</ul>
+
+<h2>Example:</h2>
+
+<pre><code>Section
+    ${FileRecode} "C:\SCANDISK.LOG" "CharToOem"
+SectionEnd
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

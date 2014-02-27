@@ -1,0 +1,80 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>GetFileAttributes</h1>
+
+<hr>
+
+<p>Get attributes of file or directory.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${GetFileAttributes} "[File]" "[Attributes]" $var
+
+"[File]"          ; File or directory
+                  ;
+"[Attributes]"    ; "ALL"  (default)
+                  ;  -all attributes of file combined with "|" to output
+                  ;
+                  ; "READONLY|HIDDEN|SYSTEM|DIRECTORY|ARCHIVE|
+                  ; DEVICE|NORMAL|TEMPORARY|SPARSE_FILE|REPARSE_POINT|
+                  ; COMPRESSED|OFFLINE|NOT_CONTENT_INDEXED|ENCRYPTED"
+                  ;  -file must have specified attributes
+                  ;
+$var              ; Result:
+                  ;    $var=attr1|attr2|... (if used "ALL")
+                  ;    $var=1   file has specified attributes
+                  ;    $var=0   file has no specified attributes
+</code></pre>
+
+<p>Note:</p>
+
+<ul>
+<li>Error flag if file doesn't exist</li>
+</ul>
+
+<h2>Examples:</h2>
+
+<h3>Get all file attributes</h3>
+
+<pre><code>Section
+    ${GetFileAttributes} "C:\MSDOS.SYS" "ALL" $R0
+    ; $R0=READONLY|HIDDEN|SYSTEM|ARCHIVE
+SectionEnd
+</code></pre>
+
+<h3>Get some file attributes</h3>
+
+<pre><code>Section
+    ${GetFileAttributes} "C:\MSDOS.SYS" "SYSTEM|HIDDEN" $R0
+    ; $R0=1
+SectionEnd
+</code></pre>
+
+<h3>Get file attribute "NORMAL"</h3>
+
+<pre><code>Section
+    ${GetFileAttributes} "C:\MSDOS.SYS" "NORMAL" $R0
+    ; $R0=0
+SectionEnd
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

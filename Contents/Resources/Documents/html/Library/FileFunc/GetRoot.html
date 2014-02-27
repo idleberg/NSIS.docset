@@ -1,0 +1,51 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>GetRoot</h1>
+
+<hr>
+
+<p>Get root directory.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${GetRoot} "[FullPath]" $var
+</code></pre>
+
+<h2>Examples:</h2>
+
+<h3>Get root of local folder</h3>
+
+<pre><code>Section
+    ${GetRoot} "C:\Program Files\NSIS" $R0
+    ; $R0="C:"
+SectionEnd
+</code></pre>
+
+<h3>Get root of network share</h3>
+
+<pre><code>Section
+    ${GetRoot} "\\SuperPimp\NSIS\Source\exehead\Ui.c" $R0
+    ; $R0="\\SuperPimp\NSIS"
+SectionEnd
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

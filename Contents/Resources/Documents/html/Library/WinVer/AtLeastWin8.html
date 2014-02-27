@@ -1,0 +1,42 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>AtLeastWin8</h1>
+
+<hr>
+
+<p>Checks if the installer is running on Windows 8.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>logic_lib_statement ${AtLeastWin8}
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>${If} ${AtLeastWin8}
+    DetailPrint "Windows 8 or higher"
+${Else}
+    DetailPrint "Older than Windows 8"
+${EndIf}
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p><em>unknown</em></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

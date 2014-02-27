@@ -1,0 +1,30 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>$INSTDIR</h1>
+
+<hr>
+
+<p>The installation directory (<a href="../Variables/INSTDIR.html"><code>$INSTDIR</code></a> is modifiable using <a href="../Commands/StrCpy.html"><code>StrCpy</code></a>, <a href="../Commands/ReadRegStr.html"><code>ReadRegStr</code></a>, <a href="../Commands/ReadINIStr.html"><code>ReadINIStr</code></a>, etc. - This could be used, for example, in the <a href="../Functions/onInit.html"><code>.onInit</code></a> function to do a more advanced detection of install location).</p>
+
+<p>Note that in uninstaller code, <a href="../Variables/INSTDIR.html"><code>$INSTDIR</code></a> contains the directory where the uninstaller lies. It does not necessarily contain the same value it contained in the installer. For example, if you write the uninstaller to <a href="$WINDIR.html"><code>$WINDIR</code></a> and the user doesn't move it, <a href="../Variables/INSTDIR.html"><code>$INSTDIR</code></a> will be <a href="$WINDIR.html"><code>$WINDIR</code></a> in the uninstaller. If you write the uninstaller to another location, you should keep the installer's <a href="../Variables/INSTDIR.html"><code>$INSTDIR</code></a> in the registry or an alternative storing facility and read it in the uninstaller.</p>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v1.0</p>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

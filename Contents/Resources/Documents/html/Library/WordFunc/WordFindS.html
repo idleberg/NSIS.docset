@@ -1,0 +1,260 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>WordFindS</h1>
+
+<hr>
+
+<p>Multi-features string function, case sensitive</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${WordFindS} "[string]" "[delimiter]" "[E][options]" $var
+
+"[string]"         ;[string]
+                   ;  input string
+"[delimiter]"      ;[delimiter]
+                   ;  one or several symbols
+"[E][options]"     ;[options]
+                   ;  +number   : word number from start
+                   ;  -number   : word number from end
+                   ;  +number}  : delimiter number from start
+                   ;              all space after this
+                   ;              delimiter to output
+                   ;  +number{  : delimiter number from start
+                   ;              all space before this
+                   ;              delimiter to output
+                   ;  +number}} : word number from start
+                   ;              all space after this word
+                   ;              to output
+                   ;  +number{{ : word number from start
+                   ;              all space before this word
+                   ;              to output
+                   ;  +number{} : word number from start
+                   ;              all space before and after
+                   ;              this word (word exclude)
+                   ;  +number*} : word number from start
+                   ;              all space after this
+                   ;              word to output with word
+                   ;  +number{* : word number from start
+                   ;              all space before this
+                   ;              word to output with word
+                   ;  #         : sum of words to output
+                   ;  *         : sum of delimiters to output
+                   ;  /word     : number of word to output
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  delimiter not found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1},#,*,/word,...)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Accepted numbers 1,01,001,...</li>
+</ul>
+
+<h2>Examples:</h2>
+
+<h3>Find word by number</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\Program Files C:\WINDOWS" " C:\" "-02" $R0
+    ; $R0="Program Files"
+SectionEnd
+</code></pre>
+
+<h3>Delimiter exclude</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" "sys" "-2}" $R0
+    ; $R0=" C:\logo.sys C:\WINDOWS"
+SectionEnd
+</code></pre>
+
+<h3>Sum of words</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" " C:\" "#" $R0
+    ; $R0="3"
+SectionEnd
+</code></pre>
+
+<h3>Sum of delimiters</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" "sys" "*" $R0
+    ; $R0="2"
+SectionEnd
+</code></pre>
+
+<h3>Find word number</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\Program Files C:\WINDOWS" " " "/Files" $R0
+    ; $R0="3"
+SectionEnd
+</code></pre>
+
+<h3>}}</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" " " "+2}}" $R0
+    ; $R0=" C:\WINDOWS"
+SectionEnd
+</code></pre>
+
+<h3>{}</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" " " "+2{}" $R0
+    ; $R0="C:\io.sys C:\WINDOWS"
+SectionEnd
+</code></pre>
+
+<h3>*}</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" " " "+2*}" $R0
+    ; $R0="C:\logo.sys C:\WINDOWS"
+SectionEnd
+</code></pre>
+
+<h3>Get parent directory</h3>
+
+<pre><code>Section
+    StrCpy $R0 "C:\Program Files\NSIS\NSIS.chm"
+;              "C:\Program Files\NSIS\Include\"
+;              "C:\\Program Files\\NSIS\\NSIS.chm"
+
+    ${WordFindS} "$R0" "\" "-2{*" $R0
+    ; $R0="C:\Program Files\NSIS"
+    ;     "C:\\Program Files\\NSIS"
+SectionEnd
+</code></pre>
+
+<h3>Coordinates</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys C:\WINDOWS" ":\lo" "E+1{" $R0
+    ; $R0="C:\io.sys C"
+    IfErrors end
+
+    StrLen $0 $R0             ; $0 = Start position of word (11)
+    StrLen $1 ':\lo'          ; $1 = Word length (4)
+    ; StrCpy $R0 $R1 $1 $0    ; $R0 = :\lo
+
+    end:
+SectionEnd
+</code></pre>
+
+<h3>With errorlevel output</h3>
+
+<pre><code>Section
+    ${WordFindS} "[string]" "[delimiter]" "E[options]" $R0
+
+    IfErrors 0 end
+    StrCmp $R0 1 0 +2       ; errorlevel 1?
+    MessageBox MB_OK 'delimiter not found' IDOK end
+    StrCmp $R0 2 0 +2       ; errorlevel 2?
+    MessageBox MB_OK 'no such word number' IDOK end
+    StrCmp $R0 3 0 +2       ; errorlevel 3?
+    MessageBox MB_OK 'syntax error'
+
+    end:
+SectionEnd
+</code></pre>
+
+<h3>Without errorlevel output</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys" "_" "+1" $R0
+
+    ; $R0="C:\io.sys C:\logo.sys" (error: delimiter "_" not found)
+SectionEnd
+</code></pre>
+
+<h3>If found</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys" ":\lo" "E+1{" $R0
+
+    IfErrors notfound found
+    found:
+    MessageBox MB_OK 'Found' IDOK end
+    notfound:
+    MessageBox MB_OK 'Not found'
+
+    end:
+SectionEnd
+</code></pre>
+
+<h3>If found 2</h3>
+
+<pre><code>Section
+    ${WordFindS} "C:\io.sys C:\logo.sys" ":\lo" "+1{" $R0
+
+    StrCmp $R0 "C:\io.sys C:\logo.sys" notfound found        ; error?
+    found:
+    MessageBox MB_OK 'Found' IDOK end
+    notfound:
+    MessageBox MB_OK 'Not found'
+
+    end:
+SectionEnd
+</code></pre>
+
+<h3>To accept one word in string if delimiter not found</h3>
+
+<pre><code>Section
+    StrCpy $0 'OneWord'
+    StrCpy $1 1
+
+    loop:
+    ${WordFindS} "$0" " " "E+$1" $R0
+    IfErrors 0 code
+    StrCmp $1$R0 11 0 error
+    StrCpy $R0 $0
+    goto end
+
+    code:
+    ; ...
+    IntOp $1 $1 + 1
+    goto loop
+
+    error:
+    StrCpy $1 ''
+    StrCpy $R0 ''
+
+    end:
+    ; $R0="OneWord"
+SectionEnd
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

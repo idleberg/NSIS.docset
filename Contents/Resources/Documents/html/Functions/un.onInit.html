@@ -1,0 +1,43 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>un.onInit</h1>
+
+<hr>
+
+<p>This callback will be called when the uninstaller is nearly finished initializing. If the <a href="../Functions/unonInit.html"><code>un.onInit</code></a> function calls <a href="../Commands/Abort.html"><code>Abort</code></a>, the uninstaller will quit instantly. Note that this function can verify and/or modify <a href="../Variables/INSTDIR.html"><code>$INSTDIR</code></a> if necessary.</p>
+
+<h2>Example:</h2>
+
+<pre><code>Function un.onInit
+    MessageBox MB_YESNO "This will uninstall. Continue?" IDYES NoAbort
+    Abort ; causes uninstaller to quit.
+    NoAbort:
+FunctionEnd
+</code></pre>
+
+<p>or:</p>
+
+<pre><code>Function un.onInit
+    IfFileExists $INSTDIR\myfile.exe found
+    Messagebox MB_OK "Uninstall path incorrect"
+    Abort
+    found:
+FunctionEnd
+</code></pre>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

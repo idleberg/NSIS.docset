@@ -1,0 +1,79 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>ConfigWrite</h1>
+
+<hr>
+
+<p>Write value from entry name in config file.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${ConfigWrite} "[File]" "[Entry]" "[Value]" $var
+
+"[File]"      ; config file
+              ;
+"[Entry]"     ; entry name
+              ;
+"[Value]"     ; value name
+              ;  if "" then delete Entry
+              ;
+$var          ; Result:
+              ;    $var=CHANGED  Value is written
+              ;    $var=DELETED  Entry is deleted
+              ;    $var=ADDED    Entry and Value are added
+              ;    $var=SAME     Entry and Value already exist
+</code></pre>
+
+<p>Note:</p>
+
+<ul>
+<li>Error flag if file doesn't exist </li>
+<li>Error flag if file can't be opened</li>
+</ul>
+
+<h2>Examples:</h2>
+
+<h3>Example 1</h3>
+
+<pre><code>Section
+    ${ConfigWrite} "C:\AUTOEXEC.BAT" "SET winbootdir=" "D:\WINDOWS" $R0
+    ;$R0=CHANGED
+SectionEnd
+</code></pre>
+
+<h3>Example 2</h3>
+
+<pre><code>Section
+    ${ConfigWrite} "C:\apache\conf\httpd.conf" "Timeout " "30" $R0
+    ;$R0=SAME
+SectionEnd
+</code></pre>
+
+<h3>Example 3</h3>
+
+<pre><code>Section
+    ${ConfigWrite} "C:\apache\conf\httpd.conf" "Timeout " "" $R0
+    ;$R0=DELETED
+SectionEnd
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

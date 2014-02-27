@@ -1,0 +1,63 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>MementoUnselectedSection</h1>
+
+<hr>
+
+<p>Replace <a href="../../../Commands/Section.html"><code>Section</code></a> with <a href="MementoSection.html"><code>${MementoSection}</code></a> and <a href="../../../Commands/SectionEnd.html"><code>SectionEnd</code></a> with <a href="MementoSectionEnd.html"><code>${MementoSectionEnd}</code></a>
+for sections that whose state should be remembered by Memento.</p>
+
+<p>For sections that should be unselected by default, use <a href="MementoSection.html"><code>${MementoSection}</code></a>'s
+brother - <code>${MementoUnselectedSection}</code>.</p>
+
+<p>Sections that don't already have an identifier must be assigned one.</p>
+
+<p>Section identifiers must stay the same across </p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${MementoUnselectedSection} [section_name] [section_index_output]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>!include Memento.nsh
+
+!define MEMENTO_REGISTRY_ROOT HKLM
+!define MEMENTO_REGISTRY_KEY Software\Microsoft\Windows\CurrentVersion\Uninstall\MyProgram
+
+Function .onInit
+    ${MementoSectionRestore}
+FunctionEnd
+
+Function .onInstSuccess
+    ${MementoSectionSave}
+FunctionEnd
+
+${MementoUnselectedSection} dinosaur sec_dinosaur
+    ; some code...
+${MementoSectionEnd}
+
+${MementoSectionDone}
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Kichik">kichik</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

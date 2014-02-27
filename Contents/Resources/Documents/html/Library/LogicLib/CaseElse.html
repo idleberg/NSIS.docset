@@ -1,0 +1,47 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>CaseElse</h1>
+
+<hr>
+
+<p>Executes one of several blocks of statements, depending on the value of an expression. <code>${CaseElse}</code> and <a href="Default.html"><code>${Default}</code></a> are equivalent and interchangeable.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${CaseElse}
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>StrCpy $0 1
+
+${Select} $0
+    ${Case} "1"
+        MessageBox MB_OK "$$0 is 1"
+    ${Case} "2"
+        MessageBox MB_OK "$$0 isn't 2"
+    ${CaseElse}
+        MessageBox MB_OK "$$0 isn't anything else"
+${EndSelect}
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by dselkirk and eccles</p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

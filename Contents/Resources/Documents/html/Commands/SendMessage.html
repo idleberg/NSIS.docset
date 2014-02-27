@@ -13,15 +13,15 @@
 
 <p>Sends a message to HWND. If a user variable $x is specified as the last parameter (or one before the last if you use <code>/TIMEOUT</code>), the return value of <code>SendMessage</code> will be stored to it. Note that when specifying 'msg' you must just use the integer value of the message. If you wish to send strings use "STR:a string" as wParam or lParam where needed.</p>
 
-<p>WM<em>CLOSE 16
-WM</em>COMMAND 273
+<p>WM_CLOSE 16
+WM_COMMAND 273
 WM_USER 1024</p>
 
 <p>Include WinMessages.nsh to have all of Windows messages defined in your script.</p>
 
 <p>To send a string param, put STR: before the parameter, for example: "STR:Some string".</p>
 
-<p>Use /TIMEOUT=time<em>in</em>ms to specify the duration, in milliseconds, of the time-out period.</p>
+<p>Use /TIMEOUT=time_in_ms to specify the duration, in milliseconds, of the time-out period.</p>
 
 <h2>Parameters:</h2>
 

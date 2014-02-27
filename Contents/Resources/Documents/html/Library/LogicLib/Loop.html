@@ -1,0 +1,45 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>Loop</h1>
+
+<hr>
+
+<p>Loops a block of statements started by <a href="Do.html"><code>${Do}</code></a>, <a href="DoUntil.html"><code>${DoUntil}</code></a> or <a href="DoWhile.html"><code>${DoWhile}</code></a>.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${Loop}
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>StrCpy $0 0
+
+${Do}
+    IntOp $0 $0 + 1
+    ${If} $0 &gt; 10
+        ${ExitDo}
+    ${EndIf}
+${Loop}
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by dselkirk and eccles</p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>FileJoin</h1>
+
+<hr>
+
+<p>Join two files in one.</p>
+
+<h2>Syntax:</h2>
+
+<pre><code>${FileJoin} "[File1]" "[File2]" "[File3]"
+"[File1]"     ; Input File1
+"[File2]"     ; Input File2
+"[File3]"     ; Output File3
+              ;  If [File3]="" Then add [File2] to [File1]
+</code></pre>
+
+<p>Note:</p>
+
+<ul>
+<li>Error flag if input files don't exist </li>
+<li>Error flag if output file path doesn't exist</li>
+</ul>
+
+<h2>Examples:</h2>
+
+<h3>Join: a.log + b.log = Z.log</h3>
+
+<pre><code>Section
+    ${FileJoin} "C:\a.log" "C:\logs\b.log" "C:\Z.log"
+SectionEnd
+</code></pre>
+
+<h3>Add: a.log + b.log = a.log</h3>
+
+<pre><code>Section
+    ${FileJoin} "C:\a.log" "C:\logs\b.log" "C:\a.log"
+SectionEnd
+</code></pre>
+
+<h2>Credits:</h2>
+
+<p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p>
+
+<hr>
+
+</div>
+
+<script src="../../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

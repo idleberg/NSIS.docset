@@ -1,0 +1,31 @@
+<html>
+<header>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>un.onRebootFailed</h1>
+
+<hr>
+
+<p>This callback is called if <a href="../Commands/Reboot.html"><code>Reboot</code></a> fails. <a href="../Commands/WriteUninstaller.html"><code>WriteUninstaller</code></a>, plug-ins, <a href="../Commands/File.html"><code>File</code></a> and <a href="../Commands/WriteRegBin.html"><code>WriteRegBin</code></a> should not be used in this callback.</p>
+
+<h2>Example:</h2>
+
+<pre><code>Function un.onRebootFailed
+    MessageBox MB_OK|MB_ICONSTOP "Reboot failed. Please reboot manually." /SD IDOK
+FunctionEnd
+</code></pre>
+
+<hr>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

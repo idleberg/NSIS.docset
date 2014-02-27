@@ -8,11 +8,11 @@ NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/)
 
 - Change directory to your Zeal *docsets* folder
 
-- Clone repository git clone `https://github.com/NSIS-Dev/NSIS.docset.git`
+- Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
 
 ### Dash (Mac OS X)
 
-- Clone repository git clone `https://github.com/NSIS-Dev/NSIS.docset.git`
+- Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
 
 - Double-click `NSIS.docset` to import it to Dash
 

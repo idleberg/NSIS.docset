@@ -2,6 +2,8 @@
 
 NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/)
 
+[![Screencast](screencast.gif)](http://recordit.co/yQYBwET2YH)
+
 ## Installation
 
 ### Zeal (Windows, Linux)

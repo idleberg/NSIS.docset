@@ -12,15 +12,18 @@
 
 <hr>
 
-<p>Adds file(s) to be extracted to the current output path (<a href="../Variables/OUTDIR.html"><code>$OUTDIR</code></a>).
-* Note that the output file name is $OUTDIR\filename_portion_of_file.
-* Use <code>/oname=X</code> switch to change the output name. X may contain variables and can be a fully qualified path or a relative path in which case it will be appended to <a href="../Variables/OUTDIR.html"><code>$OUTDIR</code></a> set by <a href="SetOutPath.html"><code>SetOutPath</code></a>. When using this switch, only one file can be specified. If the output name contains spaces, quote the entire parameter, including /oname, as shown in the examples below.
-* Wildcards are supported.
-* If the <code>/r</code> switch is used, matching files and directories are recursively searched for in subdirectories. If just one path segment is specified (e.g. File /r something), the current directory will be recursively searched. If more than one segment is specified (e.g. File /r something*.*), the last path segment will be used as the matching condition and the rest for the directory to search recursively. If a directory name matches, all of its contents is added recursively. Directory structure is preserved.
-* Use the <code>/x</code>switch to exclude files or directories.
-* If the <code>/a</code> switch is used, the attributes of the file(s) added will be preserved.
-* The <code>File</code> command sets the error flag if overwrite mode is set to 'try' and the file could not be overwritten, or if the overwrite mode is set to 'on' and the file could not be overwritten and the user selects ignore.
-* If the /nonfatal switch is used and no files are found, a warning will be issued instead of an error.</p>
+<p>Adds file(s) to be extracted to the current output path (<a href="../Variables/OUTDIR.html"><code>$OUTDIR</code></a>).</p>
+
+<ul>
+<li>Note that the output file name is $OUTDIR\filename_portion_of_file.</li>
+<li>Use <code>/oname=X</code> switch to change the output name. X may contain variables and can be a fully qualified path or a relative path in which case it will be appended to <a href="../Variables/OUTDIR.html"><code>$OUTDIR</code></a> set by <a href="SetOutPath.html"><code>SetOutPath</code></a>. When using this switch, only one file can be specified. If the output name contains spaces, quote the entire parameter, including /oname, as shown in the examples below.</li>
+<li>Wildcards are supported.</li>
+<li>If the <code>/r</code> switch is used, matching files and directories are recursively searched for in subdirectories. If just one path segment is specified (e.g. File /r something), the current directory will be recursively searched. If more than one segment is specified (e.g. File /r something*.*), the last path segment will be used as the matching condition and the rest for the directory to search recursively. If a directory name matches, all of its contents is added recursively. Directory structure is preserved.</li>
+<li>Use the <code>/x</code>switch to exclude files or directories.</li>
+<li>If the <code>/a</code> switch is used, the attributes of the file(s) added will be preserved.</li>
+<li>The <code>File</code> command sets the error flag if overwrite mode is set to 'try' and the file could not be overwritten, or if the overwrite mode is set to 'on' and the file could not be overwritten and the user selects ignore.</li>
+<li>If the /nonfatal switch is used and no files are found, a warning will be issued instead of an error.</li>
+</ul>
 
 <h2>Parameters:</h2>
 

@@ -2,7 +2,7 @@
 
 NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/)
 
-[![Screencast](screencast.gif)](http://recordit.co/yQYBwET2YH)
+__[Watch the demo](http://recordit.co/EhL4Xrnlqr)__
 
 ## Installation
 

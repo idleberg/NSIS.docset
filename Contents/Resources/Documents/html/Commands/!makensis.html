@@ -1,0 +1,42 @@
+<html>
+<header>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/highlight.css">
+</header>
+<body>
+
+<div class="container">
+
+<h1>!makensis</h1>
+
+<hr>
+
+This command will <a href="!execute.html"><code>!execute</code></a> a new instance of MakeNSIS with the parameters you specify.
+
+<h2>Parameters:</h2>
+
+<pre><code>parameters [compare comparevalue | symbol]
+</code></pre>
+
+<h2>Example:</h2>
+
+<pre><code>!makensis '-DGENERATEUNINST "${__FILE__}"' = 0
+!system '"signtool" sign ...' = 0
+</code></pre>
+
+<h2>History:</h2>
+
+<p>Added in NSIS v3.0b1</p>
+
+<hr>
+
+<span class="pull-right small"><a href="https://github.com/idleberg/NSIS.docset">Improve this documentation</a></span>
+
+</div>
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

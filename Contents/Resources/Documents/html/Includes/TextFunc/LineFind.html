@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>LineFind | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="linefind">LineFind</h1><p>Find specified lines in text file, and edit or view these lines in callback function.</p><h2 id="syntax">Syntax</h2><pre><code>${LineFind} &quot;[File1]&quot; &quot;[File2|/NUL]&quot; &quot;[LineNumbers]&quot; &quot;Function&quot;
+
+&quot;[File1]&quot;         ; Input text file
+                  ;
+&quot;[File2|/NUL]&quot;    ; [File2]
+                  ;   Output text file
+                  ;   If empty then File2=File1
+                  ; [/NUL]
+                  ;   No output text file (only read File1)
+                  ;
+&quot;[LineNumbers]&quot;   ; [No|-No|No:No|{No}|{-No}|{No:No}]
+                  ;   1:-1     all lines to change (default)
+                  ;   2        second line from start
+                  ;   -3       third line from end
+                  ;   5:9      range of lines from 5 to 9
+                  ;   {2}      only second line from start to output
+                  ;   {-3}     only third line from end to output
+                  ;   {5:9}    only range of lines from 5 to 9 to output
+                  ;
+&quot;Function&quot;        ; Callback function for specified lines
+
+Function &quot;Function&quot;
+    ; $R9       current line
+    ; $R8       current line number
+    ; $R7       current line negative number
+    ; $R6       current range of lines
+    ; $R5       handle of a file opened to read
+    ; $R4       handle of a file opened to write ($R4=&quot;&quot; if &quot;/NUL&quot;)
+
+    ; you can use any string functions
+    ; $R0-$R3  are not used (save data in them).
+    ; ...
+
+    Push $var      ; If $var=&quot;StopLineFind&quot;  Then exit from function
+                   ; If $var=&quot;SkipWrite&quot;     Then skip current line (ignored if &quot;/NUL&quot;)
+FunctionEnd
+</code></pre><p>Note:</p><ul><li>Error flag if input file doesn&#39;t exist</li><li>Error flag if output file path doesn&#39;t exist</li><li>Ranges must be specified on growth (2 4:5 9:-8 -5:-4 -2:-1)</li><li>Output file will not be updated if no changes made.</li></ul><p>##Examples:</p><h3 id="delete-first-two-symbols">Delete first two symbols</h3><pre><code>Section
+    ${LineFind} &quot;C:\a.log&quot; &quot;C:\a-edited.log&quot; &quot;3:-1&quot; &quot;Example1&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example1
+    ${TrimNewLines} &#39;$R9&#39; $R9
+    StrCpy $R9 $R9 &#39;&#39; 2
+    StrCpy $R9 &#39;$R9$\r$\n&#39;
+    ;start from 3 line and delete first two symbols
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="show-changed-lines">Show changed lines</h3><pre><code>Section
+    ${LineFind} &quot;C:\a.log&quot; &quot;a.log&quot; &quot;{5:12 15 -6:-5 -1}&quot; &quot;Example2&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example2
+    ${TrimNewLines} &#39;$R9&#39; $R9
+    StrCpy $R9 &quot;$R9   ~Changed line ($R8)~$\r$\n&quot;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="delete-lines">Delete lines</h3><pre><code>Section
+    ${LineFind} &quot;C:\a.log&quot; &quot;\logs\a.log&quot; &quot;2:3 10:-5 -3:-2&quot; &quot;Example3&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example3
+    StrCpy $0 SkipWrite
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="insert-lines">Insert lines</h3><pre><code>Section
+    ${LineFind} &quot;C:\a.log&quot; &quot;&quot; &quot;10&quot; &quot;Example4
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example4
+    FileWrite $R4 &quot;---First Line---$\r$\n&quot;
+    FileWrite $R4 &quot;---Second Line ...---$\r$\n&quot;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="replace-in-file-with-count-of-changes-wordfunc-nsh-required">Replace in file with count of changes - &quot;WordFunc.nsh&quot; required</h3><pre><code>!include &quot;WordFunc.nsh&quot;
+
+Section
+    StrCpy $R0 0
+    ${LineFind} &quot;C:\a.log&quot; &quot;C:\logs\a.log&quot; &quot;1:-1&quot; &quot;Example5&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+    MessageBox MB_OK &quot;Changed lines=$R0&quot;
+SectionEnd
+
+Function Example5
+    StrCpy $1 $R9
+
+    ${WordReplace} &#39;$R9&#39; &#39; &#39; &#39;_&#39; &#39;+*&#39; $R9
+
+    StrCmp $1 $R9 +2
+    IntOp $R0 $R0 + 1
+    ;$R0   count of changed lines
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="line-string-to-cut-or-delete">Line string to cut or delete</h3><pre><code>Section
+    ${LineFind} &quot;\a.log&quot; &quot;C:\logs\a.log&quot; &quot;&quot; &quot;Example6&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+    MessageBox MB_OK &quot;Processed lines=$R1:$R2&quot;
+SectionEnd
+
+Function Example6
+    ;(Cut lines from a line to another line (also including that line))
+    StrCmp $R0 finish stop
+    StrCmp $R0 start finish
+    StrCmp $R9 &#39;Start Line$\r$\n&#39; 0 skip
+    StrCpy $R0 start
+    StrCpy $R1 $R8
+    goto code
+    finish:
+    StrCmp $R9 &#39;Finish Line$\r$\n&#39; 0 code
+    StrCpy $R0 finish
+    StrCpy $R2 $R8
+    goto code
+    skip:
+    StrCpy $0 SkipWrite
+    goto output
+    stop:
+    StrCpy $0 StopLineFind
+    goto output
+
+    ;;(Delete lines from a line to another line (also including that line))
+    ; StrCmp $R0 finish code
+    ; StrCmp $R0 start finish
+    ; StrCmp $R9 &#39;Start Line$\r$\n&#39; 0 code
+    ; StrCpy $R0 start
+    ; StrCpy $R1 $R8
+    ; goto skip
+    ; finish:
+    ; StrCmp $R9 &#39;Finish Line$\r$\n&#39; 0 skip
+    ; StrCpy $R0 finish
+    ; StrCpy $R2 $R8
+    ; skip:
+    ; StrCpy $0 SkipWrite
+    ; goto output
+
+    code:
+    ;...
+
+    output:
+    Push $0
+FunctionEnd
+</code></pre><h3 id="read-lines">Read lines</h3><pre><code>Section
+    ${LineFind} &quot;C:\a.log&quot; &quot;/NUL&quot; &quot;1:-1&quot; &quot;Example7&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example7
+    MessageBox MB_OKCANCEL &#39;$$R9  &quot;Line&quot;=[$R9]$\n$$R8     &quot;#&quot; =[$R8]&#39; IDOK +2
+    StrCpy $0 StopLineFind
+
+    Push $0
+FunctionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/TextFunc/LineFind.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

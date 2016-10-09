@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>GetDrives | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="getdrives">GetDrives</h1><p>Find all available drives in the system.</p><h2 id="syntax">Syntax</h2><pre><code>${GetDrives} &quot;[Option]&quot; &quot;Function&quot;
+
+&quot;[Option]&quot;      ; [FDD+HDD+CDROM+NET+RAM]
+                ;   FDD    Floppy Disk Drives
+                ;   HDD    Hard Disk Drives 
+                ;   CDROM  CD-ROM Drives
+                ;   NET    Network Drives
+                ;   RAM    RAM Disk Drives
+                ;
+                ; [ALL]
+                ;   Find all drives by letter (default)
+                ;
+&quot;Function&quot;      ; Callback function when found
+
+Function &quot;Function&quot;
+    ; $9    &quot;drive letter&quot;  (a:\ c:\ ...)
+    ; $8    &quot;drive type&quot;    (FDD HDD ...)
+
+    ; $R0-$R9  are not used (save data in them).
+    ; ...
+
+    Push $var    ; If $var=&quot;StopGetDrives&quot; Then exit from function
+FunctionEnd
+</code></pre><h2 id="examples">Examples</h2><h3 id="get-floppy-and-cd-rom-drives">Get floppy and CD-ROM drives</h3><pre><code>Section
+    ${GetDrives} &quot;FDD+CDROM&quot; &quot;Example1&quot;
+SectionEnd
+
+Function Example1
+    MessageBox MB_OK &quot;$9  ($8 Drive)&quot;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="get-all-drives">Get all drives</h3><pre><code>Section
+    ${GetDrives} &quot;ALL&quot; &quot;Example2&quot;
+SectionEnd
+
+Function Example2
+    MessageBox MB_OK &quot;$9  ($8 Drive)&quot;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="get-type-of-drive">Get type of drive</h3><pre><code>Section
+    StrCpy $R0 &quot;D:\&quot;      ;Drive letter
+    StrCpy $R1 &quot;invalid&quot;
+
+    ${GetDrives} &quot;ALL&quot; &quot;Example3&quot;
+
+    MessageBox MB_OK &quot;Type of drive $R0 is $R1&quot;
+SectionEnd
+
+Function Example3
+    StrCmp $9 $R0 0 +3
+    StrCpy $R1 $8
+    StrCpy $0 StopGetDrives
+
+    Push $0
+FunctionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/GetDrives.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

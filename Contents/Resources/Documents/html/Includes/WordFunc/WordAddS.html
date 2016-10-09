@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>WordAddS | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordinsert">WordInsert</h1><p>Insert word in string.</p><h2 id="syntax">Syntax</h2><pre><code>${WordInsert} &quot;[string]&quot; &quot;[delimiter]&quot; &quot;[word]&quot; &quot;[E][options]&quot; $var
+</code></pre><hr><pre><code>&quot;[string]&quot;          ;[string]
+                    ;  input string
+&quot;[delimiter]&quot;       ;[delimiter]
+                    ;  one or several symbols
+&quot;[word]&quot;            ;[word]
+                    ;  word to insert
+&quot;[E][options]&quot;      ;[options]
+                    ;  +number  : word number from start
+                    ;  -number  : word number from end
+                    ;
+                    ;[E]
+                    ;  with errorlevel output
+                    ;  IfErrors:
+                    ;     $var=1  delimiter is empty
+                    ;     $var=2  wrong word number
+                    ;     $var=3  syntax error (Use: +1,-1)
+                    ;[]
+                    ;  no errorlevel output (default)
+                    ;  If some errors found then (result=input string)
+                    ;
+$var                ;output (result)
+</code></pre><h2 id="examples">Examples</h2><h3 id="add">add</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys C:\WINDOWS&quot; &quot; &quot; &quot;+C:\WINDOWS C:\config.sys&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\WINDOWS C:\config.sys&quot;
+SectionEnd
+</code></pre><h3 id="delete">delete</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;-C:\WINDOWS C:\config.sys C:\IO.SYS&quot; $R0
+    ; $R0=&quot;C:\logo.sys&quot;
+SectionEnd
+</code></pre><h3 id="add-to-one">add to one</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys&quot; &quot; &quot; &quot;+C:\WINDOWS C:\config.sys C:\IO.SYS&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\WINDOWS C:\config.sys&quot;
+SectionEnd
+</code></pre><h3 id="delete-one">delete one</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;-C:\WINDOWS&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\logo.sys&quot;
+SectionEnd
+</code></pre><h3 id="no-new-words-found">No new words found</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;+C:\logo.sys&quot; $R0
+    StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; 0 +2
+    MessageBox MB_OK &quot;No new words found to add&quot;
+SectionEnd
+</code></pre><h3 id="no-words-deleted">No words deleted</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;-C:\config.sys&quot; $R0
+    StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; 0 +2
+    MessageBox MB_OK &quot;No words found to delete&quot;
+SectionEnd
+</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+    ${WordAddS} &quot;C:\io.sys C:\logo.sys&quot; &quot;&quot; &quot;E-C:\logo.sys&quot; $R0
+    ; $R0=&quot;1&quot; (delimiter is empty &quot;&quot;)
+
+    IfErrors 0 noerrors
+    MessageBox MB_OK &#39;Errorlevel=$R0&#39; IDOK end
+
+    noerrors:
+    MessageBox MB_OK &#39;No errors&#39;
+
+    end:
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordAddS.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

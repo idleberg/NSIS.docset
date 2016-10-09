@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>GetTime | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="gettime">GetTime</h1><ul><li>Get local or system time.</li><li>Get file time (access, creation and modification).</li></ul><h2 id="syntax">Syntax</h2><pre><code>${GetTime} &quot;[File]&quot; &quot;[Option]&quot; $var1 $var2 $var3 $var4 $var5 $var6 $var7
+&quot;[File]&quot;        ; Ignored if &quot;L&quot; or &quot;LS&quot;
+                ;
+&quot;[Option]&quot;      ; [Options]
+                ;   L   Local time
+                ;   A   last Access file time
+                ;   C   Creation file time
+                ;   M   Modification file time
+                ;   LS  System time (UTC)
+                ;   AS  last Access file time (UTC)
+                ;   CS  Creation file time (UTC)
+                ;   MS  Modification file time (UTC)
+                ;
+$var1           ; Result1: day
+$var2           ; Result2: month
+$var3           ; Result3: year
+$var4           ; Result4: day of week name
+$var5           ; Result5: hour
+$var6           ; Result6: minute
+$var7           ; Result7: seconds
+</code></pre><p>Note:</p><ul><li>Error flag if file isn&#39;t exist</li><li>Error flag if syntax error</li><li>See also <a href="http://nsis.sourceforge.net/Time_plugin">Time plugin</a></li></ul><h2 id="examples">Examples</h2><h3 id="get-local-time">Get local time</h3><pre><code>Section
+    ${GetTime} &quot;&quot; &quot;L&quot; $0 $1 $2 $3 $4 $5 $6
+    ; $0=&quot;01&quot;      day
+    ; $1=&quot;04&quot;      month
+    ; $2=&quot;2005&quot;    year
+    ; $3=&quot;Friday&quot;  day of week name
+    ; $4=&quot;16&quot;      hour
+    ; $5=&quot;05&quot;      minute
+    ; $6=&quot;50&quot;      seconds
+
+    MessageBox MB_OK &#39;Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6&#39;
+SectionEnd
+</code></pre><h3 id="get-file-time">Get file time</h3><pre><code>Section
+    ${GetTime} &quot;$WINDIR\Explorer.exe&quot; &quot;C&quot; $0 $1 $2 $3 $4 $5 $6
+    ; $0=&quot;12&quot;       day
+    ; $1=&quot;10&quot;       month
+    ; $2=&quot;2004&quot;     year
+    ; $3=&quot;Tuesday&quot;  day of week name
+    ; $4=&quot;2&quot;        hour
+    ; $5=&quot;32&quot;       minute
+    ; $6=&quot;03&quot;       seconds
+
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+    MessageBox MB_OK &#39;Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6&#39;
+SectionEnd
+</code></pre><h3 id="get-system-time">Get system time</h3><pre><code>Section
+    ${GetTime} &quot;&quot; &quot;LS&quot; $0 $1 $2 $3 $4 $5 $6
+    ; $0=&quot;01&quot;      day
+    ; $1=&quot;04&quot;      month
+    ; $2=&quot;2005&quot;    year
+    ; $3=&quot;Friday&quot;  day of week name
+    ; $4=&quot;11&quot;      hour
+    ; $5=&quot;05&quot;      minute
+    ; $6=&quot;50&quot;      seconds
+
+    MessageBox MB_OK &#39;Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6&#39;
+SectionEnd
+</code></pre><h3 id="convert-time-to-12-hour-format-am-pm">Convert time to 12-hour format AM/PM</h3><pre><code>Section
+    ${GetTime} &quot;&quot; &quot;L&quot; $0 $1 $2 $3 $4 $5 $6
+
+    StrCmp $4 0 0 +3
+    StrCpy $4 12
+    goto +3
+    StrCmp $4 12 +5
+    IntCmp $4 12 0 0 +3
+    StrCpy $7 AM
+    goto +3
+    IntOp $4 $4 - 12
+    StrCpy $7 PM
+
+    MessageBox MB_OK &#39;Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6 $7&#39;
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/GetTime.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

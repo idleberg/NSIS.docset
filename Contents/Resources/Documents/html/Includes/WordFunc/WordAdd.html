@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>WordAdd | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordadd">WordAdd</h1><p>Add words to string1 from string2 if not exist or delete words if exist.</p><h2 id="syntax">Syntax</h2><pre><code>${WordAdd} &quot;[string1]&quot; &quot;[delimiter]&quot; &quot;[E][options]&quot; $var
+
+&quot;[string1]&quot;          ;[string1]
+                     ;  string for addition or removing
+&quot;[delimiter]&quot;        ;[delimiter]
+                     ;  one or several symbols
+&quot;[E][options]&quot;       ;[options]
+                     ;  +string2 : words to add
+                     ;  -string2 : words to delete
+                     ;
+                     ;[E]
+                     ;  with errorlevel output
+                     ;  IfErrors:
+                     ;     $var=1  delimiter is empty
+                     ;     $var=3  syntax error (use: +text,-text)
+                     ;[]
+                     ;  no errorlevel output (default)
+                     ;  If some errors found then (result=input string)
+                     ;
+$var                 ;output (result)
+</code></pre><h2 id="examples">Examples</h2><h3 id="add">add</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys C:\WINDOWS&quot; &quot; &quot; &quot;+C:\WINDOWS C:\config.sys&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\WINDOWS C:\config.sys&quot;
+SectionEnd
+</code></pre><h3 id="delete">delete</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;-C:\WINDOWS C:\config.sys C:\IO.SYS&quot; $R0
+    ; $R0=&quot;C:\logo.sys&quot;
+SectionEnd
+</code></pre><h3 id="add-to-one">add to one</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys&quot; &quot; &quot; &quot;+C:\WINDOWS C:\config.sys C:\IO.SYS&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\WINDOWS C:\config.sys&quot;
+SectionEnd
+</code></pre><h3 id="delete-one">delete one</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;-C:\WINDOWS&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\logo.sys&quot;
+SectionEnd
+</code></pre><h3 id="no-new-words-found">No new words found</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;+C:\logo.sys&quot; $R0
+    StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; 0 +2
+    MessageBox MB_OK &quot;No new words found to add&quot;
+SectionEnd
+</code></pre><h3 id="no-words-deleted">No words deleted</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;-C:\config.sys&quot; $R0
+    StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; 0 +2
+    MessageBox MB_OK &quot;No words found to delete&quot;
+SectionEnd
+</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+    ${WordAdd} &quot;C:\io.sys C:\logo.sys&quot; &quot;&quot; &quot;E-C:\logo.sys&quot; $R0
+    ; $R0=&quot;1&quot; (delimiter is empty &quot;&quot;)
+
+    IfErrors 0 noerrors
+    MessageBox MB_OK &#39;Errorlevel=$R0&#39; IDOK end
+
+    noerrors:
+    MessageBox MB_OK &#39;No errors&#39;
+
+    end:
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordAdd.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

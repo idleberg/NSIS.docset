@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>FileRecode | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="filerecode">FileRecode</h1><p>Recode text file from DOS to Windows format and vice-versa.</p><h2 id="syntax">Syntax</h2><pre><code>${FileRecode} &quot;[File]&quot; &quot;[Format]&quot;
+
+&quot;[File]&quot;        ;
+                ;
+&quot;[Format]&quot;      ; OemToChar   -from DOS to Windows
+                ; CharToOem   -from Windows to DOS
+</code></pre><p>Note:</p><ul><li>Error flag if file doesn&#39;t exist</li><li>Error flag if syntax error</li></ul><h2 id="example">Example</h2><pre><code>Section
+    ${FileRecode} &quot;C:\SCANDISK.LOG&quot; &quot;CharToOem&quot;
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/TextFunc/FileRecode.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

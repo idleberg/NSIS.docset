@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>!endif | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-endif">!endif</h1><p>This command closes a block started with <a href="!if.html"><code>!if</code></a>, <a href="!ifdef.html"><code>!ifdef</code></a>, <a href="!ifndef.html"><code>!ifndef</code></a>, <a href="!ifmacrodef.html"><code>!ifmacrodef</code></a> or <a href="!ifmacrondef.html"><code>!ifmacrondef</code></a>.</p><h2 id="example">Example</h2><pre><code>!ifdef VERSION
+    OutFile installer-${VERSION}.exe
+!else
+    sOutFile installer.exe
+!endif
+
+!ifmacrodef MACRO
+    DetailPrint &quot;Macro defined&quot; 
+!else
+    DetailPrint &quot;Macro not defined&quot; 
+!endif
+</code></pre><h2 id="history">History</h2><p>Added in NSIS v1.1f</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/!endif.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

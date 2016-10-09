@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>WordFind | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordfind">WordFind</h1><p>Multi-features string function.</p><h2 id="syntax">Syntax</h2><pre><code>${WordFind} &quot;[string]&quot; &quot;[delimiter]&quot; &quot;[E][options]&quot; $var
+
+&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[delimiter]&quot;      ;[delimiter]
+                   ;  one or several symbols
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number   : word number from start
+                   ;  -number   : word number from end
+                   ;  +number}  : delimiter number from start
+                   ;              all space after this
+                   ;              delimiter to output
+                   ;  +number{  : delimiter number from start
+                   ;              all space before this
+                   ;              delimiter to output
+                   ;  +number}} : word number from start
+                   ;              all space after this word
+                   ;              to output
+                   ;  +number{{ : word number from start
+                   ;              all space before this word
+                   ;              to output
+                   ;  +number{} : word number from start
+                   ;              all space before and after
+                   ;              this word (word exclude)
+                   ;  +number*} : word number from start
+                   ;              all space after this
+                   ;              word to output with word
+                   ;  +number{* : word number from start
+                   ;              all space before this
+                   ;              word to output with word
+                   ;  #         : sum of words to output
+                   ;  *         : sum of delimiters to output
+                   ;  /word     : number of word to output
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  delimiter not found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1},#,*,/word,...)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</code></pre><p>Notes:</p><ul><li>Accepted numbers 1,01,001,...</li></ul><h2 id="examples">Examples</h2><h3 id="find-word-by-number">Find word by number</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\Program Files C:\WINDOWS&quot; &quot; C:\&quot; &quot;-02&quot; $R0
+    ; $R0=&quot;Program Files&quot;
+SectionEnd
+</code></pre><h3 id="delimiter-exclude">Delimiter exclude</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;sys&quot; &quot;-2}&quot; $R0
+    ; $R0=&quot; C:\logo.sys C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="sum-of-words">Sum of words</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; C:\&quot; &quot;#&quot; $R0
+    ; $R0=&quot;3&quot;
+SectionEnd
+</code></pre><h3 id="sum-of-delimiters">Sum of delimiters</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;sys&quot; &quot;*&quot; $R0
+    ; $R0=&quot;2&quot;
+SectionEnd
+</code></pre><h3 id="find-word-number">Find word number</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\Program Files C:\WINDOWS&quot; &quot; &quot; &quot;/Files&quot; $R0
+    ; $R0=&quot;3&quot;
+SectionEnd
+</code></pre><h3 id="-">}}</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;+2}}&quot; $R0
+    ; $R0=&quot; C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="-">{}</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;+2{}&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="-">*}</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;+2*}&quot; $R0
+    ; $R0=&quot;C:\logo.sys C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="get-parent-directory">Get parent directory</h3><pre><code>Section
+    StrCpy $R0 &quot;C:\Program Files\NSIS\NSIS.chm&quot;
+;               &quot;C:\Program Files\NSIS\Include\&quot;
+;               &quot;C:\\Program Files\\NSIS\\NSIS.chm&quot;
+
+    ${WordFind} &quot;$R0&quot; &quot;\&quot; &quot;-2{*&quot; $R0
+    ; $R0=&quot;C:\Program Files\NSIS&quot;
+    ;     &quot;C:\\Program Files\\NSIS&quot;
+SectionEnd
+</code></pre><h3 id="coordinates">Coordinates</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;:\lo&quot; &quot;E+1{&quot; $R0
+    ; $R0=&quot;C:\io.sys C&quot;
+    IfErrors end
+
+    StrLen $0 $R0             ; $0 = Start position of word (11)
+    StrLen $1 &#39;:\lo&#39;          ; $1 = Word length (4)
+    ; StrCpy $R0 $R1 $1 $0    ; $R0 = :\lo
+
+    end:
+SectionEnd
+</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+    ${WordFind} &quot;[string]&quot; &quot;[delimiter]&quot; &quot;E[options]&quot; $R0
+
+    IfErrors 0 end
+    StrCmp $R0 1 0 +2       ; errorlevel 1?
+    MessageBox MB_OK &#39;delimiter not found&#39; IDOK end
+    StrCmp $R0 2 0 +2       ; errorlevel 2?
+    MessageBox MB_OK &#39;no such word number&#39; IDOK end
+    StrCmp $R0 3 0 +2       ; errorlevel 3?
+    MessageBox MB_OK &#39;syntax error&#39;
+
+    end:
+SectionEnd
+</code></pre><h3 id="without-errorlevel-output">Without errorlevel output</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys&quot; &quot;_&quot; &quot;+1&quot; $R0
+
+    ; $R0=&quot;C:\io.sys C:\logo.sys&quot; (error: delimiter &quot;_&quot; not found)
+SectionEnd
+</code></pre><h3 id="if-found">If found</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys&quot; &quot;:\lo&quot; &quot;E+1{&quot; $R0
+
+    IfErrors notfound found
+    found:
+    MessageBox MB_OK &#39;Found&#39; IDOK end
+    notfound:
+    MessageBox MB_OK &#39;Not found&#39;
+
+    end:
+SectionEnd
+</code></pre><h3 id="if-found-2">If found 2</h3><pre><code>Section
+    ${WordFind} &quot;C:\io.sys C:\logo.sys&quot; &quot;:\lo&quot; &quot;+1{&quot; $R0
+
+    StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; notfound found        ; error?
+    found:
+    MessageBox MB_OK &#39;Found&#39; IDOK end
+    notfound:
+    MessageBox MB_OK &#39;Not found&#39;
+
+    end:
+SectionEnd
+</code></pre><h3 id="to-accept-one-word-in-string-if-delimiter-not-found">To accept one word in string if delimiter not found</h3><pre><code>Section
+    StrCpy $0 &#39;OneWord&#39;
+    StrCpy $1 1
+
+    loop:
+    ${WordFind} &quot;$0&quot; &quot; &quot; &quot;E+$1&quot; $R0
+    IfErrors 0 code
+    StrCmp $1$R0 11 0 error
+    StrCpy $R0 $0
+    goto end
+
+    code:
+    ; ...
+    IntOp $1 $1 + 1
+    goto loop
+
+    error:
+    StrCpy $1 &#39;&#39;
+    StrCpy $R0 &#39;&#39;
+
+    end:
+    ; $R0=&quot;OneWord&quot;
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordFind.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

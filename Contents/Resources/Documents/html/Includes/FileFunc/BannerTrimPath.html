@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>BannerTrimPath | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="bannertrimpath">BannerTrimPath</h1><p>Trim string path for banner.</p><h2 id="syntax">Syntax</h2><pre><code>${BannerTrimPath} &quot;[PathString]&quot; &quot;[Option]&quot; $var
+
+&quot;[PathString]&quot;    ;
+                  ;
+&quot;[Option]&quot;        ; [Length][A|B|C|D]
+                  ;
+                  ; Length  -Maximum string length
+                  ;   A     -Trim center path (default)
+                  ;           (C:\root\...\third path) 
+                  ;           If A mode not possible Then will be used B mode
+                  ;   B     -Trim right path
+                  ;           (C:\root\second path\...)
+                  ;           If B mode not possible Then will be used C mode
+                  ;   C     -Trim right string
+                  ;           (C:\root\second path\third p...)
+                  ;   D     -Trim right string + filename
+                  ;           (C:\root\second p...\third path)
+                  ;           If D mode not possible Then will be used C mode
+                  ;
+$var              ; Result:  Trimmed path
+</code></pre><h2 id="examples">Examples</h2><h3 id="trim-center-path-to-35-characters-max">Trim center path to 35 characters max</h3><pre><code>Section
+    ${BannerTrimPath} &quot;C:\Server\Documents\Terminal\license.htm&quot; &quot;35A&quot; $R0
+    ;$R0=C:\Server\...\Terminal\license.htm
+SectionEnd
+</code></pre><h3 id="banner-plugin">Banner plugin</h3><pre><code>!include &quot;WinMessages.nsh&quot;
+!include &quot;FileFunc.nsh&quot;
+
+Section
+    Banner::show &quot;Starting...&quot;
+    Banner::getWindow
+    Pop $R1
+    ${Locate} &quot;$WINDIR&quot; &quot;/L=F /M=*.* /B=1&quot; &quot;LocateCallback&quot;
+    Banner::destroy
+SectionEnd
+
+Function LocateCallback
+    StrCmp $R0 $R8 code
+    StrCpy $R0 $R8
+    ${BannerTrimPath} &quot;$R8&quot; &quot;38B&quot; $R8
+    GetDlgItem $1 $R1 1030
+    SendMessage $1 ${WM_SETTEXT} 0 &quot;STR:$R8&quot;
+
+    code:
+    StrCmp $R9 &#39;&#39; end
+    ;...
+
+    end:
+    Push $0
+FunctionEnd
+</code></pre><h3 id="nxs-plugin">NxS plugin</h3><pre><code>!include &quot;FileFunc.nsh&quot;
+
+Section
+    nxs::Show /NOUNLOAD `$(^Name) Setup`\
+      /top `Setup searching something$\nPlease wait$\nIf you can...`\
+      /h 1 /can 1 /end
+    ${Locate} &quot;$WINDIR&quot; &quot;/L=F /M=*.* /B=1&quot; &quot;LocateCallback&quot;
+    nxs::Destroy
+SectionEnd
+
+Function LocateCallback
+    StrCmp $R0 $R8 abortcheck
+    StrCpy $R0 $R8
+    ${BannerTrimPath} &quot;$R8&quot; &quot;55A&quot; $R8
+    nxs::Update /NOUNLOAD /sub &quot;$R8&quot; /pos 78 /end
+
+    abortcheck:
+    nxs::HasUserAborted /NOUNLOAD
+    Pop $0
+    StrCmp $0 1 0 +2
+    StrCpy $0 StopLocate
+
+    StrCmp $R9 &#39;&#39; end
+    ;...
+
+    end:
+    Push $0
+FunctionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/BannerTrimPath.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

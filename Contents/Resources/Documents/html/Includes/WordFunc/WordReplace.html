@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>WordReplace | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordreplace">WordReplace</h1><p>Replace or delete word from string.</p><h2 id="syntax">Syntax</h2><pre><code>${WordReplace} &quot;[string]&quot; &quot;[word1]&quot; &quot;[word2]&quot; &quot;[E][options]&quot; $var
+
+&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[word1]&quot;          ;[word1]
+                   ;  word to replace or delete
+&quot;[word2]&quot;          ;[word2]
+                   ;  replace with (if empty delete)
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number  : word number from start
+                   ;  -number  : word number from end
+                   ;  +number* : word number from start multiple-replace
+                   ;  -number* : word number from end multiple-replace
+                   ;  +        : replace all results
+                   ;  +*       : multiple-replace all results
+                   ;  {        : if exists replace all delimiters
+                   ;               from left edge
+                   ;  }        : if exists replace all delimiters
+                   ;               from right edge
+                   ;  {}       : if exists replace all delimiters
+                   ;               from edges
+                   ;  {*       : if exists multiple-replace all
+                   ;               delimiters from left edge
+                   ;  }*       : if exists multiple-replace all
+                   ;               delimiters from right edge
+                   ;  {}*      : if exists multiple-replace all
+                   ;               delimiters from edges
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  word to replace not found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1,+1*,-1*,+,+*,{},{}*)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</code></pre><h2 id="examples">Examples</h2><h3 id="replace">replace</h3><pre><code>Section
+    ${WordReplace} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;SYS&quot; &quot;bmp&quot; &quot;+2&quot; $R0
+    ; $R0=&quot;C:\io.sys C:\logo.bmp C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="delete">delete</h3><pre><code>Section
+    ${WordReplace} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;SYS&quot; &quot;&quot; &quot;+&quot; $R0
+    ; $R0=&quot;C:\io. C:\logo. C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="multiple-replace-1">multiple-replace 1</h3><pre><code>Section
+    ${WordReplace} &quot;C:\io.sys      C:\logo.sys   C:\WINDOWS&quot; &quot; &quot; &quot; &quot; &quot;+1*&quot; $R0
+    ; +1* or +2* or +3* or +4* or +5* or +6*
+    ; $R0=&quot;C:\io.sys C:\logo.sys   C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="multiple-replace-2">multiple-replace 2</h3><pre><code>Section
+    ${WordReplace} &quot;C:\io.sys C:\logo.sysSYSsys C:\WINDOWS&quot; &quot;sys&quot; &quot;bmp&quot; &quot;+*&quot; $R0
+    ; $R0=&quot;C:\io.bmp C:\logo.bmp C:\WINDOWS&quot;
+SectionEnd
+</code></pre><h3 id="multiple-replace-3">multiple-replace 3</h3><pre><code>Section
+    ${WordReplace} &quot;sysSYSsysC:\io.sys C:\logo.sys C:\WINDOWSsysSYSsys&quot; &quot;sys&quot; &quot;|&quot; &quot;{}*&quot; $R0
+    ; $R0=&quot;|C:\io.sys C:\logo.sys C:\WINDOWS|&quot;
+SectionEnd
+</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+    ${WordReplace} &quot;C:\io.sys C:\logo.sys&quot; &quot;sys&quot; &quot;bmp&quot; &quot;E+3&quot; $R0
+    ; $R0=&quot;2&quot; (no such word number &quot;+3&quot;)
+
+    IfErrors 0 noerrors
+    MessageBox MB_OK &#39;Errorlevel=$R0&#39; IDOK end
+
+    noerrors:
+    MessageBox MB_OK &#39;No errors&#39;
+
+    end:
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordReplace.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

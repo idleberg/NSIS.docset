@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>FileReadFromEnd | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="filereadfromend">FileReadFromEnd</h1><p>Read text file from end line by line.</p><h2 id="syntax">Syntax</h2><pre><code>${FileReadFromEnd} &quot;[File]&quot; &quot;Function&quot;
+
+&quot;[File]&quot;      ; Input text file
+&quot;Function&quot;    ; Callback function
+
+Function &quot;Function&quot;
+    ; $9       current line
+    ; $8       current line number
+    ; $7       current line negative number
+
+    ; $R0-$R9  are not used (save data in them).
+    ; ...
+
+    Push $var      ; If $var=&quot;StopFileReadFromEnd&quot;  Then exit from function
+FunctionEnd
+</code></pre><p>Note:</p><ul><li>Error flag if input file doesn&#39;t exist</li></ul><h2 id="examples">Examples</h2><h3 id="read-and-display-lines">Read and display lines</h3><pre><code>Section
+    ${FileReadFromEnd} &quot;C:\a.log&quot; &quot;Example1&quot;
+
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example1
+    MessageBox MB_OKCANCEL &#39;&quot;Line&quot;=[$9]$\n   &quot;#&quot;=[$8]$\n  &quot;-#&quot;=[$7]&#39; IDOK +2
+    StrCpy $0 StopFileReadFromEnd
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="reverse-text-file">Reverse text file</h3><pre><code>Section
+    GetTempFileName $R0
+    FileOpen $R1 $R0 w
+    ${FileReadFromEnd} &quot;C:\a.log&quot; &quot;Example2&quot;
+    FileClose $R1
+
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+    Exec &#39;&quot;notepad.exe&quot; &quot;$R0&quot;&#39;
+SectionEnd
+
+Function Example2
+    StrCmp $7 -1 0 +5
+    StrCpy $1 $9 1 -1
+    StrCmp $1 &#39;$\n&#39; +3
+    StrCmp $1 &#39;$\r&#39; +2
+    StrCpy $9 &#39;$9$\r$\n&#39;
+
+    FileWrite $R1 &quot;$9&quot;
+
+    Push $0
+FunctionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/TextFunc/FileReadFromEnd.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

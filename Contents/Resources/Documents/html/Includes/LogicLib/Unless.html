@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Unless | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="unless">Unless</h1><p>Conditionally executes a block of statements, depending on the value of an expression. <a href="IfNot.html"><code>${IfNot}</code></a> and <code>${Unless}</code> are equivalent and interchangeable, as are <a href="ElseIfNot.html"><code>${ElseIfNot}</code></a> and <a href="ElseUnless.html"><code>${ElseUnless}</code></a>.</p><h2 id="syntax">Syntax</h2><pre><code>${Unless} expression
+</code></pre><p>The following &quot;expressions&quot; are available:</p><pre><code>Standard (built-in) string tests (which are case-insensitive):
+     a == b; a != b
+Additional case-insensitive string tests (using System.dll):
+     a S&lt; b; a S&gt;= b; a S&gt; b; a S&lt;= b
+Case-sensitive string tests:
+     a S== b; a S!= b
+Standard (built-in) signed integer tests:
+     a = b; a &lt;&gt; b; a &lt; b; a &gt;= b; a &gt; b; a &lt;= b
+Standard (built-in) unsigned integer tests:
+     a U&lt; b; a U&gt;= b; a U&gt; b; a U&lt;= b
+64-bit integer tests (using System.dll):
+    a L= b; a L&lt;&gt; b; a L&lt; b; a L&gt;= b; a L&gt; b; a L&lt;= b
+Built-in NSIS flag tests:
+    ${Abort}; ${Errors}; ${RebootFlag}; ${Silent}
+Built-in NSIS other tests:
+    ${FileExists} a
+Any conditional NSIS instruction test:
+    ${Cmd} a
+Section flag tests:
+    ${SectionIsSelected} a; ${SectionIsSectionGroup} a;
+    ${SectionIsSectionGroupEnd} a; ${SectionIsBold} a;
+    ${SectionIsReadOnly} a; ${SectionIsExpanded} a;
+    ${SectionIsPartiallySelected} a
+</code></pre><h2 id="examples">Examples</h2><h3 id="check-if-condition-is-met">Check if condition is met</h3><pre><code>StrCpy $0 true
+
+${Unless} $0 == true
+    MessageBox MB_OK &quot;It&#39;s false&quot;
+${EndUnless}
+
+${Unless} $0 != true
+    MessageBox MB_OK &quot;It&#39;s true (but I&#39;d use $${If} $$0 == true)&quot;
+${EndUnless}
+</code></pre><h3 id="integer-tests">Integer tests</h3><pre><code>${Unless} 1 &gt; 0
+    MessageBox MB_OK &quot;This is never true&quot;
+${EndUnless}
+</code></pre><h3 id="file-conditions">File conditions</h3><pre><code>${Unless} ${FileExists} $SYSDIR\notepad.exe
+    MessageBox MB_OK &quot;Could not find notepad.exe&quot;
+${Else}
+    Exec $SYSDIR\notepad.exe
+${EndUnless}
+
+${Unless} ${FileExists} $PROGAMFILES\*.*
+    MessageBox MB_OK &quot;Directory $$PROGRAMFILES doesn&#39;t exist&quot;
+${EndUnless}
+</code></pre><h3 id="section-test">Section test</h3><pre><code>Section &quot;My Section&quot; mySection
+    MessageBox MB_OK &quot;Executing section&quot;
+
+    ${Unless} ${SectionIsSelected} ${mySection}
+        MessageBox MB_OK &quot;This will never show, dummy!&quot;
+    ${EndUnless}
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by dselkirk and eccles</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/LogicLib/Unless.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>MementoSectionDone | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="mementosectiondone">MementoSectionDone</h1><p>Use <code>${MementoSectionDone}</code> after the last <a href="MementoSection.html"><code>${MementoSection}</code></a>.</p><h2 id="syntax">Syntax</h2><pre><code>${MementoSectionDone}
+</code></pre><h2 id="example">Example</h2><pre><code>!include Memento.nsh
+
+!define MEMENTO_REGISTRY_ROOT HKLM
+!define MEMENTO_REGISTRY_KEY Software\Microsoft\Windows\CurrentVersion\Uninstall\MyProgram
+
+Function .onInit
+    ${MementoSectionRestore}
+FunctionEnd
+
+Function .onInstSuccess
+    ${MementoSectionSave}
+FunctionEnd
+
+${MementoUnselectedSection} dinosaur sec_dinosaur
+    ; some code...
+${MementoSectionEnd}
+
+${MementoSectionDone}
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Kichik">kichik</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/Memento/MementoSectionDone.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

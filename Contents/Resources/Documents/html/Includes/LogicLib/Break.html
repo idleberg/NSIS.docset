@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Break | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="break">Break</h1><p>Breaks a block of statements.</p><h2 id="syntax">Syntax</h2><pre><code>${Break}
+</code></pre><h2 id="examples">Examples</h2><h3 id="simple-example">Simple example</h3><pre><code>${For} $1 1 10
+    ${Break}
+    MessageBox MB_OK &quot;This will never show&quot;
+${Next}
+</code></pre><h3 id="in-combination-with-a-messagebox">In combination with a MessageBox</h3><pre><code>${For} $1 1 10
+    ${IfCmd} MessageBox MB_YESNO &quot;We&#39;re at $1, continue up to 10?&quot; IDYES ${||} ${Break} ${|}
+${Next}
+</code></pre><h2 id="credits">Credits</h2><p>Written by dselkirk and eccles</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/LogicLib/Break.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>IfFileExists | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="iffileexists">IfFileExists</h1><p>Checks for existence of file(s) file_to_check_for (which can be a wildcard, or a directory), and <a href="Goto.html"><code>Goto</code></a> jump_if_present if the file exists, otherwise <a href="Goto.html"><code>Goto</code></a> jump_otherwise. If you want to check to see if a file is a directory, use IfFileExists DIRECTORY*</p><h2 id="parameters">Parameters</h2><pre><code>file_to_check_for jump_if_present [jump_otherwise]
+</code></pre><h2 id="example">Example</h2><pre><code>IfFileExists $WINDIR\notepad.exe 0 +2
+MessageBox MB_OK &quot;notepad is installed&quot;
+</code></pre><p>You can also use labels, which may help make your code easier to read:</p><pre><code>IfFileExists $INSTDIR\somefile.txt file_found file_not_found
+
+file_found:
+MessageBox MB_OK &quot;somefile.txt was found&quot;
+Goto done
+
+file_not_found:
+MessageBox MB_OK &quot;somefile.txt was not found&quot;
+
+done:
+; ...
+</code></pre><h2 id="history">History</h2><p>Added in NSIS v1.1n</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/IfFileExists.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

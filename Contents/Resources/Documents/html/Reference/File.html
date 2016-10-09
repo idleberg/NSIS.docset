@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>File | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="file">File</h1><p>Adds file(s) to be extracted to the current output path (<a href="../Variables/OUTDIR.html"><code>$OUTDIR</code></a>).</p><ul><li>Note that the output file name is $OUTDIR\filename_portion_of_file.</li><li>Use <code>/oname=X</code> switch to change the output name. X may contain variables and can be a fully qualified path or a relative path in which case it will be appended to <a href="../Variables/OUTDIR.html"><code>$OUTDIR</code></a> set by <a href="SetOutPath.html"><code>SetOutPath</code></a>. When using this switch, only one file can be specified. If the output name contains spaces, quote the entire parameter, including /oname, as shown in the examples below.</li><li>Wildcards are supported.</li><li>If the <code>/r</code> switch is used, matching files and directories are recursively searched for in subdirectories. If just one path segment is specified (e.g. File /r something), the current directory will be recursively searched. If more than one segment is specified (e.g. File /r something*.*), the last path segment will be used as the matching condition and the rest for the directory to search recursively. If a directory name matches, all of its contents is added recursively. Directory structure is preserved.</li><li>Use the <code>/x</code>switch to exclude files or directories.</li><li>If the <code>/a</code> switch is used, the attributes of the file(s) added will be preserved.</li><li>The <code>File</code> command sets the error flag if overwrite mode is set to &#39;try&#39; and the file could not be overwritten, or if the overwrite mode is set to &#39;on&#39; and the file could not be overwritten and the user selects ignore.</li><li>If the <code>/nonfatal</code> switch is used and no files are found, a warning will be issued instead of an error.</li></ul><h2 id="parameters">Parameters</h2><pre><code>[/nonfatal] [/a] ([/r] [/x file|wildcard [...]] (file|wildcard) [...] | /oname=file.dat infile.dat)
+</code></pre><h2 id="example">Example</h2><pre><code>File something.exe
+File /a something.exe
+File *.exe
+File /r *.dat
+File /r data
+File /oname=temp.dat somefile.ext
+File /oname=$TEMP\temp.dat somefile.ext
+File &quot;/oname=$TEMP\name with spaces.dat&quot; somefile.ext
+File /nonfatal &quot;a file that might not exist&quot;
+File /r /x CVS myproject\*.*
+File /r /x *.res /x *.obj /x *.pch source\*.*
+</code></pre><p><strong>Note:</strong> when using the <code>/r</code> switch, both matching directories and files will be searched. This is always done with or without the use of wildcards, even if the given path perfectly matches one directory. That means, the following directory structure:</p><pre><code>&lt;DIR&gt; something
+  file.dat
+  another.dat
+&lt;DIR&gt; dir
+  something
+  &lt;DIR&gt; dir2
+    file2.dat
+&lt;DIR&gt; another
+  &lt;DIR&gt; something
+    readme.txt
+</code></pre><p>with the following <code>File</code> usage:</p><pre><code>File /r something
+</code></pre><p>will match the directory named something on the root directory, the file named something in the directory named dir and the directory named something in the directory named another. To match only the directory named something on the root directory, use the following:</p><pre><code>File /r something\*.*
+</code></pre><p>When adding *.*, it will be used as the matching condition and something will be used as the directory to search. When only something is specified, the current directory will be recursively searched for every and directory named something and another\something will be matched.</p><h2 id="history">History</h2><p>Added in NSIS v1.0f</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/File.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

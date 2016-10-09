@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>InstTypeSetText | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="insttypesettext">InstTypeSetText</h1><p>Sets the Text of the specified <a href="InstType.html"><code>InstType</code></a>. If the Text is empty than the <a href="InstType.html"><code>InstType</code></a> is removed. By using a previously unused inst_type_idx number you can create new <a href="InstType.html"><code>InstType</code></a>. To add/remove <a href="Section.html"><code>Section</code></a> to this new <a href="InstType.html"><code>InstType</code></a> see <a href="SectionSetInstTypes.html"><code>SectionSetInstTypes</code></a>. Unlike <a href="SectionIn.html"><code>SectionIn</code></a> the index is zero based, which means the first install type&#39;s index is 0.</p><p>Gets the Text of the specified <a href="InstType.html"><code>InstType</code></a>.</p><h2 id="parameters">Parameters</h2><pre><code>inst_type_idx text
+</code></pre><h2 id="example">Example</h2><pre><code>InstType a
+InstType b
+
+Function .onInit
+    InstTypeGetText 0 $0
+    DetailPrint $0 # prints &#39;a&#39;
+    InstTypeGetText 1 $0
+    DetailPrint $0 # prints &#39;b&#39;
+FunctionEnd
+</code></pre><h2 id="history">History</h2><p>Added in NSIS v2.0</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/InstTypeSetText.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Loop | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="loop">Loop</h1><p>Loops a block of statements started by <a href="Do.html"><code>${Do}</code></a>, <a href="DoUntil.html"><code>${DoUntil}</code></a> or <a href="DoWhile.html"><code>${DoWhile}</code></a>.</p><h2 id="syntax">Syntax</h2><pre><code>${Loop}
+</code></pre><h2 id="example">Example</h2><pre><code>StrCpy $0 0
+
+${Do}
+    IntOp $0 $0 + 1
+    ${If} $0 &gt; 10
+        ${ExitDo}
+    ${EndIf}
+${Loop}
+</code></pre><h2 id="credits">Credits</h2><p>Written by dselkirk and eccles</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/LogicLib/Loop.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>StrCase | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="strcase">StrCase</h1><p>Converts &quot;String&quot; to &quot;Type&quot; Case. Uses <a href="../LogicLib">LogicLib</a>.</p><h2 id="syntax">Syntax</h2><pre><code>ResultVar String Type(|L|U|T|S|&lt;&gt;)
+</code></pre><h2 id="parameters">Parameters</h2><pre><code>ResultVar
+Destination where result is returned.
+
+String
+String to convert to &quot;Type&quot; case.
+
+Type
+Type of string case to convert to:
+
+  - &quot;&quot; = Original Case (same as &quot;String&quot;)
+  - L = Lower Case (this is just an example. a very simple one.)
+  - U = Upper Case (THIS IS JUST AN EXAMPLE. A VERY SIMPLE ONE.)
+  - T = Title Case (This Is Just An Example. A Very Simple One.)
+  - S = Sentence Case (This is just an example. A very simple one.)
+  - &lt;&gt; = Switch Case (This is just an example. A very simple one.)
+
+Default value is &quot;&quot; (Original Case).
+</code></pre><h2 id="example">Example</h2><pre><code>${StrCase} $0 &#39;&quot;Você&quot; is &quot;You&quot; in English.&#39; &quot;U&quot;
+$0 = &#39;&quot;VOCÊ&quot; IS &quot;YOU&quot; IN ENGLISH.&#39;
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Deguix">deguix</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/StrFunc/StrCase.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

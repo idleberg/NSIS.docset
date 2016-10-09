@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>StrTok | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="strtok">StrTok</h1><p>Returns the part &quot;ResultPart&quot; between two &quot;Separators&quot; inside &quot;String&quot;.</p><h2 id="syntax">Syntax</h2><pre><code>ResultVar String Separators ResultPart[L] SkipEmptyParts(1|0)
+</code></pre><h2 id="parameters">Parameters</h2><pre><code>ResultVar
+Destination where result is returned.
+
+String
+String where to search for &quot;Separators&quot;.
+
+Separators
+Characters to find on &quot;String&quot;.
+
+ResultPart[L]
+The part want to be found on &quot;StrToTokenize&quot; between two &quot;Separators&quot;.
+Can be any number, starting at 0, and &quot;L&quot; that is the last part.
+Default is L (Last part).
+
+SkipEmptyParts(1|0)
+Skips empty string parts between two &quot;Separators&quot;. Default is 1 (True).
+(1 = True, 0 = False)
+</code></pre><h2 id="example">Example</h2><pre><code>${StrTok} $0 &quot;This is, or is not, just an example&quot; &quot; ,&quot; &quot;4&quot; &quot;1&quot;
+$0 = &quot;not&quot;
+
+${StrTok} $0 &quot;This is, or is not, just an example&quot; &quot; ,&quot; &quot;4&quot; &quot;0&quot;
+$0 = &quot;is&quot;
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Deguix">deguix</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/StrFunc/StrTok.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

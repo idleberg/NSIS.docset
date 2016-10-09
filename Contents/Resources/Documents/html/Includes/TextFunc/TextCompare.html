@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>TextCompare | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="textcompare">TextCompare</h1><p>Compare two text files.</p><h2 id="syntax">Syntax</h2><pre><code>${TextCompare} &quot;[File1]&quot; &quot;[File2]&quot; &quot;[Option]&quot; &quot;Function&quot;
+
+&quot;[File1]&quot;     ; File1      Compare these lines
+&quot;[File2]&quot;     ; File2      Compare with these lines
+&quot;[Options]&quot;   ; (line-by-line):
+              ; FastDiff   Compare line N (File1) with line N (File2)
+              ;            Call function if Different lines found
+              ; FastEqual  Compare line N (File1) with line N (File2)
+              ;            Call function if Equal lines found
+              ; (line number independent):
+              ; SlowDiff   Compare line N (File1) with all lines (File2)
+              ;            Call function if line N (File1) Different
+              ; SlowEqual  Compare line N (File1) with all lines (File2)
+              ;            Call function if line N (File1) Equal
+&quot;Function&quot;    ; Callback function
+
+Function &quot;Function&quot;
+    ; $9    &quot;Line File1&quot;
+    ; $8    &quot;Line number&quot;
+    ; $7    &quot;Line File2&quot;  (empty if SlowDiff)
+    ; $6    &quot;Line number&quot; (empty if SlowDiff)
+
+    ; $R0-$R9  are not used (save data in them).
+    ; ...
+
+    Push $var    ; If $var=&quot;StopTextCompare&quot;  Then exit from function
+FunctionEnd
+</code></pre><p>Note:</p><ul><li>Error flag if File1 or File2 doesn&#39;t exist</li><li>Error flag if syntax error</li></ul><h2 id="examples">Examples</h2><h3 id="different-or-equal">Different or Equal</h3><pre><code>Section
+    StrCpy $R0 &#39;&#39;
+    ${TextCompare} &quot;C:\1.txt&quot; &quot;C:\2.txt&quot; &quot;FastDiff&quot; &quot;Example1&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +4
+
+    StrCmp $R0 NotEqual 0 +2
+    MessageBox MB_OK &quot;Files differ&quot; IDOK +2
+    MessageBox MB_OK &quot;Files identical&quot;
+SectionEnd
+
+Function Example1
+    StrCpy $R0 NotEqual
+    StrCpy $0 StopTextCompare
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="compare-line-by-line-different">Compare line-by-line - Different</h3><pre><code>Section
+    StrCpy $R0 &#39;Text1.txt&#39;
+    StrCpy $R1 &#39;Text2.txt&#39;
+
+    GetTempFileName $R2
+    FileOpen $R3 $R2 w
+    FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+    ${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;FastDiff&quot; &quot;Example2&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+
+    Exec &quot;notepad.exe $R2&quot;
+FunctionEnd
+
+Function Example2
+    FileWrite $R3 &#39;$8=$9&#39;
+    FileWrite $R3 &#39;$6=$7$\r$\n&#39;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="compare-line-by-line-equal">Compare line-by-line - Equal</h3><pre><code>Section
+    StrCpy $R0 &#39;Text1.txt&#39;
+    StrCpy $R1 &#39;Text2.txt&#39;
+
+    GetTempFileName $R2
+    FileOpen $R3 $R2 w
+    FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+    ${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;FastEqual&quot; &quot;Example3&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+
+    Exec &quot;notepad.exe $R2&quot;
+FunctionEnd
+
+Function Example3
+    FileWrite $R3 &#39;$8|$6=$9&#39;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="compare-all-lines-different">Compare all lines - Different</h3><pre><code>Section
+    StrCpy $R0 &#39;Text1.txt&#39;
+    StrCpy $R1 &#39;Text2.txt&#39;
+
+    GetTempFileName $R2
+    FileOpen $R3 $R2 w
+    FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+    ${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;SlowDiff&quot; &quot;Example4&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK end
+
+    FileWrite $R3 &quot;$\r$\n$R1 | $R0$\r$\n&quot;
+    ${TextCompare} &quot;$R1&quot; &quot;$R0&quot; &quot;SlowDiff&quot; &quot;Example4&quot;
+    FileClose $R3
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK end
+
+    Exec &quot;notepad.exe $R2&quot;
+
+    end:
+FunctionEnd
+
+Function Example4
+    FileWrite $R3 &#39;$8=$9&#39;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="compare-all-lines-equal">Compare all lines - Equal</h3><pre><code>Section
+    StrCpy $R0 &#39;Text1.txt&#39;
+    StrCpy $R1 &#39;Text2.txt&#39;
+
+    GetTempFileName $R2
+    FileOpen $R3 $R2 w
+    FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+    ${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;SlowEqual&quot; &quot;Example5&quot;
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot; IDOK +2
+
+    Exec &quot;notepad.exe $R2&quot;
+FunctionEnd
+
+Function Example5
+    FileWrite $R3 &#39;$8|$6=$9&#39;
+
+    Push $0
+FunctionEnd
+</code></pre><h3 id="show-variables">Show variables</h3><pre><code>Section
+    ${TextCompare} &quot;C:\1.txt&quot; &quot;C:\2.txt&quot; &quot;FastDiff&quot; &quot;Example6&quot;
+
+    IfErrors 0 +2
+    MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example6
+    MessageBox MB_OKCANCEL &#39;$$9    &quot;Line File1&quot; =[$9]$\n$$8    &quot;Line #&quot;      =[$8]$\n$$7    &quot;Line File2&quot; =[$7]$\n$$6    &quot;Line #&quot;      =[$6]&#39; IDOK +2
+    StrCpy $0 StopTextCompare
+
+    Push $0
+FunctionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/TextFunc/TextCompare.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

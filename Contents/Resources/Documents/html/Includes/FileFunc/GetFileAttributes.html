@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>GetFileAttributes | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="getfileattributes">GetFileAttributes</h1><p>Get attributes of file or directory.</p><h2 id="syntax">Syntax</h2><pre><code>${GetFileAttributes} &quot;[File]&quot; &quot;[Attributes]&quot; $var
+
+&quot;[File]&quot;          ; File or directory
+                  ;
+&quot;[Attributes]&quot;    ; &quot;ALL&quot;  (default)
+                  ;  -all attributes of file combined with &quot;|&quot; to output
+                  ;
+                  ; &quot;READONLY|HIDDEN|SYSTEM|DIRECTORY|ARCHIVE|
+                  ; DEVICE|NORMAL|TEMPORARY|SPARSE_FILE|REPARSE_POINT|
+                  ; COMPRESSED|OFFLINE|NOT_CONTENT_INDEXED|ENCRYPTED&quot;
+                  ;  -file must have specified attributes
+                  ;
+$var              ; Result:
+                  ;    $var=attr1|attr2|... (if used &quot;ALL&quot;)
+                  ;    $var=1   file has specified attributes
+                  ;    $var=0   file has no specified attributes
+</code></pre><p>Note:</p><ul><li>Error flag if file doesn&#39;t exist</li></ul><h2 id="examples">Examples</h2><h3 id="get-all-file-attributes">Get all file attributes</h3><pre><code>Section
+    ${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;ALL&quot; $R0
+    ; $R0=READONLY|HIDDEN|SYSTEM|ARCHIVE
+SectionEnd
+</code></pre><h3 id="get-some-file-attributes">Get some file attributes</h3><pre><code>Section
+    ${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;SYSTEM|HIDDEN&quot; $R0
+    ; $R0=1
+SectionEnd
+</code></pre><h3 id="get-file-attribute-normal-">Get file attribute &quot;NORMAL&quot;</h3><pre><code>Section
+    ${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;NORMAL&quot; $R0
+    ; $R0=0
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/GetFileAttributes.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

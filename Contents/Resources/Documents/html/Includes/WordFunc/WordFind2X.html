@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>WordFind2X | NSIS.docset</title><link rel="stylesheet" href="../../../css/theme.min.css"><link rel="stylesheet" href="../../../css/fonts.min.css"><link rel="stylesheet" href="../../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordfind2x">WordFind2X</h1><p>Find word between two delimiters.</p><h2 id="syntax">Syntax</h2><pre><code>${WordFind2X} &quot;[string]&quot; &quot;[delimiter1]&quot; &quot;[delimiter2]&quot; &quot;[E][options]&quot; $var
+
+&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[delimiter1]&quot;     ;[delimiter1]
+                   ;  first delimiter
+&quot;[delimiter2]&quot;     ;[delimiter2]
+                   ;  second delimiter
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number   : word number from start
+                   ;  -number   : word number from end
+                   ;  +number}} : word number from start all space
+                   ;              after this word to output
+                   ;  +number{{ : word number from end all space
+                   ;              before this word to output
+                   ;  +number{} : word number from start
+                   ;              all space before and after
+                   ;              this word (word exclude)
+                   ;  +number*} : word number from start
+                   ;              all space after this
+                   ;              word to output with word
+                   ;  +number{* : word number from start
+                   ;              all space before this
+                   ;              word to output with word
+                   ;  #         : sum of words to output
+                   ;  /word     : number of word to output
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  no words found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1,#)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</code></pre><h2 id="examples">Examples</h2><h3 id="example-1">Example 1</h3><pre><code>Section
+    ${WordFind2X} &quot;[C:\io.sys];[C:\logo.sys];[C:\WINDOWS]&quot; &quot;[C:\&quot; &quot;];&quot; &quot;+2&quot; $R0
+    ; $R0=&quot;logo.sys&quot;
+SectionEnd
+</code></pre><h3 id="example-2">Example 2</h3><pre><code>Section
+    ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1&quot; $R0
+    ; $R0=&quot;logo&quot;
+SectionEnd
+</code></pre><h3 id="example-3">Example 3</h3><pre><code>Section
+    ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{{&quot; $R0
+    ; $R0=&quot;C:\WINDOWS C:\io.sys C:&quot;
+SectionEnd
+</code></pre><h3 id="example-4">Example 4</h3><pre><code>Section
+    ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{}&quot; $R0
+    ; $R0=&quot;C:\WINDOWS C:\io.sys C:sys&quot;
+SectionEnd
+</code></pre><h3 id="example-5">Example 5</h3><pre><code>Section
+    ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{*&quot; $R0
+    ; $R0=&quot;C:\WINDOWS C:\io.sys C:\logo.&quot;
+SectionEnd
+</code></pre><h3 id="example-6">Example 6</h3><pre><code>Section
+    ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;/logo&quot; $R0
+    ; $R0=&quot;2&quot;
+SectionEnd
+</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+    ${WordFind2X} &quot;[io.sys];[C:\logo.sys]&quot; &quot;\&quot; &quot;];&quot; &quot;E+1&quot; $R0
+    ; $R0=&quot;1&quot; (&quot;\...];&quot; not found)
+
+    IfErrors 0 noerrors
+    MessageBox MB_OK &#39;Errorlevel=$R0&#39; IDOK end
+
+    noerrors:
+    MessageBox MB_OK &#39;No errors&#39;
+
+    end:
+SectionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordFind2X.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

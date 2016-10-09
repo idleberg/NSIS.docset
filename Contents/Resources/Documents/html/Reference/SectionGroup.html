@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>SectionGroup | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="sectiongroup">SectionGroup</h1><p>This command inserts a section group. The section group must be closed with <a href="SectionGroupEnd.html"><code>SectionGroupEnd</code></a>, and should contain 1 or more sections. If the section group name begins with a !, its name will be displayed with a bold font. If <code>/e</code> is present, the section group will be expanded by default. If index_output is specified, the parameter will be <a href="!define.html"><code>!define</code></a>d with the section index (that can be used for <a href="SectionSetText.html"><code>SectionSetText</code></a> etc). If the name is prefixed with &#39;un.&#39; the section group is an uninstaller section group.</p><h2 id="parameters">Parameters</h2><pre><code>[/e] section_group_name [index_output]
+</code></pre><h2 id="example">Example</h2><pre><code>SectionGroup &quot;some stuff&quot;
+    Section &quot;a section&quot;
+    SectionEnd
+
+    Section &quot;another section&quot;
+    SectionEnd
+SectionGroupEnd
+</code></pre><h2 id="history">History</h2><p>Added in NSIS v2.05</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/SectionGroup.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>SectionSetInstTypes | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="sectionsetinsttypes">SectionSetInstTypes</h1><p>Sets the install types the section specified by section_index defaults to the enabled state in. Note that the section index starts with zero. Every bit of inst_types is a flag that tells if the section is in that install type or not. For example, if you have 3 install types and you want the first section to be included in install types 1 and 3, then the command should look like this:</p><h2 id="parameters">Parameters</h2><pre><code>section_index inst_types
+</code></pre><h2 id="example">Example</h2><pre><code>SectionSetInstTypes 0 5
+# because the binary value for 5 is &quot;00000101&quot;. The error flag will be set if the section index specified is out of range.
+
+Section test test_section_id
+SectionEnd
+
+Function .onInit
+    # associate section &#39;test&#39; with installation types 3 and 4
+    SectionSetInstTypes ${test_section_id} 12
+FunctionEnd
+</code></pre><h2 id="history">History</h2><p>Added in NSIS v2.0 Beta 3</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/SectionSetInstTypes.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

@@ -8,11 +8,9 @@ __[Watch the demo](http://recordit.co/EhL4Xrnlqr)__
 
 ### Feed ###
 
-Subscribing to the feed is the easiest way to install NSIS.docset and keep it updated:
+Subscribing to the feed is the easiest way to install NSIS.docset and keep it updated.
 
     http://nsis-dev.github.io/Docset-Feed/NSIS.xml
-
-[Dash users click here](dash-feed://http%3A%2F%2Fnsis-dev.github.io%2FDocset-Feed%2FNSIS.xml)
 
 ### Manual Installation
 

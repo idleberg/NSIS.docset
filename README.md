@@ -12,8 +12,6 @@ Subscribing to the feed is the easiest way to install NSIS.docset and keep it up
 
     http://nsis-dev.github.io/Docset-Feed/NSIS.xml
 
-Dash users <a href="dash-feed://http%3A%2F%2Fnsis-dev.github.io%2FDocset-Feed%2FNSIS.xml">click here</a>
-
 ### Manual Installation
 
 #### Zeal (Windows, Linux)

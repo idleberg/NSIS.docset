@@ -8,7 +8,7 @@ NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/)
 
 Subscribing to the feed is the easiest way to install NSIS.docset and keep it updated.
 
-    http://nsis-dev.github.io/Docset-Feed/NSIS.xml
+    https://nsis-dev.github.io/Docset-Feed/NSIS.xml
 
 ### Manual Installation
 

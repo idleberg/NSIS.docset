@@ -1,6 +1,6 @@
 # NSIS.docset
 
-NSIS Docset for [Dash](http://kapeli.com/dash) (macOS), [Zeal](http://zealdocs.org/) (Linux, Windows), or [Velocity](https://velocity.silverlakesoftware.com/) (Windows)
+NSIS Docset for [Dash](http://kapeli.com/dash), [Zeal](http://zealdocs.org/), or [Velocity](https://velocity.silverlakesoftware.com/)
 
 ## Installation
 
@@ -26,4 +26,8 @@ Subscribing to the feed is the easiest way to install NSIS.docset and keep it up
 
 ## License
 
-This work is licensed under the [The MIT License](LICENSE).
+This work is licensed under the [The MIT License](LICENSE)
+
+## Donate
+
+You are welcome support this project using [Flattr](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/NSIS.docset) or Bitcoin `17CXJuPsmhuTzFV2k4RKYwpEHVjskJktRd`

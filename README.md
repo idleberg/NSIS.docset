@@ -1,6 +1,6 @@
 # NSIS.docset
 
-NSIS Docset for [Dash](http://kapeli.com/dash), [Zeal](http://zealdocs.org/), or [Velocity](https://velocity.silverlakesoftware.com/)
+NSIS Docset for [Dash](http://kapeli.com/dash), [Zeal](http://zealdocs.org/), and [Velocity](https://velocity.silverlakesoftware.com/)
 
 ## Installation
 

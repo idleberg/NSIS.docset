@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>!tempfile | NSIS.docset</title><link rel="stylesheet" href="../../css/theme.min.css"><link rel="stylesheet" href="../../css/fonts.min.css"><link rel="stylesheet" href="../../css/highlight.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-tempfile">!tempfile</h1><p>This command creates a temporary file. It puts its path into a define, named symbol.</p><h2 id="parameters">Parameters</h2><pre><code>symbol
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><title>!tempfile | NSIS.docset</title><link rel="stylesheet" href="../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-tempfile">!tempfile</h1><p>This command creates a temporary file. It puts its path into a define, named symbol.</p><h2 id="parameters">Parameters</h2><pre><code>symbol
 </code></pre><h2 id="example">Example</h2><pre><code>!tempfile PACKHDRTEMP
 !packhdr &quot;${PACKHDRTEMP}&quot; &#39;&quot;C:\Program Files\UPX\upx.exe&quot; &quot;${PACKHDRTEMP}&quot;&#39;
 !tempfile FILE
@@ -8,4 +8,4 @@ File /oname=build.txt &quot;${FILE}&quot;
 !delfile &quot;${FILE}&quot;
 !undef FILE
 !undef DATE
-</code></pre><h2 id="history">History</h2><p>Added in NSIS v2.11</p></div><div class="col-xs-12 text-right"><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/!tempfile.md" class="btn btn-sm btn-default">Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+</code></pre><h2 id="history">History</h2><p>Added in NSIS v2.11</p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/!tempfile.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

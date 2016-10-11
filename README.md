@@ -10,7 +10,7 @@ Since GitHub doesn't allow `dash-feed://` links, please use the “Subscribe” 
 
 ### Zeal
 
-Use https://nsis-dev.github.io/Docset-Feed/NSIS.xml to subscribe.
+Use `https://nsis-dev.github.io/Docset-Feed/NSIS.xml` to subscribe.
 
 ## License
 

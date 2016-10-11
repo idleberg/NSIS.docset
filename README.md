@@ -1,6 +1,6 @@
 # NSIS.docset
 
-NSIS Docset for [Dash](http://kapeli.com/dash) and [Zeal](http://zealdocs.org/)
+NSIS Docset for [Dash](http://kapeli.com/dash) (macOS), [Zeal](http://zealdocs.org/) (Linux, Windows), or [Velocity](https://velocity.silverlakesoftware.com/) (Windows)
 
 ## Installation
 
@@ -12,13 +12,13 @@ Subscribing to the feed is the easiest way to install NSIS.docset and keep it up
 
 ### Manual Installation
 
-#### Zeal (Windows, Linux)
+#### Zeal (Linux, Windows)
 
 - Change directory to your Zeal *docsets* folder
 
 - Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
 
-#### Dash (Mac OS X)
+#### Dash (macOS)
 
 - Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
 

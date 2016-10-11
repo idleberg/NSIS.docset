@@ -12,17 +12,17 @@ Subscribing to the feed is the easiest way to install NSIS.docset and keep it up
 
 ### Manual Installation
 
-#### Zeal (Linux, Windows)
-
-- Change directory to your Zeal *docsets* folder
-
-- Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
-
 #### Dash (macOS)
 
 - Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
 
 - Double-click `NSIS.docset` to import it to Dash
+
+#### Zeal (Linux, Windows)
+
+- Change directory to your Zeal *docsets* folder
+
+- Clone repository `git clone https://github.com/NSIS-Dev/NSIS.docset.git`
 
 ## License
 

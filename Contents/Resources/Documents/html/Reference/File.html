@@ -10,16 +10,16 @@ File &quot;/oname=$TEMP\name with spaces.dat&quot; somefile.ext
 File /nonfatal &quot;a file that might not exist&quot;
 File /r /x CVS myproject\*.*
 File /r /x *.res /x *.obj /x *.pch source\*.*
-</code></pre><p><strong>Note:</strong> when using the <code>/r</code> switch, both matching directories and files will be searched. This is always done with or without the use of wildcards, even if the given path perfectly matches one directory. That means, the following directory structure:</p><pre><code>&lt;DIR&gt; something
-  file.dat
-  another.dat
-&lt;DIR&gt; dir
-  something
-  &lt;DIR&gt; dir2
-    file2.dat
-&lt;DIR&gt; another
-  &lt;DIR&gt; something
-    readme.txt
+</code></pre><p><strong>Note:</strong> when using the <code>/r</code> switch, both matching directories and files will be searched. This is always done with or without the use of wildcards, even if the given path perfectly matches one directory. That means, the following directory structure:</p><pre><code>something/
+├── file.dat
+└── another.dat
+dir/
+├── something
+├── dir2/
+│   └── file2.dat
+└── another/
+    └── something/
+        └── readme.txt
 </code></pre><p>with the following <code>File</code> usage:</p><pre><code>File /r something
 </code></pre><p>will match the directory named something on the root directory, the file named something in the directory named dir and the directory named something in the directory named another. To match only the directory named something on the root directory, use the following:</p><pre><code>File /r something\*.*
 </code></pre><p>When adding *.*, it will be used as the matching condition and something will be used as the directory to search. When only something is specified, the current directory will be recursively searched for every and directory named something and another\something will be matched.</p><h2 id="history">History</h2><p>Added in NSIS v1.0f</p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Reference/File.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

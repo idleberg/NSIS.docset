@@ -1,15 +1,19 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/LogicLib/Case.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.4.1"><title>${Case} | LogicLib.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-case-">${Case}</h1><p>Executes one of several blocks of statements, depending on the value of an expression.</p><h2 id="syntax">Syntax</h2><pre><code>${Case[2|3|4|5]} value(s)
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/LogicLib/Case.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.1"><title>${Case} | LogicLib.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-case-">${Case}</h1><p>Executes one of several blocks of statements, depending on the value of an expression. Use <a href="Break.html"><code>${Break}</code></a> to prevent fall-through to the next <code>${Case}</code> section.</p><h2 id="syntax">Syntax</h2><pre><code>${Case[2|3|4|5]} value(s)
 </code></pre><h2 id="example">Example</h2><pre><code>StrCpy $0 1
 
 ${Select} $0
     ${Case} &quot;1&quot;
         MessageBox MB_OK &quot;$$0 is 1&quot;
+        ${Break}
     ${Case} &quot;2&quot;
         MessageBox MB_OK &quot;$$0 isn&#39;t 2&quot;
+        ${Break}
     ${Case2} &quot;3&quot; &quot;4&quot;
         MessageBox MB_OK &quot;$$0 isn&#39;t 3 or 4&quot;
+        ${Break}
     ${Case3} &quot;5&quot; &quot;6&quot; &quot;7&quot;
         MessageBox MB_OK &quot;$$0 isn&#39;t 5, 6 or 7&quot;
+        ${Break}
     ${CaseElse}
         MessageBox MB_OK &quot;$$0 isn&#39;t anything else&quot;
 ${EndSelect}

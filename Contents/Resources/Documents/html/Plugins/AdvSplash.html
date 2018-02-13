@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Plugins/AdvSplash.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>AdvSplash | Core</title><link rel="stylesheet" href="../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="advsplash-dll">AdvSplash.dll</h1><p>A small (5.5k), simple plug-in that lets you throw up a splash-screen in NSIS installers with cool fading effects (Windows 2000 or later) and transparency.</p><p>Create a Windows Bitmap (<code>.bmp</code>) image to be used as your splash screen. Optionally, you can also create a Wave (<code>.wav</code>) audio file to play while the image is being displayed.</p><p>By calling the plug-in in <a href="../Callbacks/onInit.html"><code>.onInit</code></a>, your splash-screen will be displayed before the setup interface shows up.</p><h2 id="parameters">Parameters</h2><pre><code>delay fadeIn fadeOut keyColor fileName
+</code></pre><table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>delay</code></td><td>length to show the screen for (in milliseconds)</td></tr><tr><td><code>fadeIn</code></td><td>length to show the fadein scene (in milliseconds) (not included in <code>delay</code>, Windows 2000 or later)</td></tr><tr><td><code>fadeOut</code></td><td>length to show the fadeout scene (in milliseconds) (not included in <code>delay</code>, Windows 2000 or later)</td></tr><tr><td><code>keyColor</code></td><td>alpha key RGB values (e.g. `0xffff00 for yellow), use -1 when no transparency is used</td></tr><tr><td><code>fileName</code></td><td>Bitmap file-name (without <code>.bmp</code> extension). The file name of the optional audio must match (e.g. <code>mySplash.bmp</code> and <code>mySplash.wav</code>)</td></tr></tbody></table><h2 id="example">Example</h2><p>Simple splash:</p><pre><code>Function .onInit
+  SetOutPath $PLUGINSDIR
+
+  File /oname=spltmp.bmp &quot;my_splash.bmp&quot;
+
+  AdvSplash::show 1000 600 400 -1 &quot;$TEMP\spltmp&quot;
+
+# $0 has &#39;1&#39; if the user closed the splash screen early,
+# &#39;0&#39; if everything closed normally, and &#39;-1&#39; if some error occurred.
+  Pop $0
+
+  Delete &quot;$TEMP\spltmp.bmp&quot;
+FunctionEnd
+</code></pre><p>Transparent with sound:</p><pre><code>Function .onInit
+  SetOutPath $PLUGINSDIR
+
+  File /oname=spltmp.bmp &quot;my_splash.bmp&quot;
+  File /oname=spltmp.wav &quot;my_splashshit.wav&quot;
+
+  AdvSplash::show 1000 600 400 0xf00fee &quot;$TEMP\spltmp&quot;
+
+# $0 has &#39;1&#39; if the user closed the splash screen early,
+# &#39;0&#39; if everything closed normally, and &#39;-1&#39; if some error occurred.
+  Pop $0
+
+  Delete &quot;$TEMP\spltmp.bmp&quot;
+  Delete &quot;$TEMP\spltmp.wav&quot;
+FunctionEnd
+</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="https://en.wikipedia.org/wiki/Justin_Frankel">Justin Frankel</a> and <a href="http://nsis.sourceforge.net/User:Kichik">Amir Szekely</a>. Fading and transparency by <a href="http://nsis.sourceforge.net/User:Brainsucker">Nik Medved</a>.</p><h2 id="license">License</h2><p>As part of the NSIS distribution, this plug-in is licensed under <a href="http://opensource.org/licenses/Zlib">zlib/libpng</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Plugins/AdvSplash.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

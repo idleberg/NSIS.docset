@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/StrFilter.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${StrFilter} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-strfilter-">${StrFilter}</h1><ul><li>Convert string to uppercase or lowercase.</li><li>Set symbol filter.</li></ul><h2 id="syntax">Syntax</h2><pre><code>${StrFilter} &quot;[string]&quot; &quot;[options]&quot; &quot;[symbols1]&quot; &quot;[symbols2]&quot; $var
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/StrFilter.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${StrFilter} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="strfilter">${StrFilter}</h1><ul><li>Convert string to uppercase or lowercase.</li><li>Set symbol filter.</li></ul><h2 id="syntax">Syntax</h2><pre><code>${StrFilter} &quot;[string]&quot; &quot;[options]&quot; &quot;[symbols1]&quot; &quot;[symbols2]&quot; $var
 
 &quot;[string]&quot;       ;[string]
                  ;  input string
@@ -21,38 +21,30 @@
 &quot;[symbols2]&quot;     ;[symbols2]
                  ;  symbols exclude
                  ;
-$var             ;output (result)
-</code></pre><p>Note:</p><ul><li>Error flag if syntax error</li><li>Same symbol to include &amp; to exclude = to exclude</li></ul><h2 id="examples">Examples</h2><h3 id="uppercas">UpperCas</h3><pre><code>Section
+$var             ;output (result)</code></pre><p>Note:</p><ul><li>Error flag if syntax error</li><li>Same symbol to include &amp; to exclude = to exclude</li></ul><h2 id="examples">Examples</h2><h3 id="uppercas">UpperCas</h3><pre><code>Section
     ${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;+&quot; &quot;&quot; &quot;&quot; $R0
     ; $R0=&quot;123ABC 456DEF 7890|%#&quot;
-SectionEnd
-</code></pre><h3 id="lowercase">LowerCase</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="lowercase">LowerCase</h3><pre><code>Section
     ${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;-&quot; &quot;ef&quot; &quot;&quot; $R0
     ; $R0=&quot;123abc 456dEF 7890|%#&quot;
-SectionEnd
-</code></pre><h3 id="filter-1">Filter 1</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="filter-1">Filter 1</h3><pre><code>Section
     ${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;2&quot; &quot;|%&quot; &quot;&quot; $R0
     ; $R0=&quot;abcDEF|%&quot;       ;only Letters + |%
-SectionEnd
-</code></pre><h3 id="filter-2">Filter 2</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="filter-2">Filter 2</h3><pre><code>Section
     ${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;13&quot; &quot;af&quot; &quot;4590&quot; $R0
     ; $R0=&quot;123a 6F 78|%#&quot;  ;only Digits + Special + af - 4590
-SectionEnd
-</code></pre><h3 id="filter-3">Filter 3</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="filter-3">Filter 3</h3><pre><code>Section
     ${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;+12&quot; &quot;b&quot; &quot;def&quot; $R0
     ; $R0=&quot;123AbC4567890&quot;  ;only Digits + Letters + b - def
-SectionEnd
-</code></pre><h3 id="filter-4">Filter 4</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="filter-4">Filter 4</h3><pre><code>Section
     ${StrFilter} &quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot; &quot;+12rus&quot; &quot;ä&quot; &quot;ãå&quot; $R0
     ; $R0=&quot;123ÀÁÂ456ä7890&quot;  ;only Digits + Letters + ä - ãå
-SectionEnd
-</code></pre><h3 id="english-russian-letters">English + Russian Letters</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="english--russian-letters">English + Russian Letters</h3><pre><code>Section
     ${StrFilter} &quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot; &quot;2rus&quot; &quot;&quot; &quot;&quot; $R0
     ; $R0=&quot;ÀÁÂãäå&quot;        ;only Russian Letters
     ${StrFilter} &quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot; &quot;2&quot; &quot;$R0&quot; &quot;&quot; $R0
     ; $R0=&quot;abcÀÁÂDEFãäå&quot;  ;only English + Russian Letters
-SectionEnd
-</code></pre><h3 id="word-capitalize">Word Capitalize</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="word-capitalize">Word Capitalize</h3><pre><code>Section
     Push &quot;_01-PERPETUOUS_DREAMER__-__THE_SOUND_OF_GOODBYE_(ORIG._MIX).MP3_&quot;
     Call Capitalize
     Pop $R0
@@ -104,5 +96,4 @@ Function Capitalize
     Pop $1
     Pop $0
     Exch $R0
-FunctionEnd
-</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/StrFilter.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+FunctionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/StrFilter.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

@@ -1,22 +1,18 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/LogicLib/Else.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${Else} | LogicLib.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-else-">${Else}</h1><p>Conditionally executes a block of statements, depending on the value of an expression. Requires opening condition <a href="If.html"><code>${If}</code></a> or <a href="IfNot.html"><code>${IfNot}</code></a>.</p><h2 id="syntax">Syntax</h2><pre><code>${Else}
-</code></pre><h2 id="examples">Examples</h2><h3 id="check-if-condition-is-met">Check if condition is met</h3><pre><code>StrCpy $0 true
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/LogicLib/Else.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${Else} | LogicLib.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="else">${Else}</h1><p>Conditionally executes a block of statements, depending on the value of an expression. Requires opening condition <a href="If.html"><code>${If}</code></a> or <a href="IfNot.html"><code>${IfNot}</code></a>.</p><h2 id="syntax">Syntax</h2><pre><code>${Else}</code></pre><h2 id="examples">Examples</h2><h3 id="check-if-condition-is-met">Check if condition is met</h3><pre><code>StrCpy $0 true
 
 ${If} $0 == true
     MessageBox MB_OK &quot;$$0 is always true&quot;
 ${Else}
     MessageBox MB_OK &quot;$$0 is never false&quot;
-${EndIf}
-</code></pre><h3 id="integer-tests">Integer tests</h3><pre><code>${If} 1 &gt; 0
+${EndIf}</code></pre><h3 id="integer-tests">Integer tests</h3><pre><code>${If} 1 &gt; 0
     MessageBox MB_OK &quot;1 is greater than 0&quot;
 ${Else}
     MessageBox MB_OK &quot;Something went wrong!&quot;
-${EndIf}
-</code></pre><h3 id="file-conditions">File conditions</h3><pre><code>${IfNot} ${FileExists} $SYSDIR\notepad.exe
+${EndIf}</code></pre><h3 id="file-conditions">File conditions</h3><pre><code>${IfNot} ${FileExists} $SYSDIR\notepad.exe
     MessageBox MB_OK &quot;Could not find notepad.exe&quot;
 ${Else}
     Exec $SYSDIR\notepad.exe
-${EndIf}
-</code></pre><h3 id="section-test">Section test</h3><pre><code>Section &quot;My Section&quot; mySection
+${EndIf}</code></pre><h3 id="section-test">Section test</h3><pre><code>Section &quot;My Section&quot; mySection
     MessageBox MB_OK &quot;Section is selected!&quot;&quot;
 
     ${If} ${SectionIsSelected} ${mySection}
@@ -24,5 +20,4 @@ ${EndIf}
     ${Else}
         MessageBox MB_OK &quot;This will never show, dummy!&quot;
     ${EndIf}
-SectionEnd
-</code></pre><h2 id="credits">Credits</h2><p>Written by dselkirk and eccles</p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/LogicLib/Else.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+SectionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by dselkirk and eccles</p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/LogicLib/Else.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

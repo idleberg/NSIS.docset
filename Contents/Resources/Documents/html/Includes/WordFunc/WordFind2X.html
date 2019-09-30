@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/WordFind2X.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${WordFind2X} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-wordfind2x-">${WordFind2X}</h1><p>Find word between two delimiters.</p><h2 id="syntax">Syntax</h2><pre><code>${WordFind2X} &quot;[string]&quot; &quot;[delimiter1]&quot; &quot;[delimiter2]&quot; &quot;[E][options]&quot; $var
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/WordFind2X.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${WordFind2X} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordfind2x">${WordFind2X}</h1><p>Find word between two delimiters.</p><h2 id="syntax">Syntax</h2><pre><code>${WordFind2X} &quot;[string]&quot; &quot;[delimiter1]&quot; &quot;[delimiter2]&quot; &quot;[E][options]&quot; $var
 
 &quot;[string]&quot;         ;[string]
                    ;  input string
@@ -35,32 +35,25 @@
                    ;  no errorlevel output (default)
                    ;  If some errors found then (result=input string)
                    ;
-$var               ;output (result)
-</code></pre><h2 id="examples">Examples</h2><h3 id="example-1">Example 1</h3><pre><code>Section
+$var               ;output (result)</code></pre><h2 id="examples">Examples</h2><h3 id="example-1">Example 1</h3><pre><code>Section
     ${WordFind2X} &quot;[C:\io.sys];[C:\logo.sys];[C:\WINDOWS]&quot; &quot;[C:\&quot; &quot;];&quot; &quot;+2&quot; $R0
     ; $R0=&quot;logo.sys&quot;
-SectionEnd
-</code></pre><h3 id="example-2">Example 2</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="example-2">Example 2</h3><pre><code>Section
     ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1&quot; $R0
     ; $R0=&quot;logo&quot;
-SectionEnd
-</code></pre><h3 id="example-3">Example 3</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="example-3">Example 3</h3><pre><code>Section
     ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{{&quot; $R0
     ; $R0=&quot;C:\WINDOWS C:\io.sys C:&quot;
-SectionEnd
-</code></pre><h3 id="example-4">Example 4</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="example-4">Example 4</h3><pre><code>Section
     ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{}&quot; $R0
     ; $R0=&quot;C:\WINDOWS C:\io.sys C:sys&quot;
-SectionEnd
-</code></pre><h3 id="example-5">Example 5</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="example-5">Example 5</h3><pre><code>Section
     ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{*&quot; $R0
     ; $R0=&quot;C:\WINDOWS C:\io.sys C:\logo.&quot;
-SectionEnd
-</code></pre><h3 id="example-6">Example 6</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="example-6">Example 6</h3><pre><code>Section
     ${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;/logo&quot; $R0
     ; $R0=&quot;2&quot;
-SectionEnd
-</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
     ${WordFind2X} &quot;[io.sys];[C:\logo.sys]&quot; &quot;\&quot; &quot;];&quot; &quot;E+1&quot; $R0
     ; $R0=&quot;1&quot; (&quot;\...];&quot; not found)
 
@@ -71,5 +64,4 @@ SectionEnd
     MessageBox MB_OK &#39;No errors&#39;
 
     end:
-SectionEnd
-</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordFind2X.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+SectionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordFind2X.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

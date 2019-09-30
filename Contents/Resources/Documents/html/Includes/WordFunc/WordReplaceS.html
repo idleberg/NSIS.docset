@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/WordReplaceS.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${WordReplaceS} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-wordreplaces-">${WordReplaceS}</h1><p>Replace or delete word from string, case sensitive.</p><h2 id="syntax">Syntax</h2><pre><code>${WordReplaceS} &quot;[string]&quot; &quot;[word1]&quot; &quot;[word2]&quot; &quot;[E][options]&quot; $var
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/WordReplaceS.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${WordReplaceS} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="wordreplaces">${WordReplaceS}</h1><p>Replace or delete word from string, case sensitive.</p><h2 id="syntax">Syntax</h2><pre><code>${WordReplaceS} &quot;[string]&quot; &quot;[word1]&quot; &quot;[word2]&quot; &quot;[E][options]&quot; $var
 
 &quot;[string]&quot;         ;[string]
                    ;  input string
@@ -36,29 +36,23 @@
                    ;  no errorlevel output (default)
                    ;  If some errors found then (result=input string)
                    ;
-$var               ;output (result)
-</code></pre><h2 id="examples">Examples</h2><h3 id="replace">replace</h3><pre><code>Section
+$var               ;output (result)</code></pre><h2 id="examples">Examples</h2><h3 id="replace">replace</h3><pre><code>Section
     ${WordReplaceS} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;SYS&quot; &quot;bmp&quot; &quot;+2&quot; $R0
     ; $R0=&quot;C:\io.sys C:\logo.bmp C:\WINDOWS&quot;
-SectionEnd
-</code></pre><h3 id="delete">delete</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="delete">delete</h3><pre><code>Section
     ${WordReplaceS} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;SYS&quot; &quot;&quot; &quot;+&quot; $R0
     ; $R0=&quot;C:\io. C:\logo. C:\WINDOWS&quot;
-SectionEnd
-</code></pre><h3 id="multiple-replace-1">multiple-replace 1</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="multiple-replace-1">multiple-replace 1</h3><pre><code>Section
     ${WordReplaceS} &quot;C:\io.sys      C:\logo.sys   C:\WINDOWS&quot; &quot; &quot; &quot; &quot; &quot;+1*&quot; $R0
     ; +1* or +2* or +3* or +4* or +5* or +6*
     ; $R0=&quot;C:\io.sys C:\logo.sys   C:\WINDOWS&quot;
-SectionEnd
-</code></pre><h3 id="multiple-replace-2">multiple-replace 2</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="multiple-replace-2">multiple-replace 2</h3><pre><code>Section
     ${WordReplaceS} &quot;C:\io.sys C:\logo.sysSYSsys C:\WINDOWS&quot; &quot;sys&quot; &quot;bmp&quot; &quot;+*&quot; $R0
     ; $R0=&quot;C:\io.bmp C:\logo.bmp C:\WINDOWS&quot;
-SectionEnd
-</code></pre><h3 id="multiple-replace-3">multiple-replace 3</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="multiple-replace-3">multiple-replace 3</h3><pre><code>Section
     ${WordReplaceS} &quot;sysSYSsysC:\io.sys C:\logo.sys C:\WINDOWSsysSYSsys&quot; &quot;sys&quot; &quot;|&quot; &quot;{}*&quot; $R0
     ; $R0=&quot;|C:\io.sys C:\logo.sys C:\WINDOWS|&quot;
-SectionEnd
-</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
+SectionEnd</code></pre><h3 id="with-errorlevel-output">With errorlevel output</h3><pre><code>Section
     ${WordReplaceS} &quot;C:\io.sys C:\logo.sys&quot; &quot;sys&quot; &quot;bmp&quot; &quot;E+3&quot; $R0
     ; $R0=&quot;2&quot; (no such word number &quot;+3&quot;)
 
@@ -69,5 +63,4 @@ SectionEnd
     MessageBox MB_OK &#39;No errors&#39;
 
     end:
-SectionEnd
-</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordReplaceS.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+SectionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/WordReplaceS.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

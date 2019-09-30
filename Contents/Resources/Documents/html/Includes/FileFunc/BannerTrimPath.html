@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/FileFunc/BannerTrimPath.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${BannerTrimPath} | FileFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="-bannertrimpath-">${BannerTrimPath}</h1><p>Trim string path for banner.</p><h2 id="syntax">Syntax</h2><pre><code>${BannerTrimPath} &quot;[PathString]&quot; &quot;[Option]&quot; $var
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/FileFunc/BannerTrimPath.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${BannerTrimPath} | FileFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="bannertrimpath">${BannerTrimPath}</h1><p>Trim string path for banner.</p><h2 id="syntax">Syntax</h2><pre><code>${BannerTrimPath} &quot;[PathString]&quot; &quot;[Option]&quot; $var
 
 &quot;[PathString]&quot;    ;
                   ;
@@ -17,12 +17,10 @@
                   ;           (C:\root\second p...\third path)
                   ;           If D mode not possible Then will be used C mode
                   ;
-$var              ; Result:  Trimmed path
-</code></pre><h2 id="examples">Examples</h2><h3 id="trim-center-path-to-35-characters-max">Trim center path to 35 characters max</h3><pre><code>Section
+$var              ; Result:  Trimmed path</code></pre><h2 id="examples">Examples</h2><h3 id="trim-center-path-to-35-characters-max">Trim center path to 35 characters max</h3><pre><code>Section
     ${BannerTrimPath} &quot;C:\Server\Documents\Terminal\license.htm&quot; &quot;35A&quot; $R0
     ;$R0=C:\Server\...\Terminal\license.htm
-SectionEnd
-</code></pre><h3 id="banner-plugin">Banner plugin</h3><pre><code>!include &quot;WinMessages.nsh&quot;
+SectionEnd</code></pre><h3 id="banner-plugin">Banner plugin</h3><pre><code>!include &quot;WinMessages.nsh&quot;
 !include &quot;FileFunc.nsh&quot;
 
 Section
@@ -46,8 +44,7 @@ Function LocateCallback
 
     end:
     Push $0
-FunctionEnd
-</code></pre><h3 id="nxs-plugin">NxS plugin</h3><pre><code>!include &quot;FileFunc.nsh&quot;
+FunctionEnd</code></pre><h3 id="nxs-plugin">NxS plugin</h3><pre><code>!include &quot;FileFunc.nsh&quot;
 
 Section
     nxs::Show /NOUNLOAD `$(^Name) Setup`\
@@ -74,5 +71,4 @@ Function LocateCallback
 
     end:
     Push $0
-FunctionEnd
-</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/BannerTrimPath.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+FunctionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/BannerTrimPath.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

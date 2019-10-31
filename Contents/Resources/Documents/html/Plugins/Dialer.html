@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Plugins/Dialer.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>Dialer | Core</title><link rel="stylesheet" href="../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="dialer">Dialer</h1><p>The Dialer plugin for NSIS provides five functions related to internet connections.</p><p>To download files from the internet, use the NSISdl plugin.</p><h2 id="usage">Usage</h2><p>Simple example:</p><pre><code>ClearErrors           ;Clear the error flag
+Dialer::FunctionName  ;Call Dialer function
+IfErrors &quot;&quot; +3        ;Check for errors
+  MessageBox MB_OK &quot;Function not available&quot;
+  Quit
+Pop $R0               ;Get the return value from the stack
+MessageBox MB_OK $R0  ;Display the return value</code></pre><p>Example function:</p><pre><code>; ConnectInternet (uses Dialer plugin)
+; Written by Joost Verburg 
+;
+; This function attempts to make a connection to the internet if there is no
+; connection available. If you are not sure that a system using the installer
+; has an active internet connection, call this function before downloading
+; files with NSISdl.
+; 
+; The function requires Internet Explorer 3, but asks to connect manually if
+; IE3 is not installed.
+
+Function ConnectInternet
+
+  Push $R0
+
+    ClearErrors
+    Dialer::AttemptConnect
+    IfErrors noie3
+
+    Pop $R0
+    StrCmp $R0 &quot;online&quot; connected
+      MessageBox MB_OK|MB_ICONSTOP &quot;Cannot connect to the internet.&quot;
+      Quit ;Remove to make error not fatal
+
+    noie3:
+
+    ; IE3 not installed
+    MessageBox MB_OK|MB_ICONINFORMATION &quot;Please connect to the internet now.&quot;
+
+    connected:
+
+  Pop $R0
+
+FunctionEnd</code></pre><h3 id="functions">Functions</h3><p>If a function is not available on the system, the error flag will be set.</p><h4 id="attemptconnect">AttemptConnect</h4><p>Attempts to make a connection to the Internet if the system is not connected.</p><p><code>online</code> - already connected / connection successful<br><code>offline</code> - connection failed</p><p>Requires Internet Explorer 3 or later</p><h4 id="autodialonline">AutodialOnline</h4><p>Causes the modem to automatically dial the default Internet connection if the system is not connected to the internet. If the system is not set up to automatically connect, it will prompt the user.</p><p>Return values:</p><p><code>online</code> - already connected / connection successful<br><code>offline</code> - connection failed</p><p>Requires Internet Explorer 4 or later</p><h4 id="autodialunattended">AutodialUnattended</h4><p>Causes the modem to automatically dial the default Internet connection if the system is not connected to the internet. The user will not be prompted.</p><p>Return values:</p><p><code>online</code> - already connected / connection successful<br><code>offline</code> - connection failed</p><p>Requires Internet Explorer 4 or later</p><h4 id="autodialhangup">AutodialHangup</h4><p>Disconnects an automatic dial-up connection.</p><p>Return values:</p><p><code>success</code> - disconnection successful<br><code>failure</code> - disconnection failed</p><p>Requires Internet Explorer 4 or later</p><h4 id="getconnectedstate">GetConnectedState</h4><p>Checks whether the system is connected to the internet.</p><p>Return values:</p><p><code>online</code> - system is online<br><code>offline</code> - system is offline</p><p>Requires Internet Explorer 4 or later</p><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Joost">Amir Szekely</a>. Readme by <a href="http://nsis.sourceforge.net/User:Joost">Joost Verburg</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Plugins/Dialer.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>

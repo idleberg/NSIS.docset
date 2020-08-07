@@ -33,7 +33,7 @@ Function &quot;Function&quot;
 
     Push $var      ; If $var=&quot;StopLineFind&quot;  Then exit from function
                    ; If $var=&quot;SkipWrite&quot;     Then skip current line (ignored if &quot;/NUL&quot;)
-FunctionEnd</code></pre><p>Note:</p><ul><li>Error flag if input file doesn&#39;t exist</li><li>Error flag if output file path doesn&#39;t exist</li><li>Ranges must be specified on growth (2 4:5 9:-8 -5:-4 -2:-1)</li><li>Output file will not be updated if no changes made.</li></ul><p>##Examples:</p><h3 id="delete-first-two-symbols">Delete first two symbols</h3><pre><code>Section
+FunctionEnd</code></pre><p>Note:</p><ul><li>Error flag if input file doesn&#39;t exist</li><li>Error flag if output file path doesn&#39;t exist</li><li>Ranges must be specified on growth (2 4:5 9:-8 -5:-4 -2:-1)</li><li>Output file will not be updated if no changes made.</li></ul><h2 id="examples">Examples:</h2><h3 id="delete-first-two-symbols">Delete first two symbols</h3><pre><code>Section
     ${LineFind} &quot;C:\a.log&quot; &quot;C:\a-edited.log&quot; &quot;3:-1&quot; &quot;Example1&quot;
     IfErrors 0 +2
     MessageBox MB_OK &quot;Error&quot;

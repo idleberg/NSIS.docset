@@ -1,18 +1,20 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/FileFunc/DriveSpace.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${DriveSpace} | FileFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="drivespace">${DriveSpace}</h1><p>Get total, occupied or free space of the drive.</p><h2 id="syntax">Syntax</h2><pre><code>${DriveSpace} &quot;[Drive]&quot; &quot;[Options]&quot; $var
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>${DriveSpace}</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../../css/theme.css><link rel=stylesheet href=../../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=drivespace>${DriveSpace}</h1><p>Get total, occupied or free space of the drive.</p><h2 id=syntax>Syntax</h2><pre><code class="hljs language-nsis"><span class=hljs-variable>${DriveSpace}</span> <span class=hljs-string>&quot;[Drive]&quot;</span> <span class=hljs-string>&quot;[Options]&quot;</span> <span class=hljs-variable>$var</span>
 
-&quot;[Drive]&quot;     ; Disk to check
-              ;     
-&quot;[Options]&quot;   ; /D=[T|O|F]
-              ;     /D=T  - Total space (default)
-              ;     /D=O  - Occupied space
-              ;     /D=F  - Free space
-              ; /S=[B|K|M|G]
-              ;     /S=B  - size in Bytes (default)
-              ;     /S=K  - size in Kilobytes
-              ;     /S=M  - size in Megabytes
-              ;     /S=G  - size in Gigabytes
-              ;
-$var          ; Result: Size</code></pre><p>Note:</p><ul><li>Error flag if disk isn&#39;t exist or not ready</li><li>Error flag if syntax error</li></ul><h2 id="example">Example</h2><pre><code>Section
-    ${DriveSpace} &quot;C:\&quot; &quot;/D=F /S=M&quot; $R0
-    ; $R0=&quot;2530&quot;   megabytes free on drive C:
-SectionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/DriveSpace.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+<span class=hljs-string>&quot;[Drive]&quot;</span>     <span class=hljs-comment>; Disk to check</span>
+              <span class=hljs-comment>;     </span>
+<span class=hljs-string>&quot;[Options]&quot;</span>   <span class=hljs-comment>; /D=[T|O|F]</span>
+              <span class=hljs-comment>;     /D=T  - Total space (default)</span>
+              <span class=hljs-comment>;     /D=O  - Occupied space</span>
+              <span class=hljs-comment>;     /D=F  - Free space</span>
+              <span class=hljs-comment>; /S=[B|K|M|G]</span>
+              <span class=hljs-comment>;     /S=B  - size in Bytes (default)</span>
+              <span class=hljs-comment>;     /S=K  - size in Kilobytes</span>
+              <span class=hljs-comment>;     /S=M  - size in Megabytes</span>
+              <span class=hljs-comment>;     /S=G  - size in Gigabytes</span>
+              <span class=hljs-comment>;</span>
+<span class=hljs-variable>$var</span>          <span class=hljs-comment>; Result: Size</span>
+</code></pre><p>Note:</p><ul><li>Error flag if disk isn&#39;t exist or not ready</li><li>Error flag if syntax error</li></ul><h2 id=example>Example</h2><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${DriveSpace}</span> <span class=hljs-string>&quot;C:\&quot;</span> <span class=hljs-string>&quot;/D=F /S=M&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;2530&quot;   megabytes free on drive C:</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by <a href=http://nsis.sourceforge.net/User:Instructor>Instructor</a></p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/FileFunc/DriveSpace.md>Edit on GitHub</a></div></div></body></html>

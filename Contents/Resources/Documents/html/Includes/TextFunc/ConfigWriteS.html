@@ -1,23 +1,27 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/TextFunc/ConfigWriteS.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${ConfigWriteS} | TextFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="configwrites">${ConfigWriteS}</h1><p>Write value from entry name in config file, case sensitive.</p><h2 id="syntax">Syntax</h2><pre><code>${ConfigWriteS} &quot;[File]&quot; &quot;[Entry]&quot; &quot;[Value]&quot; $var
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>${ConfigWriteS}</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../../css/theme.css><link rel=stylesheet href=../../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=configwrites>${ConfigWriteS}</h1><p>Write value from entry name in config file, case sensitive.</p><h2 id=syntax>Syntax</h2><pre><code class="hljs language-nsis"><span class=hljs-variable>${ConfigWriteS}</span> <span class=hljs-string>&quot;[File]&quot;</span> <span class=hljs-string>&quot;[Entry]&quot;</span> <span class=hljs-string>&quot;[Value]&quot;</span> <span class=hljs-variable>$var</span>
 
-&quot;[File]&quot;      ; config file
-              ;
-&quot;[Entry]&quot;     ; entry name
-              ;
-&quot;[Value]&quot;     ; value name
-              ;  if &quot;&quot; then delete Entry
-              ;
-$var          ; Result:
-              ;    $var=CHANGED  Value is written
-              ;    $var=DELETED  Entry is deleted
-              ;    $var=ADDED    Entry and Value are added
-              ;    $var=SAME     Entry and Value already exist</code></pre><p>Note:</p><ul><li>Error flag if file doesn&#39;t exist</li><li>Error flag if file can&#39;t be opened</li></ul><h2 id="examples">Examples</h2><h3 id="example-1">Example 1</h3><pre><code>Section
-    ${ConfigWriteS} &quot;C:\AUTOEXEC.BAT&quot; &quot;SET winbootdir=&quot; &quot;D:\WINDOWS&quot; $R0
-    ;$R0=CHANGED
-SectionEnd</code></pre><h3 id="example-2">Example 2</h3><pre><code>Section
-    ${ConfigWriteS} &quot;C:\apache\conf\httpd.conf&quot; &quot;Timeout &quot; &quot;30&quot; $R0
-    ;$R0=SAME
-SectionEnd</code></pre><h3 id="example-3">Example 3</h3><pre><code>Section
-    ${ConfigWriteS} &quot;C:\apache\conf\httpd.conf&quot; &quot;Timeout &quot; &quot;&quot; $R0
-    ;$R0=DELETED
-SectionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/TextFunc/ConfigWriteS.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+<span class=hljs-string>&quot;[File]&quot;</span>      <span class=hljs-comment>; config file</span>
+              <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[Entry]&quot;</span>     <span class=hljs-comment>; entry name</span>
+              <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[Value]&quot;</span>     <span class=hljs-comment>; value name</span>
+              <span class=hljs-comment>;  if &quot;&quot; then delete Entry</span>
+              <span class=hljs-comment>;</span>
+<span class=hljs-variable>$var</span>          <span class=hljs-comment>; Result:</span>
+              <span class=hljs-comment>;    $var=CHANGED  Value is written</span>
+              <span class=hljs-comment>;    $var=DELETED  Entry is deleted</span>
+              <span class=hljs-comment>;    $var=ADDED    Entry and Value are added</span>
+              <span class=hljs-comment>;    $var=SAME     Entry and Value already exist</span>
+</code></pre><p>Note:</p><ul><li>Error flag if file doesn&#39;t exist</li><li>Error flag if file can&#39;t be opened</li></ul><h2 id=examples>Examples</h2><h3 id=example-1>Example 1</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${ConfigWriteS}</span> <span class=hljs-string>&quot;C:\AUTOEXEC.BAT&quot;</span> <span class=hljs-string>&quot;SET winbootdir=&quot;</span> <span class=hljs-string>&quot;D:\WINDOWS&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>;$R0=CHANGED</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=example-2>Example 2</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${ConfigWriteS}</span> <span class=hljs-string>&quot;C:\apache\conf\httpd.conf&quot;</span> <span class=hljs-string>&quot;Timeout &quot;</span> <span class=hljs-string>&quot;30&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>;$R0=SAME</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=example-3>Example 3</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${ConfigWriteS}</span> <span class=hljs-string>&quot;C:\apache\conf\httpd.conf&quot;</span> <span class=hljs-string>&quot;Timeout &quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>;$R0=DELETED</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by <a href=http://nsis.sourceforge.net/User:Instructor>Instructor</a></p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/TextFunc/ConfigWriteS.md>Edit on GitHub</a></div></div></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>Call</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=call>Call</h1><p>Calls the function named function_name, the label named label_name, or a variable that specifies an address. An address is returned by <a href=GetCurrentAddress.html><code>GetCurrentAddress</code></a>, <a href=GetFunctionAddress.html><code>GetFunctionAddress</code></a> or <a href=GetLabelAddress.html><code>GetLabelAddress</code></a>. A call returns when it encounters a <a href=Return.html><code>Return</code></a> instruction. Sections and functions are automatically ended with a Return instruction. Uninstall functions cannot be called from installer functions and sections, and vice-versa.</p><h2 id=parameters>Parameters</h2><pre><code class="hljs language-nsis">function_name | :label_name | user_var(input)
+</code></pre><h2 id=example>Example</h2><pre><code class="hljs language-nsis"><span class=hljs-keyword>Function</span> <span class="hljs-title function_">func</span>
+      <span class=hljs-keyword>Call</span> :label
+      <span class=hljs-keyword>DetailPrint</span> <span class=hljs-string>&quot;#1: This will only appear 1 time.&quot;</span>
+    label:
+      <span class=hljs-keyword>DetailPrint</span> <span class=hljs-string>&quot;#2: This will appear before and after message #1.&quot;</span>
+      <span class=hljs-keyword>Call</span> :.global_label
+<span class=hljs-keyword>FunctionEnd</span>
+ 
+<span class=hljs-keyword>Section</span>
+      <span class=hljs-keyword>Call</span> func
+      <span class=hljs-keyword>Return</span>
+     
+    .global_label:
+      <span class=hljs-keyword>DetailPrint</span> <span class=hljs-string>&quot;#3: The global label was called&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h2 id=history>History</h2><p>Added in NSIS v1.3</p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Commands/Call.md>Edit on GitHub</a></div></div></body></html>

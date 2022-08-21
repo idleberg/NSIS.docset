@@ -1,114 +1,116 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Plugins/BgImage.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>BgImage | Core</title><link rel="stylesheet" href="../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="bgimagedll">BgImage.dll</h1><p>Displays an image or a gradient with user defined texts and/or images behind the NSIS window. Can also play Wave files.</p><h2 id="usage">Usage</h2><pre><code>BgImage::SetBg /GRADIENT 0 0x80 0 0x80 0 0
-BgImage::AddImage background.bmp 150 0
-BgImage::Redraw
-BgImage::Clear
-BgImage::Destroy</code></pre><p>Do not call <code>SetBg (which creates the window) from a section or a function called by a section.</code>BgImage` must be run from the GUI thread as the installation thread is not built to handle GUI.</p><h3 id="available-functions">Available Functions</h3><p><code>SetBg [/FILLSCREEN|/TILED] path_to_bitmap</code> <code>SetBg /GRADIENT R G B R G B</code></p><p>Sets the background and creates the window if necessary</p><ul><li>Use <code>/FILLSCREEN</code> to make the image fill the screen</li><li>Use <code>/TILED</code> to set a tiled background</li><li>Use <code>/GRADIENT</code> to set a gradient background</li></ul><p>If <code>SetReturn on</code> was called returns &quot;success&quot; on the stack or an error string if there was an error</p><p>Do not use in <a href="../Callbacks/onInit.html"><code>.onInit</code></a>!</p><p><code>AddImage [/TRANSPARENT R G B] path_to_bitmap X Y</code></p><p>Adds an image to the background window at (X,Y)</p><ul><li>X and Y can be negative to specify distance from right/bottom</li><li>Use <code>/TRANSPARENT</code> to make BgImage draw the image transparently. Define the transparent color using R G B</li></ul><p>If <code>SetReturn on</code> was called returns &quot;success&quot; on the stack or an error string if there was an error</p><p><code>AddText text font_handle R G B X Y X Y</code></p><p>Adds text to the background window</p><ul><li>Use NSIS&#39;s <a href="../Reference/CreateFont.html"><code>CreateFont</code></a> to create a font and pass it as <code>font_handle</code></li><li>Use R G B to set the text color</li><li>The first X Y is for the top left corner of the text box</li><li>The second X Y is for the bottom right corner of the text box</li><li>X and Y can be negative to specify distance from right/bottoms</li></ul><p>If <code>SetReturn on</code> was called returns &quot;success&quot; on the stack or an error string if there was an error</p><p><code>Clear</code></p><p>Clears all of the current background, images and texts</p><p><code>Destroy</code></p><p>Destroys the current background window. Calls <code>Clear</code> automatically.</p><p><code>Sound [/WAIT|/LOOP] path_to_wav</code> <code>Sound /STOP</code></p><p>Plays a wave file</p><ul><li>Use <code>/WAIT</code> to wait for the sound to finish playing</li><li>Use <code>/LOOP</code> to loop the sound</li><li>Use Sound <code>/STOP</code> to stop the loop</li></ul><p><code>SetReturn on|off</code></p><p>Enable return values from <code>SetBg</code>, <code>AddImage</code> and <code>AddText</code></p><p>Default value is off because all of the possible errors are either things you should handle when debugging your script such as &quot;can&#39;t load bitmap&quot; or errors you can do nothing about such as &quot;memory allocation error&quot;</p><h2 id="example">Example</h2><pre><code>Name &quot;BgImage.dll test&quot;
-OutFile &quot;BgImage Test.exe&quot;
-XPStyle on
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>BgImage</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=bgimagedll>BgImage.dll</h1><p>Displays an image or a gradient with user defined texts and/or images behind the NSIS window. Can also play Wave files.</p><h2 id=usage>Usage</h2><pre><code class="hljs language-nsis"><span class="hljs-title function_">BgImage::SetBg</span> /GRADIENT <span class=hljs-number>0</span> <span class=hljs-number>0</span>x80 <span class=hljs-number>0</span> <span class=hljs-number>0</span>x80 <span class=hljs-number>0</span> <span class=hljs-number>0</span>
+<span class="hljs-title function_">BgImage::AddImage</span> background.bmp <span class=hljs-number>150</span> <span class=hljs-number>0</span>
+<span class="hljs-title function_">BgImage::Redraw</span>
+<span class="hljs-title function_">BgImage::Clear</span>
+<span class="hljs-title function_">BgImage::Destroy</span>
+</code></pre><p>Do not call <code>SetBg (which creates the window) from a section or a function called by a section.</code>BgImage` must be run from the GUI thread as the installation thread is not built to handle GUI.</p><h3 id=available-functions>Available Functions</h3><p><code>SetBg [/FILLSCREEN|/TILED] path_to_bitmap</code> <code>SetBg /GRADIENT R G B R G B</code></p><p>Sets the background and creates the window if necessary</p><ul><li>Use <code>/FILLSCREEN</code> to make the image fill the screen</li><li>Use <code>/TILED</code> to set a tiled background</li><li>Use <code>/GRADIENT</code> to set a gradient background</li></ul><p>If <code>SetReturn on</code> was called returns &quot;success&quot; on the stack or an error string if there was an error</p><p>Do not use in <a href=../Callbacks/onInit.html><code>.onInit</code></a>!</p><p><code>AddImage [/TRANSPARENT R G B] path_to_bitmap X Y</code></p><p>Adds an image to the background window at (X,Y)</p><ul><li>X and Y can be negative to specify distance from right/bottom</li><li>Use <code>/TRANSPARENT</code> to make BgImage draw the image transparently. Define the transparent color using R G B</li></ul><p>If <code>SetReturn on</code> was called returns &quot;success&quot; on the stack or an error string if there was an error</p><p><code>AddText text font_handle R G B X Y X Y</code></p><p>Adds text to the background window</p><ul><li>Use NSIS&#39;s <a href=../Commands/CreateFont.html><code>CreateFont</code></a> to create a font and pass it as <code>font_handle</code></li><li>Use R G B to set the text color</li><li>The first X Y is for the top left corner of the text box</li><li>The second X Y is for the bottom right corner of the text box</li><li>X and Y can be negative to specify distance from right/bottoms</li></ul><p>If <code>SetReturn on</code> was called returns &quot;success&quot; on the stack or an error string if there was an error</p><p><code>Clear</code></p><p>Clears all of the current background, images and texts</p><p><code>Destroy</code></p><p>Destroys the current background window. Calls <code>Clear</code> automatically.</p><p><code>Sound [/WAIT|/LOOP] path_to_wav</code> <code>Sound /STOP</code></p><p>Plays a wave file</p><ul><li>Use <code>/WAIT</code> to wait for the sound to finish playing</li><li>Use <code>/LOOP</code> to loop the sound</li><li>Use Sound <code>/STOP</code> to stop the loop</li></ul><p><code>SetReturn on|off</code></p><p>Enable return values from <code>SetBg</code>, <code>AddImage</code> and <code>AddText</code></p><p>Default value is off because all of the possible errors are either things you should handle when debugging your script such as &quot;can&#39;t load bitmap&quot; or errors you can do nothing about such as &quot;memory allocation error&quot;</p><h2 id=example>Example</h2><pre><code class="hljs language-nsis"><span class=hljs-keyword>Name</span> <span class=hljs-string>&quot;BgImage.dll test&quot;</span>
+<span class=hljs-keyword>OutFile</span> <span class=hljs-string>&quot;BgImage Test.exe&quot;</span>
+<span class=hljs-keyword>XPStyle</span> <span class=hljs-literal>on</span>
 
-!define DEBUG
-!macro GetReturnValue
-    !ifdef DEBUG
-        Pop $R9
-        StrCmp $R9 success +2
-            DetailPrint &quot;Error: $R9&quot;
-    !endif
-!macroend
+<span class=hljs-keyword>!define</span> DEBUG
+<span class=hljs-keyword>!macro</span> GetReturnValue
+    <span class=hljs-keyword>!if</span>def DEBUG
+        <span class=hljs-keyword>Pop</span> <span class=hljs-variable>$R9</span>
+        <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R9</span> success +<span class=hljs-number>2</span>
+            <span class=hljs-keyword>DetailPrint</span> <span class=hljs-string>&quot;Error: <span class=hljs-variable>$R9</span>&quot;</span>
+    <span class=hljs-keyword>!endif</span>
+<span class=hljs-keyword>!macro</span>end
 
-Function .onGUIInit
-    # the plugins dir is automatically deleted when the installer exits
-    InitPluginsDir
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">.onGUIInit</span>
+    <span class=hljs-comment># the plugins dir is automatically deleted when the installer exits</span>
+    <span class=hljs-keyword>InitPluginsDir</span>
 
-    # lets extract some bitmaps...
-    File /oname=$PLUGINSDIR\1.bmp &quot;${NSISDIR}\Contrib\Graphics\Wizard\llama.bmp&quot;
-    File /oname=$PLUGINSDIR\2.bmp &quot;${NSISDIR}\Contrib\Graphics\Checks\modern.bmp&quot;
+    <span class=hljs-comment># lets extract some bitmaps...</span>
+    <span class=hljs-keyword>File</span> /oname=<span class=hljs-variable>$PLUGINSDIR</span>\<span class=hljs-number>1</span>.bmp <span class=hljs-string>&quot;<span class=hljs-variable>${NSISDIR}</span>\Contrib\Graphics\Wizard\llama.bmp&quot;</span>
+    <span class=hljs-keyword>File</span> /oname=<span class=hljs-variable>$PLUGINSDIR</span>\<span class=hljs-number>2</span>.bmp <span class=hljs-string>&quot;<span class=hljs-variable>${NSISDIR}</span>\Contrib\Graphics\Checks\modern.bmp&quot;</span>
 
-    !ifdef DEBUG
-        # turn return values on if in debug mode
-        BgImage::SetReturn on
-    !endif
+    <span class=hljs-keyword>!if</span>def DEBUG
+        <span class=hljs-comment># turn return values on if in debug mode</span>
+        <span class="hljs-title function_">BgImage::SetReturn</span> <span class=hljs-literal>on</span>
+    <span class=hljs-keyword>!endif</span>
 
-    # set the initial background for images to be drawn on
-    # we will use a gradient from drak green to dark red
-    BgImage::SetBg /GRADIENT 0 0x80 0 0x80 0 0
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># set the initial background for images to be drawn on</span>
+    <span class=hljs-comment># we will use a gradient from drak green to dark red</span>
+    <span class="hljs-title function_">BgImage::SetBg</span> /GRADIENT <span class=hljs-number>0</span> <span class=hljs-number>0</span>x80 <span class=hljs-number>0</span> <span class=hljs-number>0</span>x80 <span class=hljs-number>0</span> <span class=hljs-number>0</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # add an image @ (150,0)
-    BgImage::AddImage $PLUGINSDIR\2.bmp 150 0
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add an image @ (150,0)</span>
+    <span class="hljs-title function_">BgImage::AddImage</span> <span class=hljs-variable>$PLUGINSDIR</span>\<span class=hljs-number>2</span>.bmp <span class=hljs-number>150</span> <span class=hljs-number>0</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # add the same image only transparent (magenta wiped) @ (150,16)
-    BgImage::AddImage /TRANSPARENT 255 0 255 $PLUGINSDIR\2.bmp 150 16
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add the same image only transparent (magenta wiped) @ (150,16)</span>
+    <span class="hljs-title function_">BgImage::AddImage</span> /TRANSPARENT <span class=hljs-number>255</span> <span class=hljs-number>0</span> <span class=hljs-number>255</span> <span class=hljs-variable>$PLUGINSDIR</span>\<span class=hljs-number>2</span>.bmp <span class=hljs-number>150</span> <span class=hljs-number>16</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # create the font for the following text
-    CreateFont $R0 &quot;Comic Sans MS&quot; 50 700
+    <span class=hljs-comment># create the font for the following text</span>
+    <span class=hljs-keyword>CreateFont</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&quot;Comic Sans MS&quot;</span> <span class=hljs-number>50</span> <span class=hljs-number>700</span>
 
-    # add a blue shadow for the text
-    BgImage::AddText &quot;Testing 1... 2... 3...&quot; $R0 0 0 255 48 48 798 198
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add a blue shadow for the text</span>
+    <span class="hljs-title function_">BgImage::AddText</span> <span class=hljs-string>&quot;Testing 1... 2... 3...&quot;</span> <span class=hljs-variable>$R0</span> <span class=hljs-number>0</span> <span class=hljs-number>0</span> <span class=hljs-number>255</span> <span class=hljs-number>48</span> <span class=hljs-number>48</span> <span class=hljs-number>798</span> <span class=hljs-number>198</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # add a green shadow for the text
-    BgImage::AddText &quot;Testing 1... 2... 3...&quot; $R0 0 255 0 52 52 802 202
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add a green shadow for the text</span>
+    <span class="hljs-title function_">BgImage::AddText</span> <span class=hljs-string>&quot;Testing 1... 2... 3...&quot;</span> <span class=hljs-variable>$R0</span> <span class=hljs-number>0</span> <span class=hljs-number>255</span> <span class=hljs-number>0</span> <span class=hljs-number>52</span> <span class=hljs-number>52</span> <span class=hljs-number>802</span> <span class=hljs-number>202</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # add the text
-    BgImage::AddText &quot;Testing 1... 2... 3...&quot; $R0 255 0 0 50 50 800 200
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add the text</span>
+    <span class="hljs-title function_">BgImage::AddText</span> <span class=hljs-string>&quot;Testing 1... 2... 3...&quot;</span> <span class=hljs-variable>$R0</span> <span class=hljs-number>255</span> <span class=hljs-number>0</span> <span class=hljs-number>0</span> <span class=hljs-number>50</span> <span class=hljs-number>50</span> <span class=hljs-number>800</span> <span class=hljs-number>200</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # show our creation to the world!
-    BgImage::Redraw
+    <span class=hljs-comment># show our creation to the world!</span>
+    <span class="hljs-title function_">BgImage::Redraw</span>
 
-    # Refresh doesn&#39;t return any value
-FunctionEnd
+    <span class=hljs-comment># Refresh doesn&#x27;t return any value</span>
+<span class=hljs-keyword>FunctionEnd</span>
 
-Section
-    # play some sounds
-    FindFirst $0 $1 $WINDIR\Media\*.wav
-    StrCmp $0 &quot;&quot; skipSound
+<span class=hljs-keyword>Section</span>
+    <span class=hljs-comment># play some sounds</span>
+    <span class=hljs-keyword>FindFirst</span> <span class=hljs-variable>$0</span> <span class=hljs-variable>$1</span> <span class=hljs-variable>$WINDIR</span>\Media\*.wav
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$0</span> <span class=hljs-string>&quot;&quot;</span> skipSound
 
     moreSounds:
-        StrCmp $1 &quot;&quot; noMoreSounds
-        BgImage::Sound /WAIT $WINDIR\Media\$1
+        <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&quot;&quot;</span> noMoreSounds
+        <span class="hljs-title function_">BgImage::Sound</span> /WAIT <span class=hljs-variable>$WINDIR</span>\Media\<span class=hljs-variable>$1</span>
 
-        # Sound doesn&#39;t return any value either
-        MessageBox MB_YESNO &quot;Another sound?&quot; IDNO noMoreSounds
-        FindNext $0 $1
-        Goto moreSounds
+        <span class=hljs-comment># Sound doesn&#x27;t return any value either</span>
+        <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_YESNO</span> <span class=hljs-string>&quot;Another sound?&quot;</span> <span class=hljs-params>IDNO</span> noMoreSounds
+        <span class=hljs-keyword>FindNext</span> <span class=hljs-variable>$0</span> <span class=hljs-variable>$1</span>
+        <span class=hljs-keyword>Goto</span> moreSounds
 
     noMoreSounds:
-        FindClose $0
+        <span class=hljs-keyword>FindClose</span> <span class=hljs-variable>$0</span>
 
     skipSound:
-        # change the background image to Mike, tiled
-        BgImage::SetBg /TILED $PLUGINSDIR\1.bmp
-        !insertmacro GetReturnValue
+        <span class=hljs-comment># change the background image to Mike, tiled</span>
+        <span class="hljs-title function_">BgImage::SetBg</span> /TILED <span class=hljs-variable>$PLUGINSDIR</span>\<span class=hljs-number>1</span>.bmp
+        <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # we have to redraw to reflect the changes
-    BgImage::Redraw
-    MessageBox MB_OK &quot;Mike the llama&quot;
+    <span class=hljs-comment># we have to redraw to reflect the changes</span>
+    <span class="hljs-title function_">BgImage::Redraw</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;Mike the llama&quot;</span>
 
-    # clear everything
-    BgImage::Clear
+    <span class=hljs-comment># clear everything</span>
+    <span class="hljs-title function_">BgImage::Clear</span>
 
-    # Clear doesn&#39;t return any value
-    # set another gradient
-    BgImage::SetBg /GRADIENT 0xFF 0xFA 0xBA 0xAA 0xA5 0x65
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># Clear doesn&#x27;t return any value</span>
+    <span class=hljs-comment># set another gradient</span>
+    <span class="hljs-title function_">BgImage::SetBg</span> /GRADIENT <span class=hljs-number>0</span>xFF <span class=hljs-number>0</span>xFA <span class=hljs-number>0</span>xBA <span class=hljs-number>0</span>xAA <span class=hljs-number>0</span>xA5 <span class=hljs-number>0</span>x65
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # add some text
-    BgImage::AddText &quot;A Desert for Mike&quot; $R0 0 0 0 50 50 800 150
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add some text</span>
+    <span class="hljs-title function_">BgImage::AddText</span> <span class=hljs-string>&quot;A Desert for Mike&quot;</span> <span class=hljs-variable>$R0</span> <span class=hljs-number>0</span> <span class=hljs-number>0</span> <span class=hljs-number>0</span> <span class=hljs-number>50</span> <span class=hljs-number>50</span> <span class=hljs-number>800</span> <span class=hljs-number>150</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # add mike as an image
-    BgImage::AddImage $PLUGINSDIR\1.bmp 50 150
-    !insertmacro GetReturnValue
+    <span class=hljs-comment># add mike as an image</span>
+    <span class="hljs-title function_">BgImage::AddImage</span> <span class=hljs-variable>$PLUGINSDIR</span>\<span class=hljs-number>1</span>.bmp <span class=hljs-number>50</span> <span class=hljs-number>150</span>
+    <span class=hljs-keyword>!insertmacro</span> GetReturnValue
 
-    # again, we have to call redraw to reflect changes
-    BgImage::Redraw
-SectionEnd
+    <span class=hljs-comment># again, we have to call redraw to reflect changes</span>
+    <span class="hljs-title function_">BgImage::Redraw</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function .onGUIEnd
-    BgImage::Destroy
-    # Destroy doesn&#39;t return any value
-FunctionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Kichik">Amir Szekely</a> with contributions by <a href="http://nsis.sourceforge.net/User:Sunjammer">Ximon Eighteen</a>, <a href="http://nsis.sourceforge.net/User:Iceman_K">iceman_k</a>, Lajos Molnar and Jason Reis</p><h2 id="license">License</h2><p>As part of the NSIS distribution, this plug-in is licensed under <a href="http://opensource.org/licenses/Zlib">zlib/libpng</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Plugins/BgImage.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">.onGUIEnd</span>
+    <span class="hljs-title function_">BgImage::Destroy</span>
+    <span class=hljs-comment># Destroy doesn&#x27;t return any value</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by <a href=http://nsis.sourceforge.net/User:Kichik>Amir Szekely</a> with contributions by <a href=http://nsis.sourceforge.net/User:Sunjammer>Ximon Eighteen</a>, <a href=http://nsis.sourceforge.net/User:Iceman_K>iceman_k</a>, Lajos Molnar and Jason Reis</p><h2 id=license>License</h2><p>As part of the NSIS distribution, this plug-in is licensed under <a href=http://opensource.org/licenses/Zlib>zlib/libpng</a></p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Plugins/BgImage.md>Edit on GitHub</a></div></div></body></html>

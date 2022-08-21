@@ -1,25 +1,29 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/FileFunc/GetFileAttributes.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${GetFileAttributes} | FileFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="getfileattributes">${GetFileAttributes}</h1><p>Get attributes of file or directory.</p><h2 id="syntax">Syntax</h2><pre><code>${GetFileAttributes} &quot;[File]&quot; &quot;[Attributes]&quot; $var
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>${GetFileAttributes}</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../../css/theme.css><link rel=stylesheet href=../../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=getfileattributes>${GetFileAttributes}</h1><p>Get attributes of file or directory.</p><h2 id=syntax>Syntax</h2><pre><code class="hljs language-nsis"><span class=hljs-variable>${GetFileAttributes}</span> <span class=hljs-string>&quot;[File]&quot;</span> <span class=hljs-string>&quot;[Attributes]&quot;</span> <span class=hljs-variable>$var</span>
 
-&quot;[File]&quot;          ; File or directory
-                  ;
-&quot;[Attributes]&quot;    ; &quot;ALL&quot;  (default)
-                  ;  -all attributes of file combined with &quot;|&quot; to output
-                  ;
-                  ; &quot;READONLY|HIDDEN|SYSTEM|DIRECTORY|ARCHIVE|
-                  ; DEVICE|NORMAL|TEMPORARY|SPARSE_FILE|REPARSE_POINT|
-                  ; COMPRESSED|OFFLINE|NOT_CONTENT_INDEXED|ENCRYPTED&quot;
-                  ;  -file must have specified attributes
-                  ;
-$var              ; Result:
-                  ;    $var=attr1|attr2|... (if used &quot;ALL&quot;)
-                  ;    $var=1   file has specified attributes
-                  ;    $var=0   file has no specified attributes</code></pre><p>Note:</p><ul><li>Error flag if file doesn&#39;t exist</li></ul><h2 id="examples">Examples</h2><h3 id="get-all-file-attributes">Get all file attributes</h3><pre><code>Section
-    ${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;ALL&quot; $R0
-    ; $R0=READONLY|HIDDEN|SYSTEM|ARCHIVE
-SectionEnd</code></pre><h3 id="get-some-file-attributes">Get some file attributes</h3><pre><code>Section
-    ${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;SYSTEM|HIDDEN&quot; $R0
-    ; $R0=1
-SectionEnd</code></pre><h3 id="get-file-attribute-normal">Get file attribute &quot;NORMAL&quot;</h3><pre><code>Section
-    ${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;NORMAL&quot; $R0
-    ; $R0=0
-SectionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/GetFileAttributes.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+<span class=hljs-string>&quot;[File]&quot;</span>          <span class=hljs-comment>; File or directory</span>
+                  <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[Attributes]&quot;</span>    <span class=hljs-comment>; &quot;ALL&quot;  (default)</span>
+                  <span class=hljs-comment>;  -all attributes of file combined with &quot;|&quot; to output</span>
+                  <span class=hljs-comment>;</span>
+                  <span class=hljs-comment>; &quot;READONLY|HIDDEN|SYSTEM|DIRECTORY|ARCHIVE|</span>
+                  <span class=hljs-comment>; DEVICE|NORMAL|TEMPORARY|SPARSE_FILE|REPARSE_POINT|</span>
+                  <span class=hljs-comment>; COMPRESSED|OFFLINE|NOT_CONTENT_INDEXED|ENCRYPTED&quot;</span>
+                  <span class=hljs-comment>;  -file must have specified attributes</span>
+                  <span class=hljs-comment>;</span>
+<span class=hljs-variable>$var</span>              <span class=hljs-comment>; Result:</span>
+                  <span class=hljs-comment>;    $var=attr1|attr2|... (if used &quot;ALL&quot;)</span>
+                  <span class=hljs-comment>;    $var=1   file has specified attributes</span>
+                  <span class=hljs-comment>;    $var=0   file has no specified attributes</span>
+</code></pre><p>Note:</p><ul><li>Error flag if file doesn&#39;t exist</li></ul><h2 id=examples>Examples</h2><h3 id=get-all-file-attributes>Get all file attributes</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${GetFileAttributes}</span> <span class=hljs-string>&quot;C:\MSDOS.SYS&quot;</span> <span class=hljs-string>&quot;ALL&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=READONLY|HIDDEN|SYSTEM|ARCHIVE</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=get-some-file-attributes>Get some file attributes</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${GetFileAttributes}</span> <span class=hljs-string>&quot;C:\MSDOS.SYS&quot;</span> <span class=hljs-string>&quot;SYSTEM|HIDDEN&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=1</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=get-file-attribute-normal>Get file attribute &quot;NORMAL&quot;</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${GetFileAttributes}</span> <span class=hljs-string>&quot;C:\MSDOS.SYS&quot;</span> <span class=hljs-string>&quot;NORMAL&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=0</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by <a href=http://nsis.sourceforge.net/User:Instructor>Instructor</a></p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/FileFunc/GetFileAttributes.md>Edit on GitHub</a></div></div></body></html>

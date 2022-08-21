@@ -1,18 +1,20 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/LogicLib/Case.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${Case} | LogicLib.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="case">${Case}</h1><p>Executes one of several blocks of statements, depending on the value of an expression. Use <a href="Break.html"><code>${Break}</code></a> to prevent fall-through to the next <code>${Case}</code> section.</p><h2 id="syntax">Syntax</h2><pre><code>${Case[2|3|4|5]} value(s)</code></pre><h2 id="example">Example</h2><pre><code>StrCpy $0 1
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>${Case}</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../../css/theme.css><link rel=stylesheet href=../../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=case>${Case}</h1><p>Executes one of several blocks of statements, depending on the value of an expression. Use <a href=Break.html><code>${Break}</code></a> to prevent fall-through to the next <code>${Case}</code> section.</p><h2 id=syntax>Syntax</h2><pre><code class="hljs language-nsis">${Case[<span class=hljs-number>2</span>|<span class=hljs-number>3</span>|<span class=hljs-number>4</span>|<span class=hljs-number>5</span>]} value(s)
+</code></pre><h2 id=example>Example</h2><pre><code class="hljs language-nsis"><span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$0</span> <span class=hljs-number>1</span>
 
-${Select} $0
-    ${Case} &quot;1&quot;
-        MessageBox MB_OK &quot;$$0 is 1&quot;
-        ${Break}
-    ${Case} &quot;2&quot;
-        MessageBox MB_OK &quot;$$0 isn&#39;t 2&quot;
-        ${Break}
-    ${Case2} &quot;3&quot; &quot;4&quot;
-        MessageBox MB_OK &quot;$$0 isn&#39;t 3 or 4&quot;
-        ${Break}
-    ${Case3} &quot;5&quot; &quot;6&quot; &quot;7&quot;
-        MessageBox MB_OK &quot;$$0 isn&#39;t 5, 6 or 7&quot;
-        ${Break}
-    ${CaseElse}
-        MessageBox MB_OK &quot;$$0 isn&#39;t anything else&quot;
-${EndSelect}</code></pre><h2 id="credits">Credits</h2><p>Written by dselkirk and eccles</p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/LogicLib/Case.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+<span class=hljs-variable>${Select}</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-variable>${Case}</span> <span class=hljs-string>&quot;1&quot;</span>
+        <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;<span class="hljs-char escape_">$$</span>0 is 1&quot;</span>
+        <span class=hljs-variable>${Break}</span>
+    <span class=hljs-variable>${Case}</span> <span class=hljs-string>&quot;2&quot;</span>
+        <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;<span class="hljs-char escape_">$$</span>0 isn&#x27;t 2&quot;</span>
+        <span class=hljs-variable>${Break}</span>
+    <span class=hljs-variable>${Case2}</span> <span class=hljs-string>&quot;3&quot;</span> <span class=hljs-string>&quot;4&quot;</span>
+        <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;<span class="hljs-char escape_">$$</span>0 isn&#x27;t 3 or 4&quot;</span>
+        <span class=hljs-variable>${Break}</span>
+    <span class=hljs-variable>${Case3}</span> <span class=hljs-string>&quot;5&quot;</span> <span class=hljs-string>&quot;6&quot;</span> <span class=hljs-string>&quot;7&quot;</span>
+        <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;<span class="hljs-char escape_">$$</span>0 isn&#x27;t 5, 6 or 7&quot;</span>
+        <span class=hljs-variable>${Break}</span>
+    <span class=hljs-variable>${CaseElse}</span>
+        <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;<span class="hljs-char escape_">$$</span>0 isn&#x27;t anything else&quot;</span>
+<span class=hljs-variable>${EndSelect}</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by dselkirk and eccles</p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/LogicLib/Case.md>Edit on GitHub</a></div></div></body></html>

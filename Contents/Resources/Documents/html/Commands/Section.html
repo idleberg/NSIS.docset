@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>Section</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=section>Section</h1><p>Begins and opens a new section. If section_name is empty, omitted, or begins with a -, then it is a hidden section and the user will not have the option of disabling it. If the section name is &#39;Uninstall&#39; or is prefixed with &#39;un.&#39;, then it is a an uninstaller section. If section_index_output is specified, the parameter will be <a href=!define.html><code>!define</code></a>d with the section index (that can be used for <a href=SectionSetText.html><code>SectionSetText</code></a> etc). If the section name begins with a !, the section will be displayed as bold. If the /o switch is specified, the section will be unselected by default.</p><h2 id=parameters>Parameters</h2><pre><code class="hljs language-nsis">[/o] [([!]|[-])section_name] [section_index_output]
+</code></pre><h2 id=example>Example</h2><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span> <span class=hljs-string>&quot;-hidden section&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> <span class=hljs-comment># hidden section</span>
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> <span class=hljs-string>&quot;!bold section&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> /o <span class=hljs-string>&quot;optional&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> <span class=hljs-string>&quot;install something&quot;</span> SEC_IDX
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><p>To access the section index, curly brackets must be used and the code must be located below the section in the script.</p><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span> test1 sec1_id
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> test2 sec2_id
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">.onInit</span>
+    <span class=hljs-keyword>SectionGetText</span> <span class=hljs-variable>${sec2_id}</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;name of <span class=hljs-variable>${sec2_id}</span>:<span class="hljs-char escape_">$\n</span><span class=hljs-variable>$0</span>&quot;</span> <span class=hljs-comment># will correctly display &#x27;name of 1: test2&#x27;</span>
+<span class=hljs-keyword>FunctionEnd</span>
+
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">.onInit</span>
+    <span class=hljs-keyword>SectionGetText</span> <span class=hljs-variable>${sec2_id}</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;name of <span class=hljs-variable>${sec2_id}</span>:<span class="hljs-char escape_">$\n</span><span class=hljs-variable>$0</span>&quot;</span> <span class=hljs-comment># will incorrectly display &#x27;name of ${sec2_id}: test1&#x27;</span>
+    <span class=hljs-comment># plus a warning stating:</span>
+    <span class=hljs-comment>#   unknown variable/constant &quot;{sec2_id}&quot; detected, ignoring</span>
+<span class=hljs-keyword>FunctionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> test1 sec1_id
+<span class=hljs-keyword>SectionEnd</span>
+ 
+<span class=hljs-keyword>Section</span> test2 sec2_id
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h2 id=history>History</h2><p>Added in NSIS v1.0f</p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Commands/Section.md>Edit on GitHub</a></div></div></body></html>

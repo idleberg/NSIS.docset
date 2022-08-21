@@ -1,99 +1,108 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/WordFunc/StrFilterS.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${StrFilterS} | WordFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="versioncompare">${VersionCompare}</h1><ul><li>Convert string to uppercase or lowercase.</li><li>Set symbol filter.</li></ul><h2 id="syntax">Syntax</h2><pre><code>${StrFilterS} &quot;[string]&quot; &quot;[options]&quot; &quot;[symbols1]&quot; &quot;[symbols2]&quot; $var
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>${StrFilterS}</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../../css/theme.css><link rel=stylesheet href=../../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=versioncompare>${VersionCompare}</h1><ul><li>Convert string to uppercase or lowercase.</li><li>Set symbol filter.</li></ul><h2 id=syntax>Syntax</h2><pre><code class="hljs language-nsis"><span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;[string]&quot;</span> <span class=hljs-string>&quot;[options]&quot;</span> <span class=hljs-string>&quot;[symbols1]&quot;</span> <span class=hljs-string>&quot;[symbols2]&quot;</span> <span class=hljs-variable>$var</span>
 
-&quot;[string]&quot;       ;[string]
-                 ;  input string
-                 ;
-&quot;[options]&quot;      ;[+|-][1|2|3|12|23|31][eng|rus]
-                 ;  +   : convert string to uppercase
-                 ;  -   : convert string to lowercase
-                 ;  1   : only Digits
-                 ;  2   : only Letters
-                 ;  3   : only Special
-                 ;  12  : only Digits  + Letters
-                 ;  23  : only Letters + Special
-                 ;  31  : only Special + Digits
-                 ;  eng : English symbols (default)
-                 ;  rus : Russian symbols
-                 ;
-&quot;[symbols1]&quot;     ;[symbols1]
-                 ;  symbols include (not changeable)
-                 ;
-&quot;[symbols2]&quot;     ;[symbols2]
-                 ;  symbols exclude
-                 ;
-$var             ;output (result)</code></pre><p>Note:</p><ul><li>Error flag if syntax error</li><li>Same symbol to include &amp; to exclude = to exclude</li></ul><h2 id="examples">Examples</h2><h3 id="uppercase">UpperCase</h3><pre><code>Section
-    ${StrFilterS} &quot;123abc 456DEF 7890|%#&quot; &quot;+&quot; &quot;&quot; &quot;&quot; $R0
-    ; $R0=&quot;123ABC 456DEF 7890|%#&quot;
-SectionEnd</code></pre><h3 id="lowercase">LowerCase</h3><pre><code>Section
-    ${StrFilterS} &quot;123abc 456DEF 7890|%#&quot; &quot;-&quot; &quot;ef&quot; &quot;&quot; $R0
-    ; $R0=&quot;123abc 456dEF 7890|%#&quot;
-SectionEnd</code></pre><h3 id="filter-1">Filter 1</h3><pre><code>Section
-    ${StrFilterS} &quot;123abc 456DEF 7890|%#&quot; &quot;2&quot; &quot;|%&quot; &quot;&quot; $R0
-    ; $R0=&quot;abcDEF|%&quot;       ;only Letters + |%
-SectionEnd</code></pre><h3 id="filter-2">Filter 2</h3><pre><code>Section
-    ${StrFilterS} &quot;123abc 456DEF 7890|%#&quot; &quot;13&quot; &quot;af&quot; &quot;4590&quot; $R0
-    ; $R0=&quot;123a 6F 78|%#&quot;  ;only Digits + Special + af - 4590
-SectionEnd</code></pre><h3 id="filter-3">Filter 3</h3><pre><code>Section
-    ${StrFilterS} &quot;123abc 456DEF 7890|%#&quot; &quot;+12&quot; &quot;b&quot; &quot;def&quot; $R0
-    ; $R0=&quot;123AbC4567890&quot;  ;only Digits + Letters + b - def
-SectionEnd</code></pre><h3 id="filter-4">Filter 4</h3><pre><code>Section
-    ${StrFilterS} &quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot; &quot;+12rus&quot; &quot;ä&quot; &quot;ãå&quot; $R0
-    ; $R0=&quot;123ÀÁÂ456ä7890&quot;  ;only Digits + Letters + ä - ãå
-SectionEnd</code></pre><h3 id="english--russian-letters">English + Russian Letters</h3><pre><code>Section
-    ${StrFilterS} &quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot; &quot;2rus&quot; &quot;&quot; &quot;&quot; $R0
-    ; $R0=&quot;ÀÁÂãäå&quot;        ;only Russian Letters
-    ${StrFilterS} &quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot; &quot;2&quot; &quot;$R0&quot; &quot;&quot; $R0
-    ; $R0=&quot;abcÀÁÂDEFãäå&quot;  ;only English + Russian Letters
-SectionEnd</code></pre><h3 id="word-capitalize">Word Capitalize</h3><pre><code>Section
-    Push &quot;_01-PERPETUOUS_DREAMER__-__THE_SOUND_OF_GOODBYE_(ORIG._MIX).MP3_&quot;
-    Call Capitalize
-    Pop $R0
-    ; $R0=&quot;_01-Perpetuous_Dreamer__-__The_Sound_Of_Goodbye_(Orig._Mix).mp3_&quot;
+<span class=hljs-string>&quot;[string]&quot;</span>       <span class=hljs-comment>;[string]</span>
+                 <span class=hljs-comment>;  input string</span>
+                 <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[options]&quot;</span>      <span class=hljs-comment>;[+|-][1|2|3|12|23|31][eng|rus]</span>
+                 <span class=hljs-comment>;  +   : convert string to uppercase</span>
+                 <span class=hljs-comment>;  -   : convert string to lowercase</span>
+                 <span class=hljs-comment>;  1   : only Digits</span>
+                 <span class=hljs-comment>;  2   : only Letters</span>
+                 <span class=hljs-comment>;  3   : only Special</span>
+                 <span class=hljs-comment>;  12  : only Digits  + Letters</span>
+                 <span class=hljs-comment>;  23  : only Letters + Special</span>
+                 <span class=hljs-comment>;  31  : only Special + Digits</span>
+                 <span class=hljs-comment>;  eng : English symbols (default)</span>
+                 <span class=hljs-comment>;  rus : Russian symbols</span>
+                 <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[symbols1]&quot;</span>     <span class=hljs-comment>;[symbols1]</span>
+                 <span class=hljs-comment>;  symbols include (not changeable)</span>
+                 <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[symbols2]&quot;</span>     <span class=hljs-comment>;[symbols2]</span>
+                 <span class=hljs-comment>;  symbols exclude</span>
+                 <span class=hljs-comment>;</span>
+<span class=hljs-variable>$var</span>             <span class=hljs-comment>;output (result)</span>
+</code></pre><p>Note:</p><ul><li>Error flag if syntax error</li><li>Same symbol to include &amp; to exclude = to exclude</li></ul><h2 id=examples>Examples</h2><h3 id=uppercase>UpperCase</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abc 456DEF 7890|%#&quot;</span> <span class=hljs-string>&quot;+&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;123ABC 456DEF 7890|%#&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=lowercase>LowerCase</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abc 456DEF 7890|%#&quot;</span> <span class=hljs-string>&quot;-&quot;</span> <span class=hljs-string>&quot;ef&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;123abc 456dEF 7890|%#&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=filter-1>Filter 1</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abc 456DEF 7890|%#&quot;</span> <span class=hljs-string>&quot;2&quot;</span> <span class=hljs-string>&quot;|%&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;abcDEF|%&quot;       ;only Letters + |%</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=filter-2>Filter 2</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abc 456DEF 7890|%#&quot;</span> <span class=hljs-string>&quot;13&quot;</span> <span class=hljs-string>&quot;af&quot;</span> <span class=hljs-string>&quot;4590&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;123a 6F 78|%#&quot;  ;only Digits + Special + af - 4590</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=filter-3>Filter 3</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abc 456DEF 7890|%#&quot;</span> <span class=hljs-string>&quot;+12&quot;</span> <span class=hljs-string>&quot;b&quot;</span> <span class=hljs-string>&quot;def&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;123AbC4567890&quot;  ;only Digits + Letters + b - def</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=filter-4>Filter 4</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot;</span> <span class=hljs-string>&quot;+12rus&quot;</span> <span class=hljs-string>&quot;ä&quot;</span> <span class=hljs-string>&quot;ãå&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;123ÀÁÂ456ä7890&quot;  ;only Digits + Letters + ä - ãå</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=english--russian-letters>English + Russian Letters</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot;</span> <span class=hljs-string>&quot;2rus&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;ÀÁÂãäå&quot;        ;only Russian Letters</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&quot;123abcÀÁÂ 456DEFãäå 7890|%#&quot;</span> <span class=hljs-string>&quot;2&quot;</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R0</span>&quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;abcÀÁÂDEFãäå&quot;  ;only English + Russian Letters</span>
+<span class=hljs-keyword>SectionEnd</span>
+</code></pre><h3 id=word-capitalize>Word Capitalize</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>Push</span> <span class=hljs-string>&quot;_01-PERPETUOUS_DREAMER__-__THE_SOUND_OF_GOODBYE_(ORIG._MIX).MP3_&quot;</span>
+    <span class=hljs-keyword>Call</span> Capitalize
+    <span class=hljs-keyword>Pop</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;_01-Perpetuous_Dreamer__-__The_Sound_Of_Goodbye_(Orig._Mix).mp3_&quot;</span>
 
-    ${WordReplace} &quot;$R0&quot; &quot;_&quot; &quot; &quot; &quot;+*&quot; $R0
-    ; $R0=&quot; 01-Perpetuous Dreamer - The Sound Of Goodbye (Orig. Mix).mp3 &quot;
+    <span class=hljs-variable>${WordReplace}</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R0</span>&quot;</span> <span class=hljs-string>&quot;_&quot;</span> <span class=hljs-string>&quot; &quot;</span> <span class=hljs-string>&quot;+*&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot; 01-Perpetuous Dreamer - The Sound Of Goodbye (Orig. Mix).mp3 &quot;</span>
 
-    ${WordReplace} &quot;$R0&quot; &quot; &quot; &quot;&quot; &quot;{}&quot; $R0
-    ; $R0=&quot;01-Perpetuous Dreamer - The Sound Of Goodbye (Orig. Mix).mp3&quot;
-SectionEnd
+    <span class=hljs-variable>${WordReplace}</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R0</span>&quot;</span> <span class=hljs-string>&quot; &quot;</span> <span class=hljs-string>&quot;&quot;</span> <span class=hljs-string>&quot;{}&quot;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-comment>; $R0=&quot;01-Perpetuous Dreamer - The Sound Of Goodbye (Orig. Mix).mp3&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Capitalize
-    Exch $R0
-    Push $0
-    Push $1
-    Push $2
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Capitalize</span>
+    <span class=hljs-keyword>Exch</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$1</span>
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$2</span>
 
-    ${StrFilterS} &#39;$R0&#39; &#39;-eng&#39; &#39;&#39; &#39;&#39; $R0
-    ${StrFilterS} &#39;$R0&#39; &#39;-rus&#39; &#39;&#39; &#39;&#39; $R0
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R0</span>&#x27;</span> <span class=hljs-string>&#x27;-eng&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R0</span>&#x27;</span> <span class=hljs-string>&#x27;-rus&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$R0</span>
 
-    StrCpy $0 0
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$0</span> <span class=hljs-number>0</span>
 
     loop:
-    IntOp $0 $0 + 1
-    StrCpy $1 $R0 1 $0
-    StrCmp $1 &#39;&#39; end
-    StrCmp $1 &#39; &#39; +5
-    StrCmp $1 &#39;_&#39; +4
-    StrCmp $1 &#39;-&#39; +3
-    StrCmp $1 &#39;(&#39; +2
-    StrCmp $1 &#39;[&#39; 0 loop
-    IntOp $0 $0 + 1
-    StrCpy $1 $R0 1 $0
-    StrCmp $1 &#39;&#39; end
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$0</span> <span class=hljs-variable>$0</span> + <span class=hljs-number>1</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$1</span> <span class=hljs-variable>$R0</span> <span class=hljs-number>1</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27;&#x27;</span> end
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27; &#x27;</span> +<span class=hljs-number>5</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27;_&#x27;</span> +<span class=hljs-number>4</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27;-&#x27;</span> +<span class=hljs-number>3</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27;(&#x27;</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27;[&#x27;</span> <span class=hljs-number>0</span> loop
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$0</span> <span class=hljs-variable>$0</span> + <span class=hljs-number>1</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$1</span> <span class=hljs-variable>$R0</span> <span class=hljs-number>1</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$1</span> <span class=hljs-string>&#x27;&#x27;</span> end
 
-    ${StrFilterS} &#39;$1&#39; &#39;+eng&#39; &#39;&#39; &#39;&#39; $1
-    ${StrFilterS} &#39;$1&#39; &#39;+rus&#39; &#39;&#39; &#39;&#39; $1
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$1</span>&#x27;</span> <span class=hljs-string>&#x27;+eng&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$1</span>
+    <span class=hljs-variable>${StrFilterS}</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$1</span>&#x27;</span> <span class=hljs-string>&#x27;+rus&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$1</span>
 
-    StrCpy $2 $R0 $0
-    IntOp $0 $0 + 1
-    StrCpy $R0 $R0 &#39;&#39; $0
-    IntOp $0 $0 - 2
-    StrCpy $R0 &#39;$2$1$R0&#39;
-    goto loop
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$2</span> <span class=hljs-variable>$R0</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$0</span> <span class=hljs-variable>$0</span> + <span class=hljs-number>1</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$0</span> <span class=hljs-variable>$0</span> - <span class=hljs-number>2</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$2</span><span class=hljs-variable>$1</span><span class=hljs-variable>$R0</span>&#x27;</span>
+    <span class=hljs-keyword>goto</span> loop
 
     end:
-    Pop $2
-    Pop $1
-    Pop $0
-    Exch $R0
-FunctionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/WordFunc/StrFilterS.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+    <span class=hljs-keyword>Pop</span> <span class=hljs-variable>$2</span>
+    <span class=hljs-keyword>Pop</span> <span class=hljs-variable>$1</span>
+    <span class=hljs-keyword>Pop</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>Exch</span> <span class=hljs-variable>$R0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by <a href=http://nsis.sourceforge.net/User:Instructor>Instructor</a></p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/WordFunc/StrFilterS.md>Edit on GitHub</a></div></div></body></html>

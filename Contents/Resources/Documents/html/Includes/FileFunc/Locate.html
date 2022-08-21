@@ -1,215 +1,224 @@
-<!DOCTYPE html><html lang="en"><!-- Online page at https://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Includes/FileFunc/Locate.html --><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name="generator" content="nsis-docset-builder v0.5.2"><title>${Locate} | FileFunc.nsh</title><link rel="stylesheet" href="../../../css/docset.min.css"></head><body class="hljs-dark"><div class="container"><div class="row"><div class="col-xs-12"><h1 id="locate">${Locate}</h1><p>Find files, directories and empty directories with mask and size options.</p><h2 id="syntax">Syntax</h2><pre><code>${Locate} &quot;[Path]&quot; &quot;[Options]&quot; &quot;Function&quot;
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta name=generator content="nsis-docset-builder v0.6.0"><title>${Locate}</title><style>@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Light.eot);src:local('Fira Sans Light'),url(../../fonts/FiraSans-Light.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Light.woff2) format('woff2'),url(../../fonts/FiraSans-Light.ttf) format('truetype');font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Fira Sans';src:url(../../fonts/FiraSans-Regular.eot);src:local('Fira Sans Regular'),url(../../fonts/FiraSans-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraSans-Regular.woff2) format('woff2'),url(../../fonts/FiraSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Fira Mono';src:url(../../fonts/FiraMono-Regular.eot);src:local('Fira Mono'),url(../../fonts/FiraMono-Regular.eot) format('embedded-opentype'),url(../../fonts/FiraMono-Regular.woff2) format('woff2'),url(../../fonts/FiraMono-Regular.woff) format('woff'),url(../../fonts/FiraMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}</style><link rel=stylesheet href=../../../css/theme.css><link rel=stylesheet href=../../../css/highlight.css></head><body class=font-sans><div class="container mx-auto mt-8"><div class=columns-1><h1 id=locate>${Locate}</h1><p>Find files, directories and empty directories with mask and size options.</p><h2 id=syntax>Syntax</h2><pre><code class="hljs language-nsis"><span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;[Path]&quot;</span> <span class=hljs-string>&quot;[Options]&quot;</span> <span class=hljs-string>&quot;Function&quot;</span>
 
-&quot;[Path]&quot;      ; Disk or Directory
-              ;
-&quot;[Options]&quot;   ; /L=[FD|F|D|DE|FDE]
-              ;     /L=FD    - Locate Files and Directories (default)
-              ;     /L=F     - Locate Files only
-              ;     /L=D     - Locate Directories only
-              ;     /L=DE    - Locate Empty Directories only
-              ;     /L=FDE   - Locate Files and Empty Directories
-              ; /M=[mask]
-              ;     /M=*.*         - Locate all (default)
-              ;     /M=*.doc       - Locate Work.doc, 1.doc ...
-              ;     /M=Pho*        - Locate PHOTOS, phone.txt ...
-              ;     /M=win???.exe  - Locate winamp.exe, winver.exe ...
-              ;     /M=winamp.exe  - Locate winamp.exe only
-              ; /S=No:No[B|K|M|G]
-              ;     /S=      - Don&#39;t locate file size (faster) (default)
-              ;     /S=0:0B  - Locate only files of 0 Bytes exactly
-              ;     /S=5:9K  - Locate only files of 5 to 9 Kilobytes
-              ;     /S=:10M  - Locate only files of 10 Megabyte or less
-              ;     /S=1G    - Locate only files of 1 Gigabyte or more
-              ; /G=[1|0]
-              ;     /G=1     - Locate with subdirectories (default)
-              ;     /G=0     - Locate without subdirectories
-              ; /B=[0|1]
-              ;     /B=0     - Banner isn&#39;t used (default)
-              ;     /B=1     - Banner is used. Callback when function
-              ;                start to search in new directory
-&quot;Function&quot;    ; Callback function when found
+<span class=hljs-string>&quot;[Path]&quot;</span>      <span class=hljs-comment>; Disk or Directory</span>
+              <span class=hljs-comment>;</span>
+<span class=hljs-string>&quot;[Options]&quot;</span>   <span class=hljs-comment>; /L=[FD|F|D|DE|FDE]</span>
+              <span class=hljs-comment>;     /L=FD    - Locate Files and Directories (default)</span>
+              <span class=hljs-comment>;     /L=F     - Locate Files only</span>
+              <span class=hljs-comment>;     /L=D     - Locate Directories only</span>
+              <span class=hljs-comment>;     /L=DE    - Locate Empty Directories only</span>
+              <span class=hljs-comment>;     /L=FDE   - Locate Files and Empty Directories</span>
+              <span class=hljs-comment>; /M=[mask]</span>
+              <span class=hljs-comment>;     /M=*.*         - Locate all (default)</span>
+              <span class=hljs-comment>;     /M=*.doc       - Locate Work.doc, 1.doc ...</span>
+              <span class=hljs-comment>;     /M=Pho*        - Locate PHOTOS, phone.txt ...</span>
+              <span class=hljs-comment>;     /M=win???.exe  - Locate winamp.exe, winver.exe ...</span>
+              <span class=hljs-comment>;     /M=winamp.exe  - Locate winamp.exe only</span>
+              <span class=hljs-comment>; /S=No:No[B|K|M|G]</span>
+              <span class=hljs-comment>;     /S=      - Don&#x27;t locate file size (faster) (default)</span>
+              <span class=hljs-comment>;     /S=0:0B  - Locate only files of 0 Bytes exactly</span>
+              <span class=hljs-comment>;     /S=5:9K  - Locate only files of 5 to 9 Kilobytes</span>
+              <span class=hljs-comment>;     /S=:10M  - Locate only files of 10 Megabyte or less</span>
+              <span class=hljs-comment>;     /S=1G    - Locate only files of 1 Gigabyte or more</span>
+              <span class=hljs-comment>; /G=[1|0]</span>
+              <span class=hljs-comment>;     /G=1     - Locate with subdirectories (default)</span>
+              <span class=hljs-comment>;     /G=0     - Locate without subdirectories</span>
+              <span class=hljs-comment>; /B=[0|1]</span>
+              <span class=hljs-comment>;     /B=0     - Banner isn&#x27;t used (default)</span>
+              <span class=hljs-comment>;     /B=1     - Banner is used. Callback when function</span>
+              <span class=hljs-comment>;                start to search in new directory</span>
+<span class=hljs-string>&quot;Function&quot;</span>    <span class=hljs-comment>; Callback function when found</span>
 
-Function &quot;Function&quot;
-    ; $R9    &quot;path\name&quot;
-    ; $R8    &quot;path&quot;
-    ; $R7    &quot;name&quot;
-    ; $R6    &quot;size&quot;  ($R6=&quot;&quot; if directory, $R6=&quot;0&quot; if file with /S=)
+<span class=hljs-keyword>Function</span> <span class=hljs-string>&quot;Function&quot;</span>
+    <span class=hljs-comment>; $R9    &quot;path\name&quot;</span>
+    <span class=hljs-comment>; $R8    &quot;path&quot;</span>
+    <span class=hljs-comment>; $R7    &quot;name&quot;</span>
+    <span class=hljs-comment>; $R6    &quot;size&quot;  ($R6=&quot;&quot; if directory, $R6=&quot;0&quot; if file with /S=)</span>
 
-    ; $R0-$R5  are not used (save data in them).
-    ; ...
+    <span class=hljs-comment>; $R0-$R5  are not used (save data in them).</span>
+    <span class=hljs-comment>; ...</span>
 
-    Push $var    ; If $var=&quot;StopLocate&quot; Then exit from function
-FunctionEnd</code></pre><p>Note:</p><ul><li>Error flag if disk or directory isn&#39;t exist</li><li>Error flag if syntax error</li><li>See also <a href="http://nsis.sourceforge.net/Locate_plugin">Locate plugin</a></li></ul><h2 id="examples">Examples</h2><h3 id="find-one-file">Find one file</h3><pre><code>Section
-    ${Locate} &quot;C:\ftp&quot; &quot;/L=F /M=RPC DCOM.rar /S=1K&quot; &quot;Example1&quot;
-    ; &#39;RPC DCOM.rar&#39; file in &#39;C:\ftp&#39; with size 1 Kb or more
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$var</span>    <span class=hljs-comment>; If $var=&quot;StopLocate&quot; Then exit from function</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><p>Note:</p><ul><li>Error flag if disk or directory isn&#39;t exist</li><li>Error flag if syntax error</li><li>See also <a href=http://nsis.sourceforge.net/Locate_plugin>Locate plugin</a></li></ul><h2 id=examples>Examples</h2><h3 id=find-one-file>Find one file</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;C:\ftp&quot;</span> <span class=hljs-string>&quot;/L=F /M=RPC DCOM.rar /S=1K&quot;</span> <span class=hljs-string>&quot;Example1&quot;</span>
+    <span class=hljs-comment>; &#x27;RPC DCOM.rar&#x27; file in &#x27;C:\ftp&#x27; with size 1 Kb or more</span>
 
-    IfErrors 0 +2
-    MessageBox MB_OK &quot;Error&quot; IDOK +2
-    MessageBox MB_OK &quot;$$R0=$R0&quot;
-SectionEnd
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;Error&quot;</span> <span class=hljs-params>IDOK</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;<span class="hljs-char escape_">$$</span>R0=<span class=hljs-variable>$R0</span>&quot;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example1
-    StrCpy $R0 $R9
-    ; $R0=&quot;C:\ftp\files\RPC DCOM.rar&quot;
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example1</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-variable>$R9</span>
+    <span class=hljs-comment>; $R0=&quot;C:\ftp\files\RPC DCOM.rar&quot;</span>
 
-    MessageBox MB_YESNO &#39;$R0$\n$\nFind next?&#39; IDYES +2
-    StrCpy $0 StopLocate
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_YESNO</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R0</span><span class="hljs-char escape_">$\n</span><span class="hljs-char escape_">$\n</span>Find next?&#x27;</span> <span class=hljs-params>IDYES</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$0</span> StopLocate
 
-    Push $0
-FunctionEnd</code></pre><h3 id="write-results-to-a-text-file">Write results to a text file</h3><pre><code>Section
-    GetTempFileName $R0
-    FileOpen $R1 $R0 w
-    ${Locate} &quot;C:\ftp&quot; &quot;/S=:2M /G=0&quot; &quot;Example2&quot;
-    ; folders and all files with size 2 Mb or less
-    ; don&#39;t scan subdirectories
-    FileClose $R1
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=write-results-to-a-text-file>Write results to a text file</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>GetTempFileName</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-keyword>FileOpen</span> <span class=hljs-variable>$R1</span> <span class=hljs-variable>$R0</span> w
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;C:\ftp&quot;</span> <span class=hljs-string>&quot;/S=:2M /G=0&quot;</span> <span class=hljs-string>&quot;Example2&quot;</span>
+    <span class=hljs-comment>; folders and all files with size 2 Mb or less</span>
+    <span class=hljs-comment>; don&#x27;t scan subdirectories</span>
+    <span class=hljs-keyword>FileClose</span> <span class=hljs-variable>$R1</span>
 
-    IfErrors 0 +2
-    MessageBox MB_OK &quot;Error&quot; IDOK +2
-    Exec &#39;&quot;notepad.exe&quot; &quot;$R0&quot;&#39;
-SectionEnd
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;Error&quot;</span> <span class=hljs-params>IDOK</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>Exec</span> <span class=hljs-string>&#x27;&quot;notepad.exe&quot; &quot;<span class=hljs-variable>$R0</span>&quot;&#x27;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example2
-    StrCmp $R6 &#39;&#39; 0 +3
-    FileWrite $R1 &quot;Directory=$R9$\r$\n&quot;
-    goto +2
-    FileWrite $R1 &quot;File=$R9  Size=$R6 Mb$\r$\n&quot;
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example2</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R6</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-number>0</span> +<span class=hljs-number>3</span>
+    <span class=hljs-keyword>FileWrite</span> <span class=hljs-variable>$R1</span> <span class=hljs-string>&quot;Directory=<span class=hljs-variable>$R9</span><span class="hljs-char escape_">$\r</span><span class="hljs-char escape_">$\n</span>&quot;</span>
+    <span class=hljs-keyword>goto</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>FileWrite</span> <span class=hljs-variable>$R1</span> <span class=hljs-string>&quot;File=<span class=hljs-variable>$R9</span>  Size=<span class=hljs-variable>$R6</span> Mb<span class="hljs-char escape_">$\r</span><span class="hljs-char escape_">$\n</span>&quot;</span>
 
-    Push $0
-FunctionEnd</code></pre><h3 id="write-results-to-an-ini-file">Write results to an INI file</h3><pre><code>Section
-    GetTempFileName $R0
-    ${Locate} &quot;C:\ftp&quot; &quot;/L=F /S=0K&quot; &quot;Example3&quot;
-    ; all files in &#39;C:\ftp&#39; with size detect in Kb
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=write-results-to-an-ini-file>Write results to an INI file</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>GetTempFileName</span> <span class=hljs-variable>$R0</span>
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;C:\ftp&quot;</span> <span class=hljs-string>&quot;/L=F /S=0K&quot;</span> <span class=hljs-string>&quot;Example3&quot;</span>
+    <span class=hljs-comment>; all files in &#x27;C:\ftp&#x27; with size detect in Kb</span>
 
-    IfErrors 0 +2
-    MessageBox MB_OK &quot;Error&quot; IDOK +2
-    Exec &#39;&quot;notepad.exe&quot; &quot;$R0&quot;&#39;
-SectionEnd
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;Error&quot;</span> <span class=hljs-params>IDOK</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>Exec</span> <span class=hljs-string>&#x27;&quot;notepad.exe&quot; &quot;<span class=hljs-variable>$R0</span>&quot;&#x27;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example3
-    WriteINIStr $R0 &quot;$R8&quot; &quot;$R7&quot; &quot;$R6 Kb&quot;
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example3</span>
+    <span class=hljs-keyword>WriteINIStr</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R8</span>&quot;</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R7</span>&quot;</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R6</span> Kb&quot;</span>
 
-    Push $0
-FunctionEnd</code></pre><h3 id="delete-empty-directories">Delete empty directories</h3><pre><code>Section
-    StrCpy $R2 0
-    StrCpy $R3 0
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=delete-empty-directories>Delete empty directories</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R2</span> <span class=hljs-number>0</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R3</span> <span class=hljs-number>0</span>
 
     loop:
-    StrCpy $R1 0
-    ${Locate} &quot;C:\ftp&quot; &quot;/L=DE&quot; &quot;Example4&quot;
-    IntOp $R3 $R3 + 1
-    IntOp $R2 $R2 + $R1
-    StrCmp $R0 StopLocate +2
-    StrCmp $R1 0 0 loop
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R1</span> <span class=hljs-number>0</span>
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;C:\ftp&quot;</span> <span class=hljs-string>&quot;/L=DE&quot;</span> <span class=hljs-string>&quot;Example4&quot;</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$R3</span> <span class=hljs-variable>$R3</span> + <span class=hljs-number>1</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$R2</span> <span class=hljs-variable>$R2</span> + <span class=hljs-variable>$R1</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R0</span> StopLocate +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R1</span> <span class=hljs-number>0</span> <span class=hljs-number>0</span> loop
 
-    IfErrors 0 +2
-    MessageBox MB_OK &#39;error&#39; IDOK +2
-    MessageBox MB_OK &#39;$R2 directories were removed$\n$R3 loops&#39;
-SectionEnd
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;error&#x27;</span> <span class=hljs-params>IDOK</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R2</span> directories were removed<span class="hljs-char escape_">$\n</span><span class=hljs-variable>$R3</span> loops&#x27;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example4
-    MessageBox MB_YESNOCANCEL &#39;Delete empty &quot;$R9&quot;?&#39; IDNO end IDCANCEL cancel
-    RMDir $R9
-    IntOp $R1 $R1 + 1
-    goto end
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example4</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_YESNO</span>CANCEL <span class=hljs-string>&#x27;Delete empty &quot;<span class=hljs-variable>$R9</span>&quot;?&#x27;</span> <span class=hljs-params>IDNO</span> end <span class=hljs-params>IDCANCEL</span> cancel
+    <span class=hljs-keyword>RMDir</span> <span class=hljs-variable>$R9</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$R1</span> <span class=hljs-variable>$R1</span> + <span class=hljs-number>1</span>
+    <span class=hljs-keyword>goto</span> end
 
     cancel:
-    StrCpy $R0 StopLocate
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> StopLocate
 
     end:
-    Push $R0
-FunctionEnd</code></pre><h3 id="move-all-files-into-one-folder">Move all files into one folder</h3><pre><code>Section
-    StrCpy $R0 &quot;C:\ftp&quot;   ;Directory move from
-    StrCpy $R1 &quot;C:\ftp2&quot;  ;Directory move into
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$R0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=move-all-files-into-one-folder>Move all files into one folder</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&quot;C:\ftp&quot;</span>   <span class=hljs-comment>;Directory move from</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R1</span> <span class=hljs-string>&quot;C:\ftp2&quot;</span>  <span class=hljs-comment>;Directory move into</span>
 
-    StrCpy $R2 0
-    StrCpy $R3 0
-    ${Locate} &quot;$R0&quot; &quot;/L=F&quot; &quot;Example5&quot;
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R2</span> <span class=hljs-number>0</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R3</span> <span class=hljs-number>0</span>
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R0</span>&quot;</span> <span class=hljs-string>&quot;/L=F&quot;</span> <span class=hljs-string>&quot;Example5&quot;</span>
 
-    IfErrors 0 +2
-    MessageBox MB_OK &#39;error&#39; IDOK +4
-    StrCmp $R3 0 0 +2
-    MessageBox MB_OK &#39;$R2 files were moved&#39; IDOK +2
-    MessageBox MB_OK &#39;$R2 files were moved$\n$R3 files were NOT moved&#39;
-SectionEnd
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;error&#x27;</span> <span class=hljs-params>IDOK</span> +<span class=hljs-number>4</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R3</span> <span class=hljs-number>0</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R2</span> files were moved&#x27;</span> <span class=hljs-params>IDOK</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R2</span> files were moved<span class="hljs-char escape_">$\n</span><span class=hljs-variable>$R3</span> files were NOT moved&#x27;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example5
-    StrCmp $R8 $R1 +6
-    IfFileExists &#39;$R1\$R7&#39; +4
-    Rename $R9 &#39;$R1\$R7&#39;
-    IntOp $R2 $R2 + 1
-    goto +2
-    IntOp $R3 $R3 + 1
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example5</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R8</span> <span class=hljs-variable>$R1</span> +<span class=hljs-number>6</span>
+    <span class=hljs-keyword>IfFileExists</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span>\<span class=hljs-variable>$R7</span>&#x27;</span> +<span class=hljs-number>4</span>
+    <span class=hljs-keyword>Rename</span> <span class=hljs-variable>$R9</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span>\<span class=hljs-variable>$R7</span>&#x27;</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$R2</span> <span class=hljs-variable>$R2</span> + <span class=hljs-number>1</span>
+    <span class=hljs-keyword>goto</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>IntOp</span> <span class=hljs-variable>$R3</span> <span class=hljs-variable>$R3</span> + <span class=hljs-number>1</span>
 
-    Push $0
-FunctionEnd</code></pre><h3 id="copy-files-with-log">Copy files with log</h3><pre><code>Section
-    StrCpy $R0 &quot;C:\ftp&quot;   ;Directory copy from
-    StrCpy $R1 &quot;C:\ftp2&quot;  ;Directory copy into
-    StrLen $R2 $R0
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=copy-files-with-log>Copy files with log</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&quot;C:\ftp&quot;</span>   <span class=hljs-comment>;Directory copy from</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R1</span> <span class=hljs-string>&quot;C:\ftp2&quot;</span>  <span class=hljs-comment>;Directory copy into</span>
+    <span class=hljs-keyword>StrLen</span> <span class=hljs-variable>$R2</span> <span class=hljs-variable>$R0</span>
 
-    GetTempFileName $0
-    FileOpen $R3 $0 w
-    ${Locate} &quot;$R0&quot; &quot;/L=FDE&quot; &quot;Example6&quot;
-    FileClose $R3
+    <span class=hljs-keyword>GetTempFileName</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>FileOpen</span> <span class=hljs-variable>$R3</span> <span class=hljs-variable>$0</span> w
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R0</span>&quot;</span> <span class=hljs-string>&quot;/L=FDE&quot;</span> <span class=hljs-string>&quot;Example6&quot;</span>
+    <span class=hljs-keyword>FileClose</span> <span class=hljs-variable>$R3</span>
 
-    IfErrors 0 +2
-    MessageBox MB_OK &#39;error&#39;
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;error&#x27;</span>
 
-    Exec &#39;&quot;notepad.exe&quot; &quot;$0&quot;&#39;     ;view log
-SectionEnd
+    <span class=hljs-keyword>Exec</span> <span class=hljs-string>&#x27;&quot;notepad.exe&quot; &quot;<span class=hljs-variable>$0</span>&quot;&#x27;</span>     <span class=hljs-comment>;view log</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example6
-    StrCpy $1 $R8 &#39;&#39; $R2
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example6</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$1</span> <span class=hljs-variable>$R8</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$R2</span>
 
-    StrCmp $R6 &#39;&#39; 0 +3
-    CreateDirectory &#39;$R1$1\$R7&#39;
-    goto end
-    CreateDirectory &#39;$R1$1&#39;
-    CopyFiles /SILENT $R9 &#39;$R1$1&#39;
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R6</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-number>0</span> +<span class=hljs-number>3</span>
+    <span class=hljs-keyword>CreateDirectory</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>\<span class=hljs-variable>$R7</span>&#x27;</span>
+    <span class=hljs-keyword>goto</span> end
+    <span class=hljs-keyword>CreateDirectory</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>&#x27;</span>
+    <span class=hljs-keyword>CopyFiles</span> /<span class=hljs-literal>SILENT</span> <span class=hljs-variable>$R9</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>&#x27;</span>
 
-    IfFileExists &#39;$R1$1\$R7&#39; 0 +3
-    FileWrite $R3 &quot;-old:$R9  -new:$R1$1\$R7  -success$\r$\n&quot;
-    goto +2
-    FileWrite $R3 &quot;-old:$R9  -new:$R1$1\$R7  -failed$\r$\n&quot;
+    <span class=hljs-keyword>IfFileExists</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>\<span class=hljs-variable>$R7</span>&#x27;</span> <span class=hljs-number>0</span> +<span class=hljs-number>3</span>
+    <span class=hljs-keyword>FileWrite</span> <span class=hljs-variable>$R3</span> <span class=hljs-string>&quot;-old:<span class=hljs-variable>$R9</span>  -new:<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>\<span class=hljs-variable>$R7</span>  -success<span class="hljs-char escape_">$\r</span><span class="hljs-char escape_">$\n</span>&quot;</span>
+    <span class=hljs-keyword>goto</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>FileWrite</span> <span class=hljs-variable>$R3</span> <span class=hljs-string>&quot;-old:<span class=hljs-variable>$R9</span>  -new:<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>\<span class=hljs-variable>$R7</span>  -failed<span class="hljs-char escape_">$\r</span><span class="hljs-char escape_">$\n</span>&quot;</span>
 
     end:
-    Push $0
-FunctionEnd</code></pre><h3 id="recreate-directory-structure">Recreate directory structure</h3><pre><code>Section
-    StrCpy $R0 &quot;C:\ftp&quot;     ;Directory structure from
-    StrCpy $R1 &quot;C:\ftp2&quot;    ;Directory structure into
-    StrLen $R2 $R0
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=recreate-directory-structure>Recreate directory structure</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-string>&quot;C:\ftp&quot;</span>     <span class=hljs-comment>;Directory structure from</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R1</span> <span class=hljs-string>&quot;C:\ftp2&quot;</span>    <span class=hljs-comment>;Directory structure into</span>
+    <span class=hljs-keyword>StrLen</span> <span class=hljs-variable>$R2</span> <span class=hljs-variable>$R0</span>
 
-    ${Locate} &quot;$R0&quot; &quot;/L=D&quot; &quot;Example7&quot;
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;<span class=hljs-variable>$R0</span>&quot;</span> <span class=hljs-string>&quot;/L=D&quot;</span> <span class=hljs-string>&quot;Example7&quot;</span>
 
-    IfErrors 0 +2
-    MessageBox MB_OK &#39;error&#39;
-SectionEnd
+    <span class=hljs-keyword>IfErrors</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&#x27;error&#x27;</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example7
-    StrCpy $1 $R9 &#39;&#39; $R2
-    CreateDirectory &#39;$R1$1&#39;
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example7</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$1</span> <span class=hljs-variable>$R9</span> <span class=hljs-string>&#x27;&#x27;</span> <span class=hljs-variable>$R2</span>
+    <span class=hljs-keyword>CreateDirectory</span> <span class=hljs-string>&#x27;<span class=hljs-variable>$R1</span><span class=hljs-variable>$1</span>&#x27;</span>
 
-    Push $0
-FunctionEnd</code></pre><h3 id="locate-with-banner---nxs-plugin-required">Locate with banner - NxS plugin required</h3><pre><code>Section
-    nxs::Show /NOUNLOAD `$(^Name) Setup` /top `Setup searching something$\r$\nPlease wait... If you can..` /h 1 /can 1 /end
-    ${Locate} &quot;C:\WINDOWS&quot; &quot;/L=F /M=*.inf /B=1&quot; &quot;Example8&quot;
-    nxs::Destroy
-SectionEnd
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h3 id=locate-with-banner---nxs-plugin-required>Locate with banner - NxS plugin required</h3><pre><code class="hljs language-nsis"><span class=hljs-keyword>Section</span>
+    <span class="hljs-title function_">nxs::Show</span> /NOUNLOAD <span class=hljs-string>`<span class=hljs-variable>$(^Name)</span> Setup`</span> /<span class=hljs-literal>top</span> <span class=hljs-string>`Setup searching something<span class="hljs-char escape_">$\r</span><span class="hljs-char escape_">$\n</span>Please wait... If you can..`</span> /h <span class=hljs-number>1</span> /can <span class=hljs-number>1</span> /end
+    <span class=hljs-variable>${Locate}</span> <span class=hljs-string>&quot;C:\WINDOWS&quot;</span> <span class=hljs-string>&quot;/L=F /M=*.inf /B=1&quot;</span> <span class=hljs-string>&quot;Example8&quot;</span>
+    <span class="hljs-title function_">nxs::Destroy</span>
+<span class=hljs-keyword>SectionEnd</span>
 
-Function Example8
-    StrCmp $R0 $R8 abortcheck
-    StrCpy $R0 $R8
-    nxs::Update /NOUNLOAD /sub &quot;$R8&quot; /pos 78 /end
+<span class=hljs-keyword>Function</span> <span class="hljs-title function_">Example8</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R0</span> <span class=hljs-variable>$R8</span> abortcheck
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$R0</span> <span class=hljs-variable>$R8</span>
+    <span class="hljs-title function_">nxs::Update</span> /NOUNLOAD /sub <span class=hljs-string>&quot;<span class=hljs-variable>$R8</span>&quot;</span> /pos <span class=hljs-number>78</span> /end
 
     abortcheck:
-    nxs::HasUserAborted /NOUNLOAD
-    Pop $0
-    StrCmp $0 1 0 +2
-    StrCpy $0 StopLocate
+    <span class="hljs-title function_">nxs::HasUserAborted</span> /NOUNLOAD
+    <span class=hljs-keyword>Pop</span> <span class=hljs-variable>$0</span>
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$0</span> <span class=hljs-number>1</span> <span class=hljs-number>0</span> +<span class=hljs-number>2</span>
+    <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$0</span> StopLocate
 
-    StrCmp $R9 &#39;&#39; end
-    ;...
+    <span class=hljs-keyword>StrCmp</span> <span class=hljs-variable>$R9</span> <span class=hljs-string>&#x27;&#x27;</span> end
+    <span class=hljs-comment>;...</span>
 
     end:
-    Push $0
-FunctionEnd</code></pre><h2 id="credits">Credits</h2><p>Written by <a href="http://nsis.sourceforge.net/User:Instructor">Instructor</a></p></div><div class="col-xs-12 text-right"><hr><a href="https://github.com/NSIS-Dev/Documentation/edit/master/Includes/FileFunc/Locate.md" class="btn btn-sm btn-default"><i class="fa fa-lg fa-edit"></i> Edit on GitHub</a></div></div></div><script src="../../../js/highlight.min.js" type="text/javascript"></script><script>hljs.initHighlightingOnLoad();</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-53539506-20"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-53539506-20");</script></body></html>
+    <span class=hljs-keyword>Push</span> <span class=hljs-variable>$0</span>
+<span class=hljs-keyword>FunctionEnd</span>
+</code></pre><h2 id=credits>Credits</h2><p>Written by <a href=http://nsis.sourceforge.net/User:Instructor>Instructor</a></p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/FileFunc/Locate.md>Edit on GitHub</a></div></div></body></html>

@@ -23,8 +23,5 @@ Any conditional NSIS instruction test:
     <span class=hljs-variable>${SectionIsReadOnly}</span> a<span class=hljs-comment>; ${SectionIsExpanded} a;</span>
     <span class=hljs-variable>${SectionIsPartiallySelected}</span> a
 </code></pre><h2 id=example>Example</h2><pre><code class="hljs language-nsis"><span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$0</span> <span class=hljs-literal>true</span>
-
 <span class=hljs-variable>${IfThen}</span> <span class=hljs-variable>$0</span> == <span class=hljs-literal>true</span> ${|} <span class=hljs-keyword>StrCpy</span> <span class=hljs-variable>$1</span> <span class=hljs-literal>false</span> ${|}
-    <span class=hljs-keyword>MessageBox</span> <span class=hljs-params>MB_OK</span> <span class=hljs-string>&quot;Whenever <span class="hljs-char escape_">$$</span>0 is true, <span class="hljs-char escape_">$$</span>1 is false&quot;</span>
-<span class=hljs-variable>${EndIf}</span>
 </code></pre><h2 id=credits>Credits</h2><p>Written by dselkirk and eccles</p></div><div class="columns-1 text-right"><hr><a href=https://github.com/NSIS-Dev/Documentation/edit/main/docs/Includes/LogicLib/IfThen.md>Edit on GitHub</a></div></div></body></html>
